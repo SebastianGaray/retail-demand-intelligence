@@ -215,26 +215,11 @@ def apply_styles() -> None:
         }
 
         .rdi-kpi-card header {
-            align-items: flex-start;
             color: var(--rdi-secondary);
-            display: flex;
             font-size: 0.68rem;
             font-weight: 700;
-            justify-content: space-between;
             letter-spacing: 0.03em;
             min-height: 2rem;
-        }
-
-        .rdi-kpi-card header b {
-            align-items: center;
-            border: 1px solid #829098;
-            border-radius: 999px;
-            cursor: help;
-            display: flex;
-            font-size: 0.6rem;
-            height: 14px;
-            justify-content: center;
-            width: 14px;
         }
 
         .rdi-kpi-card > div {

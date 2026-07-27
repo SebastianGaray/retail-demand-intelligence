@@ -3,12 +3,12 @@
 Retail Demand Intelligence is a local Python project for generating synthetic retail data,
 comparing demand forecasts, and inspecting inventory risk through FastAPI and Streamlit.
 
+[Live demo](https://retail-demand-intelligence.streamlit.app/)
+
+![Retail Demand Intelligence dashboard](docs/assets/dashboard-overview.png)
+
 > **Synthetic data:** the included generator creates all stores, products, sales, prices,
 > promotions, and inventory. No real company data is included.
-
-> **Dashboard screenshot:** placeholder for the first published dashboard image.
-
-**Live demo:** not published yet.
 
 ## Features
 
