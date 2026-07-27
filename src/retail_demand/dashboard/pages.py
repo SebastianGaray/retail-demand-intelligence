@@ -74,7 +74,7 @@ def _kpi_cards(items: tuple[tuple[str, str, str, str, str], ...]) -> None:
     cards = "".join(
         (
             f'<article class="rdi-kpi-card {kind}" title="{escape(help_text)}">'
-            f"<header><span>{escape(label)}</span><b>?</b></header>"
+            f"<header>{escape(label)}</header>"
             f"<div><strong>{escape(value)}</strong>"
             f"<small>{escape(unit)}</small></div></article>"
         )
