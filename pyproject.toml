@@ -27,6 +27,7 @@ retail-demand = "retail_demand.cli:main"
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28",
     "pandas-stubs>=2.2",
     "pre-commit>=4.0,<4.6",
     "pyright>=1.1.390",

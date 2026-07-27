@@ -1,4 +1,4 @@
-.PHONY: install sync sample-data train evaluate predictions format format-check lint typecheck test test-unit test-integration check clean
+.PHONY: install sync sample-data train evaluate predictions api app demo format format-check lint typecheck test test-unit test-integration check clean
 
 install:
 	uv sync --dev
@@ -18,6 +18,19 @@ evaluate:
 
 predictions:
 	uv run retail-demand predictions --artifact artifacts/runs/demo
+
+api:
+	RETAIL_DEMAND_ARTIFACT_DIRECTORY=artifacts/runs/demo uv run uvicorn retail_demand.api.main:app --reload
+
+app:
+	RETAIL_DEMAND_ARTIFACT_DIRECTORY=artifacts/runs/demo uv run streamlit run src/retail_demand/dashboard/app.py
+
+demo:
+	$(MAKE) sample-data
+	$(MAKE) train
+	$(MAKE) evaluate
+	$(MAKE) predictions
+	$(MAKE) app
 
 format:
 	uv run ruff format .
