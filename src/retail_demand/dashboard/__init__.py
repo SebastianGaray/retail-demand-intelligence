@@ -1,0 +1,1 @@
+"""Bilingual dashboard interface."""
