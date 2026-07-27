@@ -1,0 +1,3084 @@
+{
+  "schema_version": "1",
+  "created_at": "2024-12-30T00:00:00Z",
+  "data_directory": "data",
+  "data_manifest_sha256": null,
+  "configuration": {
+    "horizon": 28,
+    "seed": 42,
+    "recent_average_window": 28,
+    "model_improvement_threshold": 0.02
+  },
+  "feature_schema_version": "1",
+  "feature_columns": [
+    "store_id",
+    "product_id",
+    "day_of_week",
+    "day_of_month",
+    "month",
+    "is_weekend",
+    "is_holiday",
+    "price",
+    "regular_price",
+    "is_promotion",
+    "discount_percent",
+    "demand_lag_horizon",
+    "demand_lag_horizon_plus_7",
+    "demand_lag_horizon_plus_28",
+    "demand_rolling_7",
+    "demand_rolling_28",
+    "inventory_lag_horizon",
+    "inbound_lag_horizon"
+  ],
+  "train_period": {
+    "start": "2023-02-26",
+    "end": "2024-11-04"
+  },
+  "validation_period": {
+    "start": "2024-11-05",
+    "end": "2024-12-02"
+  },
+  "test_period": {
+    "start": "2024-12-03",
+    "end": "2024-12-30"
+  },
+  "champion_model": "lightgbm",
+  "validation_metrics": [
+    {
+      "scope": "overall",
+      "identifier": "all",
+      "model": "recent_average",
+      "mae": 2.8596326530612246,
+      "wape": 0.28963752418434674,
+      "mase": 0.8825812708974385,
+      "observations": 7000
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_001",
+      "model": "recent_average",
+      "mae": 3.7468367346938773,
+      "wape": 0.33084651078974636,
+      "mase": 0.9311997123800911,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_002",
+      "model": "recent_average",
+      "mae": 2.1432142857142855,
+      "wape": 0.2721048335902784,
+      "mase": 0.8411402272397762,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_003",
+      "model": "recent_average",
+      "mae": 2.405969387755102,
+      "wape": 0.2608096897295503,
+      "mase": 0.8145299127419228,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_004",
+      "model": "recent_average",
+      "mae": 3.0135204081632656,
+      "wape": 0.32847466298883304,
+      "mase": 0.9501222802735693,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_005",
+      "model": "recent_average",
+      "mae": 2.9886224489795916,
+      "wape": 0.2540265574993278,
+      "mase": 0.8531102269262357,
+      "observations": 1400
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0001",
+      "model": "recent_average",
+      "mae": 2.81530612244898,
+      "wape": 0.22369061131830714,
+      "mase": 0.8012632945855817,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0002",
+      "model": "recent_average",
+      "mae": 0.5418367346938776,
+      "wape": 0.22643923240938169,
+      "mase": 0.7285700812014948,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0003",
+      "model": "recent_average",
+      "mae": 1.3198979591836735,
+      "wape": 0.2584415584415584,
+      "mase": 0.7739516824004075,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0004",
+      "model": "recent_average",
+      "mae": 2.0826530612244896,
+      "wape": 0.21113065066721837,
+      "mase": 0.6812833389057518,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0005",
+      "model": "recent_average",
+      "mae": 3.070918367346939,
+      "wape": 0.25454622346274214,
+      "mase": 0.8124755877929244,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0006",
+      "model": "recent_average",
+      "mae": 1.8775510204081631,
+      "wape": 0.266589394378441,
+      "mase": 0.9723543596112796,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0007",
+      "model": "recent_average",
+      "mae": 4.694897959183673,
+      "wape": 0.3891567284107248,
+      "mase": 1.0428175996296438,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0008",
+      "model": "recent_average",
+      "mae": 4.544897959183673,
+      "wape": 0.24605016020329243,
+      "mase": 0.7297731139128624,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0009",
+      "model": "recent_average",
+      "mae": 2.7852040816326533,
+      "wape": 0.22422574550234126,
+      "mase": 0.6894739866613528,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0010",
+      "model": "recent_average",
+      "mae": 0.5214285714285715,
+      "wape": 0.1983695652173913,
+      "mase": 0.7159390048154094,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0011",
+      "model": "recent_average",
+      "mae": 1.1928571428571428,
+      "wape": 0.21773142112125163,
+      "mase": 0.6303716608594657,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0012",
+      "model": "recent_average",
+      "mae": 1.338265306122449,
+      "wape": 0.1791177273968861,
+      "mase": 0.5572305452097699,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0013",
+      "model": "recent_average",
+      "mae": 6.209183673469388,
+      "wape": 0.3634137601528906,
+      "mase": 0.9764274526406024,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0014",
+      "model": "recent_average",
+      "mae": 4.5158163265306115,
+      "wape": 0.3346819934961809,
+      "mase": 1.011497828106974,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0015",
+      "model": "recent_average",
+      "mae": 3.6438775510204082,
+      "wape": 0.2821586599241467,
+      "mase": 0.7952029372360416,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0016",
+      "model": "recent_average",
+      "mae": 3.4127551020408164,
+      "wape": 0.28939171065155317,
+      "mase": 0.863505618414336,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0017",
+      "model": "recent_average",
+      "mae": 2.715816326530612,
+      "wape": 0.4296206618240517,
+      "mase": 1.1322078162596916,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0018",
+      "model": "recent_average",
+      "mae": 2.183673469387755,
+      "wape": 0.2875957532589706,
+      "mase": 1.0344429289780728,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0019",
+      "model": "recent_average",
+      "mae": 1.9938775510204083,
+      "wape": 0.215720909693089,
+      "mase": 0.7369097409106398,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0020",
+      "model": "recent_average",
+      "mae": 2.6979591836734693,
+      "wape": 0.4397139531016132,
+      "mase": 1.2060675016275166,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0021",
+      "model": "recent_average",
+      "mae": 1.5091836734693878,
+      "wape": 0.26643847955323363,
+      "mase": 0.7813177635060125,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0022",
+      "model": "recent_average",
+      "mae": 1.0739795918367347,
+      "wape": 0.4074719318621758,
+      "mase": 1.1201801478529276,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0023",
+      "model": "recent_average",
+      "mae": 1.9775510204081634,
+      "wape": 0.2238133733687493,
+      "mase": 0.6525619320962345,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0024",
+      "model": "recent_average",
+      "mae": 5.026530612244898,
+      "wape": 0.475804114749348,
+      "mase": 1.3553443089504114,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0025",
+      "model": "recent_average",
+      "mae": 3.4647959183673467,
+      "wape": 0.2416897999857641,
+      "mase": 0.767581691850054,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0026",
+      "model": "recent_average",
+      "mae": 4.010714285714286,
+      "wape": 0.35741565881604076,
+      "mase": 1.0254190428368186,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0027",
+      "model": "recent_average",
+      "mae": 2.870408163265306,
+      "wape": 0.1675801262957226,
+      "mase": 0.5558152334902396,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0028",
+      "model": "recent_average",
+      "mae": 1.9836734693877551,
+      "wape": 0.4013212221304707,
+      "mase": 1.1301981441588198,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0029",
+      "model": "recent_average",
+      "mae": 2.537755102040817,
+      "wape": 0.21863736263736266,
+      "mase": 0.7301602784643715,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0030",
+      "model": "recent_average",
+      "mae": 3.521938775510204,
+      "wape": 0.32740466704610127,
+      "mase": 0.9753012109484839,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0031",
+      "model": "recent_average",
+      "mae": 3.6816326530612247,
+      "wape": 0.5206349206349207,
+      "mase": 1.390454661281004,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0032",
+      "model": "recent_average",
+      "mae": 3.938775510204082,
+      "wape": 0.28810270189580534,
+      "mase": 0.9318484615250886,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0033",
+      "model": "recent_average",
+      "mae": 5.141326530612244,
+      "wape": 0.28338020247469065,
+      "mase": 0.8524233447856511,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0034",
+      "model": "recent_average",
+      "mae": 2.5627551020408164,
+      "wape": 0.19467483140841796,
+      "mase": 0.6467754511965877,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0035",
+      "model": "recent_average",
+      "mae": 5.011734693877551,
+      "wape": 0.45325765965300846,
+      "mase": 1.24569599624082,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0036",
+      "model": "recent_average",
+      "mae": 2.546938775510204,
+      "wape": 0.4904696404008646,
+      "mase": 1.3543773645228325,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0037",
+      "model": "recent_average",
+      "mae": 2.340816326530612,
+      "wape": 0.32837102776982535,
+      "mase": 0.9816326530612245,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0038",
+      "model": "recent_average",
+      "mae": 2.5816326530612246,
+      "wape": 0.27113921337477226,
+      "mase": 0.9057059893318834,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0039",
+      "model": "recent_average",
+      "mae": 2.2948979591836736,
+      "wape": 0.20067814758632996,
+      "mase": 0.7289367088070412,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0040",
+      "model": "recent_average",
+      "mae": 5.238265306122449,
+      "wape": 0.43966255566974993,
+      "mase": 1.0749580513336525,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0041",
+      "model": "recent_average",
+      "mae": 1.2433673469387756,
+      "wape": 0.4533110119047619,
+      "mase": 1.1948685891468889,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0042",
+      "model": "recent_average",
+      "mae": 1.1061224489795918,
+      "wape": 0.26931677018633543,
+      "mase": 0.7736273080660835,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0043",
+      "model": "recent_average",
+      "mae": 2.6311224489795917,
+      "wape": 0.1866044290056448,
+      "mase": 0.5926038839304522,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0044",
+      "model": "recent_average",
+      "mae": 2.4132653061224487,
+      "wape": 0.26792794834031947,
+      "mase": 0.7818989829466625,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0045",
+      "model": "recent_average",
+      "mae": 2.379591836734694,
+      "wape": 0.20539017086489345,
+      "mase": 0.6884141156462585,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0046",
+      "model": "recent_average",
+      "mae": 2.0989795918367347,
+      "wape": 0.27335548172757473,
+      "mase": 0.9361142559213466,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0047",
+      "model": "recent_average",
+      "mae": 1.9316326530612247,
+      "wape": 0.20596235447720598,
+      "mase": 0.705540142886423,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0048",
+      "model": "recent_average",
+      "mae": 6.564795918367347,
+      "wape": 0.365581316058643,
+      "mase": 1.0383355697961296,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0049",
+      "model": "recent_average",
+      "mae": 1.0836734693877552,
+      "wape": 0.389010989010989,
+      "mase": 1.096959061954802,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0050",
+      "model": "recent_average",
+      "mae": 4.055102040816326,
+      "wape": 0.2510899096480697,
+      "mase": 0.8381257516199091,
+      "observations": 140
+    },
+    {
+      "scope": "overall",
+      "identifier": "all",
+      "model": "seasonal_naive",
+      "mae": 3.0237142857142856,
+      "wape": 0.30625651117027436,
+      "mase": 0.9332225222213948,
+      "observations": 7000
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_001",
+      "model": "seasonal_naive",
+      "mae": 3.6364285714285716,
+      "wape": 0.32109744560075687,
+      "mase": 0.9037600193384708,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_002",
+      "model": "seasonal_naive",
+      "mae": 2.4564285714285714,
+      "wape": 0.31187086242858436,
+      "mase": 0.964066402758737,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_003",
+      "model": "seasonal_naive",
+      "mae": 2.6078571428571427,
+      "wape": 0.2826945412311266,
+      "mase": 0.8828780872381754,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_004",
+      "model": "seasonal_naive",
+      "mae": 3.0014285714285713,
+      "wape": 0.3271566490189972,
+      "mase": 0.9463098874787695,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_005",
+      "model": "seasonal_naive",
+      "mae": 3.4164285714285714,
+      "wape": 0.2903891688422075,
+      "mase": 0.975228622418946,
+      "observations": 1400
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0001",
+      "model": "seasonal_naive",
+      "mae": 3.342857142857143,
+      "wape": 0.2656072644721907,
+      "mase": 0.9514094066916873,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0002",
+      "model": "seasonal_naive",
+      "mae": 0.6214285714285714,
+      "wape": 0.25970149253731345,
+      "mase": 0.8355916750503019,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0003",
+      "model": "seasonal_naive",
+      "mae": 1.35,
+      "wape": 0.26433566433566436,
+      "mase": 0.7916026871401153,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0004",
+      "model": "seasonal_naive",
+      "mae": 3.164285714285714,
+      "wape": 0.32078204199855176,
+      "mase": 1.0351100607284354,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0005",
+      "model": "seasonal_naive",
+      "mae": 3.3785714285714286,
+      "wape": 0.28004736530491414,
+      "mase": 0.8938716302317238,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0006",
+      "model": "seasonal_naive",
+      "mae": 1.8285714285714285,
+      "wape": 0.25963488843813387,
+      "mase": 0.9469885937083767,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0007",
+      "model": "seasonal_naive",
+      "mae": 4.392857142857143,
+      "wape": 0.3641207815275311,
+      "mase": 0.975729138536322,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0008",
+      "model": "seasonal_naive",
+      "mae": 5.457142857142857,
+      "wape": 0.2954369682907966,
+      "mase": 0.876252046072292,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0009",
+      "model": "seasonal_naive",
+      "mae": 3.05,
+      "wape": 0.24554341575618172,
+      "mase": 0.7550239040596385,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0010",
+      "model": "seasonal_naive",
+      "mae": 0.6142857142857143,
+      "wape": 0.23369565217391305,
+      "mase": 0.8434349919743179,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0011",
+      "model": "seasonal_naive",
+      "mae": 1.4071428571428573,
+      "wape": 0.25684485006518903,
+      "mase": 0.7436120789779327,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0012",
+      "model": "seasonal_naive",
+      "mae": 1.542857142857143,
+      "wape": 0.20650095602294455,
+      "mase": 0.6424190502151522,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0013",
+      "model": "seasonal_naive",
+      "mae": 6.871428571428571,
+      "wape": 0.40217391304347827,
+      "mase": 1.0805690166116377,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0014",
+      "model": "seasonal_naive",
+      "mae": 4.85,
+      "wape": 0.3594494441503441,
+      "mase": 1.0863516386831877,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0015",
+      "model": "seasonal_naive",
+      "mae": 3.7,
+      "wape": 0.28650442477876104,
+      "mase": 0.80745053218087,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0016",
+      "model": "seasonal_naive",
+      "mae": 3.9357142857142855,
+      "wape": 0.33373712901271957,
+      "mase": 0.9958263328521735,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0017",
+      "model": "seasonal_naive",
+      "mae": 2.1214285714285714,
+      "wape": 0.33559322033898303,
+      "mase": 0.8844110651902682,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0018",
+      "model": "seasonal_naive",
+      "mae": 2.335714285714286,
+      "wape": 0.30761994355597366,
+      "mase": 1.1064672263695368,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0019",
+      "model": "seasonal_naive",
+      "mae": 2.442857142857143,
+      "wape": 0.2642967542503864,
+      "mase": 0.9028464277073037,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0020",
+      "model": "seasonal_naive",
+      "mae": 2.7357142857142858,
+      "wape": 0.4458672875436554,
+      "mase": 1.2229451482085372,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0021",
+      "model": "seasonal_naive",
+      "mae": 1.5642857142857143,
+      "wape": 0.27616645649432536,
+      "mase": 0.8098445784007553,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0022",
+      "model": "seasonal_naive",
+      "mae": 1.0785714285714285,
+      "wape": 0.4092140921409214,
+      "mase": 1.1249695166560991,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0023",
+      "model": "seasonal_naive",
+      "mae": 2.992857142857143,
+      "wape": 0.3387227162489895,
+      "mase": 0.987597598987748,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0024",
+      "model": "seasonal_naive",
+      "mae": 4.007142857142857,
+      "wape": 0.3793103448275862,
+      "mase": 1.0804785020804437,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0025",
+      "model": "seasonal_naive",
+      "mae": 3.807142857142857,
+      "wape": 0.26557050323866466,
+      "mase": 0.8434243240443385,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0026",
+      "model": "seasonal_naive",
+      "mae": 4.107142857142857,
+      "wape": 0.366008911521324,
+      "mase": 1.0500729289958513,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0027",
+      "model": "seasonal_naive",
+      "mae": 3.8142857142857145,
+      "wape": 0.2226855713094245,
+      "mase": 0.7385841958003967,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0028",
+      "model": "seasonal_naive",
+      "mae": 1.4142857142857144,
+      "wape": 0.2861271676300578,
+      "mase": 0.8057894175947141,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0029",
+      "model": "seasonal_naive",
+      "mae": 2.55,
+      "wape": 0.2196923076923077,
+      "mase": 0.7336833678658881,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0030",
+      "model": "seasonal_naive",
+      "mae": 3.8714285714285714,
+      "wape": 0.3598937583001328,
+      "mase": 1.0720825132083291,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0031",
+      "model": "seasonal_naive",
+      "mae": 3.4,
+      "wape": 0.4808080808080808,
+      "mase": 1.2840895042650513,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0032",
+      "model": "seasonal_naive",
+      "mae": 3.8714285714285714,
+      "wape": 0.2831765935214211,
+      "mase": 0.9159153013021207,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0033",
+      "model": "seasonal_naive",
+      "mae": 5.271428571428571,
+      "wape": 0.2905511811023622,
+      "mase": 0.8739940456807928,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0034",
+      "model": "seasonal_naive",
+      "mae": 4.35,
+      "wape": 0.3304395008138904,
+      "mase": 1.0978314745972737,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0035",
+      "model": "seasonal_naive",
+      "mae": 4.6,
+      "wape": 0.4160206718346253,
+      "mase": 1.143356927833374,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0036",
+      "model": "seasonal_naive",
+      "mae": 1.9928571428571429,
+      "wape": 0.38376891334250346,
+      "mase": 1.0597351734427454,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0037",
+      "model": "seasonal_naive",
+      "mae": 3.057142857142857,
+      "wape": 0.4288577154308617,
+      "mase": 1.2820276497695853,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0038",
+      "model": "seasonal_naive",
+      "mae": 2.9785714285714286,
+      "wape": 0.31282820705176295,
+      "mase": 1.0449627600236235,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0039",
+      "model": "seasonal_naive",
+      "mae": 2.7785714285714285,
+      "wape": 0.24297314178638352,
+      "mase": 0.882567655883314,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0040",
+      "model": "seasonal_naive",
+      "mae": 4.885714285714286,
+      "wape": 0.41007194244604317,
+      "mase": 1.0026101392394133,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0041",
+      "model": "seasonal_naive",
+      "mae": 1.1571428571428573,
+      "wape": 0.421875,
+      "mase": 1.1120073697928372,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0042",
+      "model": "seasonal_naive",
+      "mae": 1.5785714285714285,
+      "wape": 0.3843478260869565,
+      "mase": 1.1040603741496597,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0043",
+      "model": "seasonal_naive",
+      "mae": 2.6,
+      "wape": 0.18439716312056736,
+      "mase": 0.585594219994102,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0044",
+      "model": "seasonal_naive",
+      "mae": 3.5642857142857145,
+      "wape": 0.3957176843774782,
+      "mase": 1.154830083481054,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0045",
+      "model": "seasonal_naive",
+      "mae": 2.4714285714285715,
+      "wape": 0.21331689272503082,
+      "mase": 0.7149824134199134,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0046",
+      "model": "seasonal_naive",
+      "mae": 2.307142857142857,
+      "wape": 0.30046511627906974,
+      "mase": 1.0289520333680915,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0047",
+      "model": "seasonal_naive",
+      "mae": 1.9214285714285715,
+      "wape": 0.2048743335872049,
+      "mase": 0.7018130422900868,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0048",
+      "model": "seasonal_naive",
+      "mae": 5.357142857142857,
+      "wape": 0.29832935560859186,
+      "mase": 0.8473244332680003,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0049",
+      "model": "seasonal_naive",
+      "mae": 0.7571428571428571,
+      "wape": 0.2717948717948718,
+      "mase": 0.7664252579759537,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0050",
+      "model": "seasonal_naive",
+      "mae": 3.9357142857142855,
+      "wape": 0.24369747899159663,
+      "mase": 0.8134501821836914,
+      "observations": 140
+    },
+    {
+      "scope": "overall",
+      "identifier": "all",
+      "model": "lightgbm",
+      "mae": 2.3088954089350815,
+      "wape": 0.23385617349440865,
+      "mase": 0.7126047613863068,
+      "observations": 7000
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_001",
+      "model": "lightgbm",
+      "mae": 2.9107943693160303,
+      "wape": 0.2570237853700689,
+      "mase": 0.7234184650765497,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_002",
+      "model": "lightgbm",
+      "mae": 1.7987051422665283,
+      "wape": 0.22836557533083698,
+      "mase": 0.7059318623378739,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_003",
+      "model": "lightgbm",
+      "mae": 1.9507508804705067,
+      "wape": 0.2114635100781037,
+      "mase": 0.6604177727853143,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_004",
+      "model": "lightgbm",
+      "mae": 2.3508739179307865,
+      "wape": 0.2562459891858534,
+      "mase": 0.7411987924453592,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_005",
+      "model": "lightgbm",
+      "mae": 2.5333527346915545,
+      "wape": 0.2153295992088019,
+      "mase": 0.7231522760979134,
+      "observations": 1400
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0001",
+      "model": "lightgbm",
+      "mae": 1.9694870312095771,
+      "wape": 0.1564859162141548,
+      "mase": 0.5605350177329288,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0002",
+      "model": "lightgbm",
+      "mae": 0.562026140343817,
+      "wape": 0.23487659596458024,
+      "mase": 0.7557173674077293,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0003",
+      "model": "lightgbm",
+      "mae": 1.2416379109714448,
+      "wape": 0.2431179126377654,
+      "mase": 0.7280621531703961,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0004",
+      "model": "lightgbm",
+      "mae": 1.6214531597108994,
+      "wape": 0.16437613494534825,
+      "mase": 0.5304143273280649,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0005",
+      "model": "lightgbm",
+      "mae": 2.3892828374262365,
+      "wape": 0.19804594271147016,
+      "mase": 0.6321346729312507,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0006",
+      "model": "lightgbm",
+      "mae": 1.2157664452287016,
+      "wape": 0.17262403887628625,
+      "mase": 0.6296264604464626,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0007",
+      "model": "lightgbm",
+      "mae": 3.756377320120069,
+      "wape": 0.3113634249951508,
+      "mase": 0.8343560210096562,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0008",
+      "model": "lightgbm",
+      "mae": 4.032237207991478,
+      "wape": 0.21829590453163453,
+      "mase": 0.6474553069701442,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0009",
+      "model": "lightgbm",
+      "mae": 2.660349989568286,
+      "wape": 0.2141742372280391,
+      "mase": 0.6585665033733987,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0010",
+      "model": "lightgbm",
+      "mae": 0.5770659668550282,
+      "wape": 0.21953596565136943,
+      "mase": 0.7923310241537579,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0011",
+      "model": "lightgbm",
+      "mae": 1.0982941105922066,
+      "wape": 0.20047089371956836,
+      "mase": 0.5803993267357189,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0012",
+      "model": "lightgbm",
+      "mae": 1.2631446505303725,
+      "wape": 0.1690633375470862,
+      "mase": 0.5259516024765283,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0013",
+      "model": "lightgbm",
+      "mae": 5.0050115831812105,
+      "wape": 0.2929354605540842,
+      "mase": 0.7870649295629072,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0014",
+      "model": "lightgbm",
+      "mae": 3.6264064742509747,
+      "wape": 0.2687649054500458,
+      "mase": 0.8122788898626533,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0015",
+      "model": "lightgbm",
+      "mae": 3.1656762162998744,
+      "wape": 0.24512979550994604,
+      "mase": 0.6908451204226098,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0016",
+      "model": "lightgbm",
+      "mae": 3.0711206321493085,
+      "wape": 0.26042210084851797,
+      "mase": 0.7770642315070513,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0017",
+      "model": "lightgbm",
+      "mae": 2.0467470754082506,
+      "wape": 0.3237791983696668,
+      "mase": 0.8532767897614909,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0018",
+      "model": "lightgbm",
+      "mae": 1.5979826631684189,
+      "wape": 0.21045867624043146,
+      "mase": 0.7569913220622607,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0019",
+      "model": "lightgbm",
+      "mae": 1.7170895091048282,
+      "wape": 0.18577475368985777,
+      "mase": 0.6346126845288229,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0020",
+      "model": "lightgbm",
+      "mae": 1.9271883042563656,
+      "wape": 0.3140935536622715,
+      "mase": 0.8615101360115887,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0021",
+      "model": "lightgbm",
+      "mae": 1.2770152949275109,
+      "wape": 0.2254503673264206,
+      "mase": 0.6611221362486944,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0022",
+      "model": "lightgbm",
+      "mae": 0.846501109389149,
+      "wape": 0.32116573255956876,
+      "mase": 0.8829159744567601,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0023",
+      "model": "lightgbm",
+      "mae": 1.8752990102754283,
+      "wape": 0.21224079340223118,
+      "mase": 0.6188203150131166,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0024",
+      "model": "lightgbm",
+      "mae": 3.209381548839659,
+      "wape": 0.30379541368326723,
+      "mase": 0.8653716356315232,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0025",
+      "model": "lightgbm",
+      "mae": 3.1681436891894066,
+      "wape": 0.22099657024739258,
+      "mase": 0.7018621443418156,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0026",
+      "model": "lightgbm",
+      "mae": 3.586004277452259,
+      "wape": 0.31956753586461883,
+      "mase": 0.9168334645256215,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0027",
+      "model": "lightgbm",
+      "mae": 2.5299440381368057,
+      "wape": 0.14770315485369173,
+      "mase": 0.489889017969699,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0028",
+      "model": "lightgbm",
+      "mae": 1.3444980676726557,
+      "wape": 0.27200827958695345,
+      "mase": 0.7660278994293105,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0029",
+      "model": "lightgbm",
+      "mae": 1.922254320919387,
+      "wape": 0.16560960303305486,
+      "mase": 0.5530690290458399,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0030",
+      "model": "lightgbm",
+      "mae": 2.8446280036318328,
+      "wape": 0.2644408502712195,
+      "mase": 0.787739172506821,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0031",
+      "model": "lightgbm",
+      "mae": 2.794525063016065,
+      "wape": 0.39518536244671626,
+      "mase": 1.0554177361248707,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0032",
+      "model": "lightgbm",
+      "mae": 2.968734268944894,
+      "wape": 0.2171487971015074,
+      "mase": 0.7023529150179393,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0033",
+      "model": "lightgbm",
+      "mae": 4.530729844001941,
+      "wape": 0.24972526699223296,
+      "mase": 0.7511874347892071,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0034",
+      "model": "lightgbm",
+      "mae": 1.9398494252381908,
+      "wape": 0.1473569829263954,
+      "mase": 0.48956959885193496,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0035",
+      "model": "lightgbm",
+      "mae": 3.428785078041366,
+      "wape": 0.3100968416833277,
+      "mase": 0.8522446028326721,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0036",
+      "model": "lightgbm",
+      "mae": 1.702693876422215,
+      "wape": 0.32789153053522707,
+      "mase": 0.9054359952079838,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0037",
+      "model": "lightgbm",
+      "mae": 1.8064909998001073,
+      "wape": 0.2534155711142435,
+      "mase": 0.7575607418516579,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0038",
+      "model": "lightgbm",
+      "mae": 2.346409717505494,
+      "wape": 0.24643462899532573,
+      "mase": 0.8231834734702899,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0039",
+      "model": "lightgbm",
+      "mae": 1.9623939489071196,
+      "wape": 0.17160221914240897,
+      "mase": 0.6233222617915627,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0040",
+      "model": "lightgbm",
+      "mae": 4.502746281014117,
+      "wape": 0.3779283449292425,
+      "mase": 0.9240202786658245,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0041",
+      "model": "lightgbm",
+      "mae": 1.0848674080162382,
+      "wape": 0.39552457583925354,
+      "mase": 1.0425510951524404,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0042",
+      "model": "lightgbm",
+      "mae": 1.0756829725423593,
+      "wape": 0.26190541940161793,
+      "mase": 0.7523377932959954,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0043",
+      "model": "lightgbm",
+      "mae": 2.125268794477126,
+      "wape": 0.15072828329625007,
+      "mase": 0.4786712007613993,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0044",
+      "model": "lightgbm",
+      "mae": 2.0181964996395902,
+      "wape": 0.22406622517806712,
+      "mase": 0.6538965220488863,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0045",
+      "model": "lightgbm",
+      "mae": 1.7632546606743928,
+      "wape": 0.15219214087201913,
+      "mase": 0.5101082375341165,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0046",
+      "model": "lightgbm",
+      "mae": 1.7262877252121396,
+      "wape": 0.2248188665392554,
+      "mase": 0.7698991241639541,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0047",
+      "model": "lightgbm",
+      "mae": 1.7965698716557754,
+      "wape": 0.1915611439693896,
+      "mase": 0.6562076707207549,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0048",
+      "model": "lightgbm",
+      "mae": 4.771579017374382,
+      "wape": 0.26572039078457177,
+      "mase": 0.7547074241821764,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0049",
+      "model": "lightgbm",
+      "mae": 0.7524289018259394,
+      "wape": 0.2701026827067475,
+      "mase": 0.7616535106289744,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0050",
+      "model": "lightgbm",
+      "mae": 3.199261503643172,
+      "wape": 0.19809668753208495,
+      "mase": 0.6612369862411129,
+      "observations": 140
+    }
+  ],
+  "test_metrics": [
+    {
+      "scope": "overall",
+      "identifier": "all",
+      "model": "recent_average",
+      "mae": 2.917326530612245,
+      "wape": 0.2976169656390013,
+      "mase": 0.9031349331146877,
+      "observations": 7000
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_001",
+      "model": "recent_average",
+      "mae": 3.9939285714285715,
+      "wape": 0.35382522305891284,
+      "mase": 0.9969375916587983,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_002",
+      "model": "recent_average",
+      "mae": 2.1368367346938775,
+      "wape": 0.27282913165266104,
+      "mase": 0.8412121104679627,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_003",
+      "model": "recent_average",
+      "mae": 2.6314285714285712,
+      "wape": 0.2881276396058189,
+      "mase": 0.895053260413308,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_004",
+      "model": "recent_average",
+      "mae": 2.742244897959184,
+      "wape": 0.298487238154475,
+      "mase": 0.8644938675632072,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_005",
+      "model": "recent_average",
+      "mae": 3.0821938775510205,
+      "wape": 0.26636243386243386,
+      "mase": 0.8824734466736126,
+      "observations": 1400
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0001",
+      "model": "recent_average",
+      "mae": 2.552551020408163,
+      "wape": 0.22251378758228071,
+      "mase": 0.7264095938544652,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0002",
+      "model": "recent_average",
+      "mae": 0.7096938775510204,
+      "wape": 0.29482831708351,
+      "mase": 0.9571430725097131,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0003",
+      "model": "recent_average",
+      "mae": 1.3954081632653061,
+      "wape": 0.25704887218045114,
+      "mase": 0.8207527764419464,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0004",
+      "model": "recent_average",
+      "mae": 1.9744897959183674,
+      "wape": 0.20206766917293234,
+      "mase": 0.6494229872307169,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0005",
+      "model": "recent_average",
+      "mae": 2.9443877551020408,
+      "wape": 0.24565809637323344,
+      "mase": 0.7759253445687084,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0006",
+      "model": "recent_average",
+      "mae": 1.5214285714285716,
+      "wape": 0.23878923766816146,
+      "mase": 0.7818826259794573,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0007",
+      "model": "recent_average",
+      "mae": 4.341836734693878,
+      "wape": 0.3780206112295665,
+      "mase": 0.9654233674818666,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0008",
+      "model": "recent_average",
+      "mae": 5.663265306122449,
+      "wape": 0.3038931172315611,
+      "mase": 0.915834015946815,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0009",
+      "model": "recent_average",
+      "mae": 4.1535714285714285,
+      "wape": 0.33886946386946387,
+      "mase": 1.0390432754686592,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0010",
+      "model": "recent_average",
+      "mae": 0.6744897959183673,
+      "wape": 0.2518095238095238,
+      "mase": 0.9349218646243747,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0011",
+      "model": "recent_average",
+      "mae": 1.623469387755102,
+      "wape": 0.31092436974789917,
+      "mase": 0.8639215013120505,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0012",
+      "model": "recent_average",
+      "mae": 1.7229591836734695,
+      "wape": 0.2357910906298003,
+      "mase": 0.7262341150180389,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0013",
+      "model": "recent_average",
+      "mae": 6.272448979591837,
+      "wape": 0.3558115304468627,
+      "mase": 0.9835332984784019,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0014",
+      "model": "recent_average",
+      "mae": 3.2285714285714286,
+      "wape": 0.22276983735830458,
+      "mase": 0.7168869076576354,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0015",
+      "model": "recent_average",
+      "mae": 3.591326530612245,
+      "wape": 0.28681444055089234,
+      "mase": 0.7913848034558331,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0016",
+      "model": "recent_average",
+      "mae": 3.288265306122449,
+      "wape": 0.25804772581678415,
+      "mase": 0.8326206730909197,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0017",
+      "model": "recent_average",
+      "mae": 2.9229591836734694,
+      "wape": 0.4736276455026455,
+      "mase": 1.2186943223067643,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0018",
+      "model": "recent_average",
+      "mae": 2.266836734693878,
+      "wape": 0.3271723122238587,
+      "mase": 1.0588513694951667,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0019",
+      "model": "recent_average",
+      "mae": 2.4755102040816324,
+      "wape": 0.271395010627587,
+      "mase": 0.9182927089331029,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0020",
+      "model": "recent_average",
+      "mae": 2.6933673469387753,
+      "wape": 0.401567016582991,
+      "mase": 1.204719119903316,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0021",
+      "model": "recent_average",
+      "mae": 1.6010204081632653,
+      "wape": 0.29338070306656694,
+      "mase": 0.8339191724945603,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0022",
+      "model": "recent_average",
+      "mae": 0.8265306122448979,
+      "wape": 0.30775075987841943,
+      "mase": 0.8576697973765667,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0023",
+      "model": "recent_average",
+      "mae": 1.4908163265306122,
+      "wape": 0.16657165659559914,
+      "mase": 0.49425735843782365,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0024",
+      "model": "recent_average",
+      "mae": 4.638265306122449,
+      "wape": 0.45441367589723086,
+      "mase": 1.2468874760674147,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0025",
+      "model": "recent_average",
+      "mae": 4.338265306122449,
+      "wape": 0.32409666107638363,
+      "mase": 0.9668497246834002,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0026",
+      "model": "recent_average",
+      "mae": 3.3076530612244897,
+      "wape": 0.26059168743468125,
+      "mase": 0.8319911455371,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0027",
+      "model": "recent_average",
+      "mae": 3.1392857142857142,
+      "wape": 0.1784409257003654,
+      "mase": 0.6174598533084743,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0028",
+      "model": "recent_average",
+      "mae": 2.0260204081632653,
+      "wape": 0.4063651248465002,
+      "mase": 1.1684359574154572,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0029",
+      "model": "recent_average",
+      "mae": 2.5040816326530613,
+      "wape": 0.22838529548627268,
+      "mase": 0.7292444459325979,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0030",
+      "model": "recent_average",
+      "mae": 3.0352040816326533,
+      "wape": 0.2665800322638466,
+      "mase": 0.8401175639622566,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0031",
+      "model": "recent_average",
+      "mae": 3.9795918367346936,
+      "wape": 0.5720152537400996,
+      "mase": 1.4923469387755102,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0032",
+      "model": "recent_average",
+      "mae": 3.6484693877551018,
+      "wape": 0.2529894572985212,
+      "mase": 0.8627042402218434,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0033",
+      "model": "recent_average",
+      "mae": 5.211224489795918,
+      "wape": 0.3109852636706857,
+      "mase": 0.8707631528109386,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0034",
+      "model": "recent_average",
+      "mae": 2.6816326530612247,
+      "wape": 0.19676549865229112,
+      "mase": 0.6860839467112919,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0035",
+      "model": "recent_average",
+      "mae": 5.214285714285714,
+      "wape": 0.4599873976055451,
+      "mase": 1.299402765552052,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0036",
+      "model": "recent_average",
+      "mae": 2.1826530612244897,
+      "wape": 0.41461523551075785,
+      "mase": 1.1597499635144262,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0037",
+      "model": "recent_average",
+      "mae": 2.6198979591836733,
+      "wape": 0.3906131142552868,
+      "mase": 1.0976362417508307,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0038",
+      "model": "recent_average",
+      "mae": 2.4714285714285715,
+      "wape": 0.251088534107402,
+      "mase": 0.8642020669491394,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0039",
+      "model": "recent_average",
+      "mae": 2.2668367346938774,
+      "wape": 0.19386508421328214,
+      "mase": 0.7267981301903601,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0040",
+      "model": "recent_average",
+      "mae": 6.053061224489796,
+      "wape": 0.5195760707716564,
+      "mase": 1.2359896857061992,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0041",
+      "model": "recent_average",
+      "mae": 1.3872448979591838,
+      "wape": 0.46911663216011046,
+      "mase": 1.3191212645772594,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0042",
+      "model": "recent_average",
+      "mae": 1.3122448979591836,
+      "wape": 0.31894841269841273,
+      "mase": 0.9220634372068599,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0043",
+      "model": "recent_average",
+      "mae": 3.298469387755102,
+      "wape": 0.2452393596843942,
+      "mase": 0.7542123877390361,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0044",
+      "model": "recent_average",
+      "mae": 2.7928571428571427,
+      "wape": 0.32234130255564714,
+      "mase": 0.9061824486065372,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0045",
+      "model": "recent_average",
+      "mae": 2.067857142857143,
+      "wape": 0.18346007604562736,
+      "mase": 0.6019866579889359,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0046",
+      "model": "recent_average",
+      "mae": 1.9913265306122447,
+      "wape": 0.2698796846909141,
+      "mase": 0.8820585422578847,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0047",
+      "model": "recent_average",
+      "mae": 1.996938775510204,
+      "wape": 0.21841517857142856,
+      "mase": 0.7373418915699874,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0048",
+      "model": "recent_average",
+      "mae": 7.366326530612245,
+      "wape": 0.45132854016880275,
+      "mase": 1.1779486118771834,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0049",
+      "model": "recent_average",
+      "mae": 1.0607142857142857,
+      "wape": 0.391820580474934,
+      "mase": 1.0848214285714286,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0050",
+      "model": "recent_average",
+      "mae": 3.3392857142857144,
+      "wape": 0.20603790215954165,
+      "mase": 0.6917153693687019,
+      "observations": 140
+    },
+    {
+      "scope": "overall",
+      "identifier": "all",
+      "model": "seasonal_naive",
+      "mae": 3.1702857142857144,
+      "wape": 0.3234231083129299,
+      "mase": 0.9814450821605472,
+      "observations": 7000
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_001",
+      "model": "seasonal_naive",
+      "mae": 3.9978571428571428,
+      "wape": 0.35417325824210594,
+      "mase": 0.9979182152399703,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_002",
+      "model": "seasonal_naive",
+      "mae": 2.452142857142857,
+      "wape": 0.3130870953032376,
+      "mase": 0.9653392018841321,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_003",
+      "model": "seasonal_naive",
+      "mae": 2.94,
+      "wape": 0.32191459408728296,
+      "mase": 1.0000106459992335,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_004",
+      "model": "seasonal_naive",
+      "mae": 2.9557142857142855,
+      "wape": 0.32172290468045406,
+      "mase": 0.9317901826239435,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_005",
+      "model": "seasonal_naive",
+      "mae": 3.505714285714286,
+      "wape": 0.302962962962963,
+      "mase": 1.0037330199440047,
+      "observations": 1400
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0001",
+      "model": "seasonal_naive",
+      "mae": 3.057142857142857,
+      "wape": 0.26650062266500624,
+      "mase": 0.8700072529234371,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0002",
+      "model": "seasonal_naive",
+      "mae": 0.6928571428571428,
+      "wape": 0.2878338278931751,
+      "mase": 0.9344358680576493,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0003",
+      "model": "seasonal_naive",
+      "mae": 1.5857142857142856,
+      "wape": 0.29210526315789476,
+      "mase": 0.9326872501577951,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0004",
+      "model": "seasonal_naive",
+      "mae": 2.1142857142857143,
+      "wape": 0.21637426900584794,
+      "mase": 0.6954028059648814,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0005",
+      "model": "seasonal_naive",
+      "mae": 2.8857142857142857,
+      "wape": 0.24076281287246723,
+      "mase": 0.7604633077249375,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0006",
+      "model": "seasonal_naive",
+      "mae": 1.8428571428571427,
+      "wape": 0.289237668161435,
+      "mase": 0.9470690962568074,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0007",
+      "model": "seasonal_naive",
+      "mae": 4.714285714285714,
+      "wape": 0.41044776119402987,
+      "mase": 1.0482387679826612,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0008",
+      "model": "seasonal_naive",
+      "mae": 6.535714285714286,
+      "wape": 0.350709083940207,
+      "mase": 1.056921958944027,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0009",
+      "model": "seasonal_naive",
+      "mae": 4.671428571428572,
+      "wape": 0.3811188811188811,
+      "mase": 1.16858865375151,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0010",
+      "model": "seasonal_naive",
+      "mae": 0.6642857142857143,
+      "wape": 0.248,
+      "mase": 0.9207778122094825,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0011",
+      "model": "seasonal_naive",
+      "mae": 1.6642857142857144,
+      "wape": 0.31874145006839943,
+      "mase": 0.8856417150471115,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0012",
+      "model": "seasonal_naive",
+      "mae": 1.8357142857142856,
+      "wape": 0.2512218963831867,
+      "mase": 0.7737608367885412,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0013",
+      "model": "seasonal_naive",
+      "mae": 6.485714285714286,
+      "wape": 0.3679092382495948,
+      "mase": 1.0169737506309944,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0014",
+      "model": "seasonal_naive",
+      "mae": 4.792857142857143,
+      "wape": 0.330704780680138,
+      "mase": 1.064228130615649,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0015",
+      "model": "seasonal_naive",
+      "mae": 4.321428571428571,
+      "wape": 0.34512264689104394,
+      "mase": 0.9522701072980403,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0016",
+      "model": "seasonal_naive",
+      "mae": 3.557142857142857,
+      "wape": 0.27914798206278024,
+      "mase": 0.9007030772366007,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0017",
+      "model": "seasonal_naive",
+      "mae": 2.9857142857142858,
+      "wape": 0.4837962962962963,
+      "mase": 1.2448593426669898,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0018",
+      "model": "seasonal_naive",
+      "mae": 2.557142857142857,
+      "wape": 0.36907216494845363,
+      "mase": 1.1944548872180452,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0019",
+      "model": "seasonal_naive",
+      "mae": 2.75,
+      "wape": 0.3014878621769773,
+      "mase": 1.0201149425287357,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0020",
+      "model": "seasonal_naive",
+      "mae": 2.335714285714286,
+      "wape": 0.34824281150159747,
+      "mase": 1.0447441051178976,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0021",
+      "model": "seasonal_naive",
+      "mae": 1.6285714285714286,
+      "wape": 0.29842931937172773,
+      "mase": 0.8482695980250594,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0022",
+      "model": "seasonal_naive",
+      "mae": 0.9571428571428572,
+      "wape": 0.35638297872340424,
+      "mase": 0.9932028023940983,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0023",
+      "model": "seasonal_naive",
+      "mae": 1.8642857142857143,
+      "wape": 0.2083000798084597,
+      "mase": 0.6180754235906255,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0024",
+      "model": "seasonal_naive",
+      "mae": 4.392857142857143,
+      "wape": 0.43037088873338,
+      "mase": 1.1809153194302542,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0025",
+      "model": "seasonal_naive",
+      "mae": 5.185714285714286,
+      "wape": 0.3874066168623266,
+      "mase": 1.155716876594388,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0026",
+      "model": "seasonal_naive",
+      "mae": 2.9357142857142855,
+      "wape": 0.2312886888013506,
+      "mase": 0.7384354544841082,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0027",
+      "model": "seasonal_naive",
+      "mae": 3.664285714285714,
+      "wape": 0.20828258221680876,
+      "mase": 0.7207210574453864,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0028",
+      "model": "seasonal_naive",
+      "mae": 1.5571428571428572,
+      "wape": 0.3123209169054441,
+      "mase": 0.8980273336771533,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0029",
+      "model": "seasonal_naive",
+      "mae": 3.5357142857142856,
+      "wape": 0.32247557003257327,
+      "mase": 1.0296788937067853,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0030",
+      "model": "seasonal_naive",
+      "mae": 3.585714285714286,
+      "wape": 0.31493099121706397,
+      "mase": 0.9924939047784063,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0031",
+      "model": "seasonal_naive",
+      "mae": 3.642857142857143,
+      "wape": 0.5236139630390144,
+      "mase": 1.3660714285714286,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0032",
+      "model": "seasonal_naive",
+      "mae": 4.25,
+      "wape": 0.29470034670629025,
+      "mase": 1.004940053285968,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0033",
+      "model": "seasonal_naive",
+      "mae": 8.214285714285714,
+      "wape": 0.49019607843137253,
+      "mase": 1.3725559780943912,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0034",
+      "model": "seasonal_naive",
+      "mae": 3.0,
+      "wape": 0.22012578616352202,
+      "mase": 0.7675368353619475,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0035",
+      "model": "seasonal_naive",
+      "mae": 3.55,
+      "wape": 0.313169502205419,
+      "mase": 0.8846618828484517,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0036",
+      "model": "seasonal_naive",
+      "mae": 2.164285714285714,
+      "wape": 0.41112618724559025,
+      "mase": 1.1499904967807844,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0037",
+      "model": "seasonal_naive",
+      "mae": 2.3214285714285716,
+      "wape": 0.34611288604898827,
+      "mase": 0.9725890749690907,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0038",
+      "model": "seasonal_naive",
+      "mae": 3.414285714285714,
+      "wape": 0.3468795355587808,
+      "mase": 1.193897653184071,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0039",
+      "model": "seasonal_naive",
+      "mae": 2.3785714285714286,
+      "wape": 0.2034208918753818,
+      "mase": 0.7626227510572718,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0040",
+      "model": "seasonal_naive",
+      "mae": 6.964285714285714,
+      "wape": 0.5977927651747394,
+      "mase": 1.4220548895726246,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0041",
+      "model": "seasonal_naive",
+      "mae": 1.6,
+      "wape": 0.5410628019323671,
+      "mase": 1.5214285714285714,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0042",
+      "model": "seasonal_naive",
+      "mae": 1.4857142857142858,
+      "wape": 0.3611111111111111,
+      "mase": 1.0439536271953251,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0043",
+      "model": "seasonal_naive",
+      "mae": 3.4642857142857144,
+      "wape": 0.2575677110993096,
+      "mase": 0.7921271636114549,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0044",
+      "model": "seasonal_naive",
+      "mae": 3.35,
+      "wape": 0.3866446826051113,
+      "mase": 1.0869554178937748,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0045",
+      "model": "seasonal_naive",
+      "mae": 2.2857142857142856,
+      "wape": 0.20278833967046894,
+      "mase": 0.6654083957045233,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0046",
+      "model": "seasonal_naive",
+      "mae": 1.8071428571428572,
+      "wape": 0.24491771539206195,
+      "mase": 0.8004743419619339,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0047",
+      "model": "seasonal_naive",
+      "mae": 2.1285714285714286,
+      "wape": 0.2328125,
+      "mase": 0.7859454194251374,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0048",
+      "model": "seasonal_naive",
+      "mae": 5.464285714285714,
+      "wape": 0.3347921225382932,
+      "mase": 0.8737934362934363,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0049",
+      "model": "seasonal_naive",
+      "mae": 0.9928571428571429,
+      "wape": 0.36675461741424803,
+      "mase": 1.015422077922078,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0050",
+      "model": "seasonal_naive",
+      "mae": 4.678571428571429,
+      "wape": 0.2886734244160423,
+      "mase": 0.9691413196502668,
+      "observations": 140
+    },
+    {
+      "scope": "overall",
+      "identifier": "all",
+      "model": "lightgbm",
+      "mae": 2.349563644668973,
+      "wape": 0.23969548666029514,
+      "mase": 0.7273690424470541,
+      "observations": 7000
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_001",
+      "model": "lightgbm",
+      "mae": 3.0938947472632443,
+      "wape": 0.2740905300366096,
+      "mase": 0.7722772010114272,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_002",
+      "model": "lightgbm",
+      "mae": 1.8947254634592552,
+      "wape": 0.24191661184158297,
+      "mase": 0.745899759207521,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_003",
+      "model": "lightgbm",
+      "mae": 2.0790030130583017,
+      "wape": 0.22763993573295965,
+      "mase": 0.7071514102458453,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_004",
+      "model": "lightgbm",
+      "mae": 2.1948656666852933,
+      "wape": 0.2389062302409742,
+      "mase": 0.6919323326616719,
+      "observations": 1400
+    },
+    {
+      "scope": "store",
+      "identifier": "STORE_005",
+      "model": "lightgbm",
+      "mae": 2.485329332878771,
+      "wape": 0.2147815472858197,
+      "mase": 0.7115831221646614,
+      "observations": 1400
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0001",
+      "model": "lightgbm",
+      "mae": 2.00627676657376,
+      "wape": 0.1748933669491447,
+      "mase": 0.5709498770110594,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0002",
+      "model": "lightgbm",
+      "mae": 0.683615764638759,
+      "wape": 0.283994679671888,
+      "mase": 0.9219722954921211,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0003",
+      "model": "lightgbm",
+      "mae": 1.1723650190486716,
+      "wape": 0.21596197719317636,
+      "mase": 0.689563003656205,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0004",
+      "model": "lightgbm",
+      "mae": 1.7408821451121799,
+      "wape": 0.1781604534471529,
+      "mase": 0.5725878581051487,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0005",
+      "model": "lightgbm",
+      "mae": 2.4192675691792793,
+      "wape": 0.20184592353104833,
+      "mase": 0.6375420557182281,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0006",
+      "model": "lightgbm",
+      "mae": 1.2502109226468106,
+      "wape": 0.19622144525846802,
+      "mase": 0.6425002248442271,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0007",
+      "model": "lightgbm",
+      "mae": 3.554553821442584,
+      "wape": 0.3094760789813195,
+      "mase": 0.7903681160490679,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0008",
+      "model": "lightgbm",
+      "mae": 4.64661934072489,
+      "wape": 0.24933948167937317,
+      "mase": 0.7514272811467341,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0009",
+      "model": "lightgbm",
+      "mae": 3.279684070829523,
+      "wape": 0.26757329249191913,
+      "mase": 0.8204345917867465,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0010",
+      "model": "lightgbm",
+      "mae": 0.6696274514939994,
+      "wape": 0.24999424855775976,
+      "mase": 0.9281820856934179,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0011",
+      "model": "lightgbm",
+      "mae": 1.3804476483244221,
+      "wape": 0.26438121855734487,
+      "mase": 0.7345986403058842,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0012",
+      "model": "lightgbm",
+      "mae": 1.4640724691948719,
+      "wape": 0.2003618237412337,
+      "mase": 0.6171123402477066,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0013",
+      "model": "lightgbm",
+      "mae": 5.203799989474425,
+      "wape": 0.2951912473769933,
+      "mase": 0.8159668711410869,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0014",
+      "model": "lightgbm",
+      "mae": 2.9065019579236733,
+      "wape": 0.20054720261671477,
+      "mase": 0.6453731152662545,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0015",
+      "model": "lightgbm",
+      "mae": 2.9330888664860963,
+      "wape": 0.23424554552655646,
+      "mase": 0.6463355354454154,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0016",
+      "model": "lightgbm",
+      "mae": 2.2969477539662453,
+      "wape": 0.18025374750856185,
+      "mase": 0.5816094526804687,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0017",
+      "model": "lightgbm",
+      "mae": 2.3360950957022606,
+      "wape": 0.3785339275443478,
+      "mase": 0.9740080687418403,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0018",
+      "model": "lightgbm",
+      "mae": 1.9087802400704752,
+      "wape": 0.27549405526790366,
+      "mase": 0.8916012963487089,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0019",
+      "model": "lightgbm",
+      "mae": 2.0926126052049345,
+      "wape": 0.22941720025739298,
+      "mase": 0.7762565045431052,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0020",
+      "model": "lightgbm",
+      "mae": 1.8061788285337905,
+      "wape": 0.269291838120054,
+      "mase": 0.8078876322505195,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0021",
+      "model": "lightgbm",
+      "mae": 1.3109141698441198,
+      "wape": 0.2402198740552052,
+      "mase": 0.6828123202888756,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0022",
+      "model": "lightgbm",
+      "mae": 0.6986225934070055,
+      "wape": 0.2601254337153744,
+      "mase": 0.7249428989721931,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0023",
+      "model": "lightgbm",
+      "mae": 1.4982108538903165,
+      "wape": 0.16739786076986776,
+      "mase": 0.4967089009214031,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0024",
+      "model": "lightgbm",
+      "mae": 3.448142342451996,
+      "wape": 0.33781660457892193,
+      "mase": 0.9269511808274402,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0025",
+      "model": "lightgbm",
+      "mae": 4.0301836183740445,
+      "wape": 0.3010809533470471,
+      "mase": 0.8981889411764141,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0026",
+      "model": "lightgbm",
+      "mae": 2.4751742425545693,
+      "wape": 0.19500528641397843,
+      "mase": 0.6225934266227247,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0027",
+      "model": "lightgbm",
+      "mae": 2.7312476242533257,
+      "wape": 0.15524753040822803,
+      "mase": 0.5372036542409121,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0028",
+      "model": "lightgbm",
+      "mae": 1.4415275932265321,
+      "wape": 0.289131608956611,
+      "mase": 0.8313502997037492,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0029",
+      "model": "lightgbm",
+      "mae": 2.3085053938955435,
+      "wape": 0.2105477232217434,
+      "mase": 0.6722882812411141,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0030",
+      "model": "lightgbm",
+      "mae": 2.451048623588284,
+      "wape": 0.2152740321846673,
+      "mase": 0.6784285153222357,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0031",
+      "model": "lightgbm",
+      "mae": 2.6726693062332028,
+      "wape": 0.384161912600255,
+      "mase": 1.0022509898374512,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0032",
+      "model": "lightgbm",
+      "mae": 2.7554060154277225,
+      "wape": 0.19106331954427003,
+      "mase": 0.6515336159925675,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0033",
+      "model": "lightgbm",
+      "mae": 4.3728939633381625,
+      "wape": 0.26095701400995003,
+      "mase": 0.7306833435942381,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0034",
+      "model": "lightgbm",
+      "mae": 2.105523321962896,
+      "wape": 0.15449332551090433,
+      "mase": 0.5386889024400587,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0035",
+      "model": "lightgbm",
+      "mae": 3.71557618555648,
+      "wape": 0.3277760970245162,
+      "mase": 0.9259235561073982,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0036",
+      "model": "lightgbm",
+      "mae": 1.609096734133442,
+      "wape": 0.30566288029671895,
+      "mase": 0.854991529279286,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0037",
+      "model": "lightgbm",
+      "mae": 2.0774124365238653,
+      "wape": 0.30973135368832927,
+      "mase": 0.8703557218323825,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0038",
+      "model": "lightgbm",
+      "mae": 1.9921637468131088,
+      "wape": 0.20239689735401686,
+      "mase": 0.6966141152531338,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0039",
+      "model": "lightgbm",
+      "mae": 1.6826102427337275,
+      "wape": 0.14390069272005002,
+      "mase": 0.5394821601138243,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0040",
+      "model": "lightgbm",
+      "mae": 4.57917015034671,
+      "wape": 0.39306181548040425,
+      "mase": 0.935032187023566,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0041",
+      "model": "lightgbm",
+      "mae": 1.0777260822708723,
+      "wape": 0.36444843361816937,
+      "mase": 1.0248020335879275,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0042",
+      "model": "lightgbm",
+      "mae": 1.2756552723387156,
+      "wape": 0.31005510091566,
+      "mase": 0.896353330794413,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0043",
+      "model": "lightgbm",
+      "mae": 2.8624254099556303,
+      "wape": 0.21281973308220298,
+      "mase": 0.6545086370005181,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0044",
+      "model": "lightgbm",
+      "mae": 2.5150990707331635,
+      "wape": 0.29028348714150276,
+      "mase": 0.816059869096421,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0045",
+      "model": "lightgbm",
+      "mae": 1.9260596369092993,
+      "wape": 0.17087981569537508,
+      "mase": 0.5607071106993359,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0046",
+      "model": "lightgbm",
+      "mae": 1.7079763800943624,
+      "wape": 0.23147792179400845,
+      "mase": 0.7565485282686106,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0047",
+      "model": "lightgbm",
+      "mae": 1.6666568223186518,
+      "wape": 0.18229058994110253,
+      "mase": 0.6153898702540266,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0048",
+      "model": "lightgbm",
+      "mae": 5.245099142343531,
+      "wape": 0.3213627483273936,
+      "mase": 0.8387433313206999,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0049",
+      "model": "lightgbm",
+      "mae": 0.8237486418285322,
+      "wape": 0.3042870972453681,
+      "mase": 0.8424702018700898,
+      "observations": 140
+    },
+    {
+      "scope": "product",
+      "identifier": "SKU_0050",
+      "model": "lightgbm",
+      "mae": 2.670008289529189,
+      "wape": 0.1647426886443748,
+      "mase": 0.5530780916134439,
+      "observations": 140
+    }
+  ],
+  "model_parameters": {
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "num_leaves": 31,
+    "random_state": 42,
+    "n_jobs": 1
+  },
+  "files": {
+    "predictions.parquet": "ab004436af40370321a9b05949465b2e9d13e91f889f424b24fe75ed95528e5b"
+  }
+}

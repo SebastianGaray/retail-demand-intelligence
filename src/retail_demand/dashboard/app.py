@@ -73,12 +73,14 @@ def _reader(artifact_directory: str) -> ResultReader:
     return ResultReader(Path(artifact_directory))
 
 
-reader = _reader(str(get_settings().artifact_directory))
+artifact_directory = str(get_settings().artifact_directory)
+reader = _reader(artifact_directory)
 with st.spinner(text("loading.artifacts"), show_time=True):
-    available = reader.available()
+    artifact_error = reader.availability_error()
 
-if not available:
+if artifact_error is not None:
     st.warning(text("app.missing_artifacts"))
+    st.caption(f"{text('app.artifact_detail')}: {artifact_error}")
     st.write(text("app.missing_help"))
     st.code("make demo")
     render_about(text)

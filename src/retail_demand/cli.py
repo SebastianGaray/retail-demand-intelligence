@@ -3,6 +3,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import cast
 
+from retail_demand.application.demo_artifacts import build_demo_artifacts
 from retail_demand.application.generate_demo import generate_and_save_demo_data
 from retail_demand.application.train import (
     evaluate_forecasters,
@@ -35,6 +36,13 @@ def main(argv: Sequence[str] | None = None) -> None:
 
     predictions = commands.add_parser("predictions", help="save champion test predictions")
     predictions.add_argument("--artifact", type=Path, required=True)
+
+    bundle = commands.add_parser(
+        "build-demo-artifacts",
+        help="build the tracked dashboard artifact bundle",
+    )
+    bundle.add_argument("--source", type=Path, required=True)
+    bundle.add_argument("--output", type=Path, required=True)
     arguments = parser.parse_args(argv)
 
     if arguments.command == "generate-data":
@@ -68,6 +76,13 @@ def main(argv: Sequence[str] | None = None) -> None:
     elif arguments.command == "predictions":
         output = save_champion_predictions(cast(Path, arguments.artifact))
         print(f"Predictions written to {output}")
+    elif arguments.command == "build-demo-artifacts":
+        manifest = build_demo_artifacts(
+            cast(Path, arguments.source),
+            cast(Path, arguments.output),
+        )
+        print(f"Demo artifact bundle written to {arguments.output}")
+        print(f"Files: {len(manifest.files)}")
 
 
 def _positive_integer(value: str) -> int:

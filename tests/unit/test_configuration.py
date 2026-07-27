@@ -23,3 +23,7 @@ def test_settings_read_typed_environment_values(
 def test_settings_reject_invalid_forecast_horizon() -> None:
     with pytest.raises(ValidationError):
         Settings(forecast_horizon_days=0)
+
+
+def test_settings_use_the_tracked_demo_bundle_by_default() -> None:
+    assert Settings().artifact_directory == Path("demo_artifacts/v0.1.0")

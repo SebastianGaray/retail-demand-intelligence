@@ -1,13 +1,17 @@
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
+from retail_demand.application.demo_artifacts import build_demo_artifacts
 from retail_demand.application.generate_demo import generate_and_save_demo_data
+from retail_demand.application.read_results import ResultReader
 from retail_demand.application.train import (
     evaluate_forecasters,
     save_champion_predictions,
     train_forecasters,
 )
+from retail_demand.artifacts.demo_bundle import validate_demo_artifact_bundle
 from retail_demand.artifacts.metadata import ForecastConfiguration
 from retail_demand.artifacts.store import load_metadata, load_model
 from retail_demand.data.generation import DemoDataParameters
@@ -45,3 +49,36 @@ def test_training_pipeline_saves_reproducible_artifacts(tmp_path: Path) -> None:
     assert metadata.test_metrics
     assert metadata.data_manifest_sha256
     assert load_model(first_artifact / "model.pkl")
+
+    first_bundle = tmp_path / "v0.1.0"
+    second_bundle = tmp_path / "second" / "v0.1.0"
+    first_manifest = build_demo_artifacts(first_artifact, first_bundle)
+    build_demo_artifacts(first_artifact, second_bundle)
+
+    assert first_manifest.store_count == 2
+    assert first_manifest.product_count == 3
+    assert set(first_manifest.files) == {
+        "metadata.json",
+        "predictions.parquet",
+        "data/stores.parquet",
+        "data/products.parquet",
+        "data/daily_prices.parquet",
+        "data/promotions.parquet",
+        "data/daily_sales.parquet",
+        "data/daily_inventory.parquet",
+        "data/calendar.parquet",
+    }
+    assert ResultReader(first_bundle).available()
+    assert {
+        path.relative_to(first_bundle): path.read_bytes()
+        for path in first_bundle.rglob("*")
+        if path.is_file()
+    } == {
+        path.relative_to(second_bundle): path.read_bytes()
+        for path in second_bundle.rglob("*")
+        if path.is_file()
+    }
+
+    (first_bundle / "predictions.parquet").write_bytes(b"changed")
+    with pytest.raises(ValueError, match="checksum"):
+        validate_demo_artifact_bundle(first_bundle)

@@ -3,15 +3,16 @@
 The dashboard reads a precomputed artifact run directly. It does not call FastAPI and does not
 train a model at startup.
 
-## Prerequisite
+## Artifact bundle
 
-Make a validated synthetic run available at `artifacts/runs/demo` in the deployed filesystem.
-That run must contain the files listed in [forecasting artifacts](forecasting.md#artifacts) and
-must retain its matching synthetic dataset directory because the result reader validates both.
+The tracked bundle is `demo_artifacts/v0.1.0`. Build it from the local synthetic pipeline with:
 
-Generated data and artifacts are intentionally ignored by this repository. Until a separate,
-reviewed distribution mechanism provides them, Community Cloud will start the app in its
-missing-artifact state.
+```bash
+make demo-artifacts
+```
+
+The command validates dataset contracts, required files, row counts, and SHA-256 checksums before
+replacing the bundle.
 
 ## Deployment settings
 
@@ -20,8 +21,8 @@ missing-artifact state.
    repository.
 3. Select the release branch and use `src/retail_demand/dashboard/app.py` as the entrypoint.
 4. In advanced settings, select Python 3.12.
-5. Set `RETAIL_DEMAND_ARTIFACT_DIRECTORY` to the deployed artifact directory if it differs from
-   `artifacts/runs/demo`.
+5. Leave `RETAIL_DEMAND_ARTIFACT_DIRECTORY` unset to use `demo_artifacts/v0.1.0`, or set it to a
+   different validated bundle.
 6. Deploy, inspect the build log, and complete the
    [manual dashboard smoke test](interfaces.md#manual-dashboard-smoke-test).
 

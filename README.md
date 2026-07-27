@@ -52,15 +52,11 @@ Requires Python 3.12 or later, [`uv`](https://docs.astral.sh/uv/), and `make`.
 git clone https://github.com/SebastianGaray/retail-demand-intelligence.git
 cd retail-demand-intelligence
 make install
-make sample-data
-make train
-make evaluate
-make predictions
-make app
+uv run streamlit run src/retail_demand/dashboard/app.py
 ```
 
-Open `http://localhost:8501`. `make demo` runs the data, training, evaluation, prediction, and
-dashboard steps in one command.
+Open `http://localhost:8501`. The dashboard uses the tracked synthetic bundle by default.
+`make demo` rebuilds the local pipeline and starts the dashboard from local artifacts.
 
 ## Workflows
 
@@ -81,6 +77,8 @@ make predictions
 ```
 
 Artifacts are written to `artifacts/runs/demo`. Generated data and artifacts are ignored by Git.
+Run `make demo-artifacts` to rebuild the tracked hosted-dashboard bundle after completing the
+local pipeline.
 
 Start the dashboard after preparing artifacts:
 
@@ -146,14 +144,13 @@ figures in the repository.
 - Inventory risk is based on estimated coverage, not a replenishment recommendation.
 - Demo behavior simplifies holidays, replenishment, supplier constraints, and lost demand.
 - Model artifacts use pickle and must only be loaded from trusted runs.
-- A hosted dashboard needs a separately prepared synthetic artifact bundle.
 
 ## Roadmap
 
 - Add rolling-origin evaluation.
 - Add prediction intervals and forecast calibration.
 - Add replenishment and lead-time scenarios.
-- Publish a validated synthetic artifact bundle and live dashboard.
+- Publish the live dashboard.
 
 ## Documentation
 

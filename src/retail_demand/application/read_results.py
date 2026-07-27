@@ -8,6 +8,10 @@ from pathlib import Path
 import pandas as pd
 
 from retail_demand import __version__
+from retail_demand.artifacts.demo_bundle import (
+    BUNDLE_MANIFEST,
+    validate_bundle_files,
+)
 from retail_demand.artifacts.metadata import ArtifactMetadata
 from retail_demand.artifacts.store import load_metadata, sha256
 from retail_demand.data.loading import read_parquet_frame
@@ -27,11 +31,14 @@ class ResultReader:
         self.artifact_directory = artifact_directory
 
     def available(self) -> bool:
+        return self.availability_error() is None
+
+    def availability_error(self) -> str | None:
         try:
             self._load()
-        except (ArtifactsUnavailableError, OSError, ValueError):
-            return False
-        return True
+        except (ArtifactsUnavailableError, OSError, ValueError) as error:
+            return str(error)
+        return None
 
     def overview(self) -> dict[str, object]:
         metadata, datasets = self._load()
@@ -168,7 +175,13 @@ class ResultReader:
                 f"forecast artifacts were not found in {self.artifact_directory}"
             )
         metadata = load_metadata(metadata_path)
-        required = {"predictions.parquet", "evaluation_predictions.parquet", "metrics.json"}
+        public_bundle = (self.artifact_directory / BUNDLE_MANIFEST).exists()
+        if public_bundle:
+            try:
+                validate_bundle_files(self.artifact_directory)
+            except ValueError as error:
+                raise ArtifactsUnavailableError(str(error)) from error
+        required = {"predictions.parquet"}
         missing = required - metadata.files.keys()
         if missing:
             raise ArtifactsUnavailableError(
@@ -178,7 +191,11 @@ class ResultReader:
             path = self.artifact_directory / filename
             if not path.exists() or sha256(path) != expected:
                 raise ArtifactsUnavailableError(f"artifact file is missing or changed: {filename}")
-        data_directory = Path(metadata.data_directory)
+        data_directory = (
+            self.artifact_directory / metadata.data_directory
+            if public_bundle
+            else Path(metadata.data_directory)
+        )
         if not data_directory.exists():
             raise ArtifactsUnavailableError(f"dataset directory was not found: {data_directory}")
         return metadata, load_retail_datasets(data_directory)
@@ -213,6 +230,10 @@ class ResultReader:
         return pd.Series(dates, dtype=bool)
 
     def _is_synthetic(self, metadata: ArtifactMetadata) -> bool:
+        bundle_manifest = self.artifact_directory / BUNDLE_MANIFEST
+        if bundle_manifest.exists():
+            content = json.loads(bundle_manifest.read_text(encoding="utf-8"))
+            return content.get("synthetic") is True
         manifest = Path(metadata.data_directory) / "manifest.json"
         if not manifest.exists():
             return False

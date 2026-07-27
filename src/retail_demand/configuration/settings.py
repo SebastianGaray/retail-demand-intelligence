@@ -9,7 +9,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     environment: Literal["local", "test"] = "local"
     data_directory: Path = Path("data")
-    artifact_directory: Path = Path("artifacts")
+    artifact_directory: Path = Path("demo_artifacts/v0.1.0")
     random_seed: int = Field(default=42, ge=0)
     forecast_horizon_days: int = Field(default=28, ge=1, le=365)
     default_locale: Literal["en", "es"] = "en"
