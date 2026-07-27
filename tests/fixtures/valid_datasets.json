@@ -1,0 +1,98 @@
+{
+  "stores": [
+    {
+      "store_id": "STORE_001",
+      "name": "Central Store",
+      "opening_date": "2024-01-01",
+      "region": "North"
+    }
+  ],
+  "products": [
+    {
+      "product_id": "SKU_001",
+      "name": "Ground Coffee",
+      "category": "Grocery",
+      "active_from": "2024-01-01",
+      "brand": "Demo",
+      "unit": "each"
+    }
+  ],
+  "daily_sales": [
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-01",
+      "quantity": 8,
+      "revenue": 72
+    },
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-02",
+      "quantity": 10,
+      "revenue": 90
+    }
+  ],
+  "daily_prices": [
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-01",
+      "price": 9,
+      "regular_price": 10,
+      "currency": "USD"
+    },
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-02",
+      "price": 9,
+      "regular_price": 10,
+      "currency": "USD"
+    }
+  ],
+  "promotions": [
+    {
+      "promotion_id": "PROMO_001",
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-02",
+      "discount_percent": 10,
+      "description": "New year offer"
+    }
+  ],
+  "daily_inventory": [
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-01",
+      "on_hand_quantity": 40,
+      "inbound_quantity": 12,
+      "lead_time_days": 2
+    },
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-02",
+      "on_hand_quantity": 32,
+      "inbound_quantity": 0,
+      "lead_time_days": 2
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2024-01-01",
+      "day_of_week": 0,
+      "is_weekend": false,
+      "is_holiday": true,
+      "holiday_name": "New Year's Day"
+    },
+    {
+      "date": "2024-01-02",
+      "day_of_week": 1,
+      "is_weekend": false,
+      "is_holiday": false
+    }
+  ]
+}

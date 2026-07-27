@@ -1,0 +1,51 @@
+{
+  "negative_price": [
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-01",
+      "price": -1,
+      "currency": "USD"
+    }
+  ],
+  "duplicate_sales": [
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-01",
+      "quantity": 2
+    },
+    {
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "date": "2024-01-01",
+      "quantity": 3
+    }
+  ],
+  "unknown_product_inventory": [
+    {
+      "store_id": "STORE_001",
+      "product_id": "UNKNOWN",
+      "date": "2024-01-01",
+      "on_hand_quantity": 5
+    }
+  ],
+  "overlapping_promotions": [
+    {
+      "promotion_id": "PROMO_001",
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-02",
+      "discount_percent": 10
+    },
+    {
+      "promotion_id": "PROMO_002",
+      "store_id": "STORE_001",
+      "product_id": "SKU_001",
+      "start_date": "2024-01-02",
+      "end_date": "2024-01-02",
+      "promotional_price": 8
+    }
+  ]
+}

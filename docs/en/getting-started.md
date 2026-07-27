@@ -8,3 +8,5 @@ make check
 ```
 
 Copy `.env.example` to `.env` only when local overrides are needed.
+
+See [dataset contracts](datasets.md) for the validated Parquet inputs.
