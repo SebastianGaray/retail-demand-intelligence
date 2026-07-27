@@ -16,4 +16,4 @@ class DatasetValidationIssue:
 class DatasetValidationError(ValueError):
     def __init__(self, issues: list[DatasetValidationIssue]) -> None:
         self.issues = tuple(issues)
-        super().__init__("; ".join(str(issue) for issue in issues))
+        super().__init__(". ".join(str(issue) for issue in issues))

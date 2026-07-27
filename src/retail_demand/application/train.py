@@ -18,6 +18,7 @@ from retail_demand.artifacts.store import (
     save_model,
     sha256,
 )
+from retail_demand.data.loading import read_parquet_frame
 from retail_demand.data.validation import load_retail_datasets
 from retail_demand.features.temporal import (
     FEATURE_COLUMNS,
@@ -125,7 +126,7 @@ def save_champion_predictions(artifact_directory: Path) -> Path:
     metadata_path = artifact_directory / "metadata.json"
     metadata = load_metadata(metadata_path)
     evaluation_path = artifact_directory / "evaluation_predictions.parquet"
-    predictions = pd.read_parquet(evaluation_path)
+    predictions = read_parquet_frame(evaluation_path)
     champion = predictions[predictions["model"] == metadata.champion_model].copy()
     output = artifact_directory / "predictions.parquet"
     champion.to_parquet(output, index=False)

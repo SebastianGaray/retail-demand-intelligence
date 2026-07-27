@@ -1,7 +1,7 @@
 # Flujo de pronóstico
 
 El flujo compara un promedio reciente, un pronóstico estacional semanal y LightGBM con períodos
-cronológicos. Los resultados son evaluaciones sin conexión sobre datos sintéticos; no representan
+cronológicos. Los resultados son evaluaciones sin conexión sobre datos sintéticos. No representan
 rendimiento en producción.
 
 ```bash

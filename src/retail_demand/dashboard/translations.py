@@ -9,6 +9,102 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "app.page": "Page",
         "app.missing_artifacts": "Forecast artifacts are not available.",
         "app.missing_help": "Prepare the local demo, then restart the dashboard:",
+        "app.unexpected": "The selected view could not be loaded.",
+        "loading.artifacts": "Reading forecast artifacts…",
+        "loading.overview": "Preparing the demand overview…",
+        "loading.forecast": "Preparing demand history…",
+        "loading.inventory": "Calculating inventory coverage…",
+        "loading.performance": "Loading model metrics…",
+        "filter.all": "All",
+        "view.label": "Display",
+        "view.chart": "Chart",
+        "view.table": "Table",
+        "help.open": "About this view",
+        "help.about": "What it shows",
+        "help.use": "How to use it",
+        "help.value": "Why it matters",
+        "help.overview.about": "A summary of the validated dataset and saved forecast run.",
+        "help.overview.use": (
+            "Scan the period, scale, demand trend, risk counts, and model metrics."
+        ),
+        "help.overview.value": "It confirms which data and model results the dashboard is using.",
+        "help.overview_demand.about": "Total daily units sold and champion holdout predictions.",
+        "help.overview_demand.use": "Compare the forecast line with observed demand near the end.",
+        "help.overview_demand.value": (
+            "Large gaps reveal periods worth inspecting by store or product."
+        ),
+        "help.overview_risk.about": "Store-product pairs below or above the coverage thresholds.",
+        "help.overview_risk.use": (
+            "Use the Inventory Risk page to adjust thresholds and inspect rows."
+        ),
+        "help.overview_risk.value": "It highlights where stock coverage may need attention.",
+        "help.overview_models.about": "Holdout MAE, WAPE, and MASE for every evaluated model.",
+        "help.overview_models.use": "Compare models on the same saved test period.",
+        "help.overview_models.value": (
+            "It shows whether the selected model improves on simple baselines."
+        ),
+        "help.forecast.about": "Demand history and saved predictions for one store-product pair.",
+        "help.forecast.use": (
+            "Choose a store and product, then inspect the chart, errors, and events."
+        ),
+        "help.forecast.value": (
+            "It connects aggregate model scores with concrete forecast behavior."
+        ),
+        "help.forecast_chart.about": "Observed daily units and predictions on a shared timeline.",
+        "help.forecast_chart.use": "Look for level shifts, recurring peaks, and forecast gaps.",
+        "help.forecast_chart.value": "It reveals when a model follows demand and when it misses.",
+        "help.forecast_errors.about": (
+            "Actual, predicted, and absolute signed error by holdout date."
+        ),
+        "help.forecast_errors.use": "Sort or scan the largest positive and negative errors.",
+        "help.forecast_errors.value": (
+            "Row-level errors make aggregate metrics easier to interpret."
+        ),
+        "help.forecast_events.about": "Dates associated with promotions or end-of-day stockouts.",
+        "help.forecast_events.use": (
+            "Compare event dates with changes in demand and forecast error."
+        ),
+        "help.forecast_events.value": (
+            "Events provide context for unusual demand or constrained sales."
+        ),
+        "help.inventory.about": (
+            "Coverage-based stockout and excess indicators for saved forecasts."
+        ),
+        "help.inventory.use": "Filter entities and adjust the low and high coverage thresholds.",
+        "help.inventory.value": "It prioritizes combinations that may warrant inventory review.",
+        "help.inventory_table.about": "Expected demand, current stock, coverage, and risk flags.",
+        "help.inventory_table.use": (
+            "Filter first, then inspect rows outside the selected thresholds."
+        ),
+        "help.inventory_table.value": "It exposes the quantities behind each risk classification.",
+        "help.performance.about": "Holdout errors for the baselines and LightGBM.",
+        "help.performance.use": (
+            "Select a metric, compare models, then review store and product tabs."
+        ),
+        "help.performance.value": (
+            "It shows whether results are consistent across business segments."
+        ),
+        "help.performance_chart.about": "One selected error metric for all evaluated models.",
+        "help.performance_chart.use": "Lower bars indicate lower forecast error.",
+        "help.performance_chart.value": (
+            "It makes baseline and LightGBM differences easy to compare."
+        ),
+        "help.about_page.about": "The implemented scope, boundaries, data notice, and limitations.",
+        "help.about_page.use": "Use the links for source code, documentation, and license details.",
+        "help.about_page.value": "It clarifies what the project demonstrates and what it does not.",
+        "help.about_architecture.about": (
+            "The path from validated data to saved presentation results."
+        ),
+        "help.about_architecture.use": "Read the stages from left to right.",
+        "help.about_architecture.value": (
+            "It shows that FastAPI and Streamlit share application services."
+        ),
+        "help.metric_stockout": "Pairs below the selected stockout coverage threshold.",
+        "help.metric_excess": "Pairs above the selected excess coverage threshold.",
+        "help.metric_expected": "Champion forecast demand summed across the test horizon.",
+        "help.metric_inventory": "Latest inventory available before the test period.",
+        "help.metric_coverage": "Current inventory divided by average forecast daily demand.",
+        "help.metric_observations": "Rows evaluated for the champion model in the holdout period.",
         "page.overview": "Overview",
         "page.forecast": "Forecast Explorer",
         "page.inventory": "Inventory Risk",
@@ -22,8 +118,15 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "overview.model": "Current model",
         "overview.version": "Artifact version",
         "overview.synthetic": "This dashboard uses synthetic data.",
+        "overview.demand": "Aggregate demand",
+        "overview.risk": "Inventory risk",
+        "overview.normal": "Within thresholds",
+        "overview.pairs": "pairs",
+        "overview.models": "Model comparison",
+        "forecast.context": "Inspect saved demand history, holdout predictions, and errors.",
         "forecast.store": "Store",
         "forecast.product": "Product",
+        "forecast.model": "Selected model",
         "forecast.history": "Historical demand and holdout predictions",
         "forecast.actual": "Actual",
         "forecast.prediction": "Prediction",
@@ -43,8 +146,20 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "inventory.coverage": "Coverage days",
         "inventory.stockout": "Stockout risk",
         "inventory.excess": "Excess inventory",
+        "inventory.pairs": "pairs",
+        "inventory.units": "units",
+        "inventory.days": "days",
+        "inventory.context": "Review coverage indicators using adjustable thresholds.",
+        "inventory.detail": "Store-product coverage",
+        "inventory.no_results": "No saved rows match the selected filters.",
+        "inventory.disclaimer": (
+            "Coverage indicators support inspection. They are not replenishment recommendations."
+        ),
         "performance.context": "Holdout metrics for each model and segment.",
         "performance.comparison": "Baseline comparison",
+        "performance.metric": "Comparison metric",
+        "performance.observations": "Observations",
+        "performance.rows": "rows",
         "performance.by_store": "Results by store",
         "performance.by_product": "Results by product",
         "performance.explanations": "Metric definitions",
@@ -52,6 +167,8 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "performance.wape": "WAPE: total absolute error divided by total demand.",
         "performance.mase": "MASE: MAE scaled by the training period's weekly naive error.",
         "about.purpose": "Purpose",
+        "about.title_tag": "Project overview",
+        "about.context": "Project scope, implementation boundaries, and limitations.",
         "about.purpose_text": (
             "Explore a reproducible retail forecasting workflow through saved local artifacts."
         ),
@@ -61,6 +178,20 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
             "same artifact run independently."
         ),
         "about.choices": "Implementation choices",
+        "about.purpose_forecasting": "Forecast demand with chronological validation.",
+        "about.purpose_inventory": "Inspect stockout and excess coverage indicators.",
+        "about.decision_model": "Model strategy",
+        "about.decision_model_text": (
+            "Simple baselines establish the benchmark before LightGBM is considered."
+        ),
+        "about.decision_interfaces": "Interface boundary",
+        "about.decision_interfaces_text": (
+            "FastAPI and Streamlit use application services. The dashboard reads saved artifacts."
+        ),
+        "about.decision_language": "Bilingual interface",
+        "about.decision_language_text": (
+            "Stable translation keys keep English and Spanish views aligned."
+        ),
         "about.choices_text": (
             "Chronological splits, horizon-shifted features, baseline-first selection, typed "
             "boundaries, and immutable run metadata."
@@ -77,6 +208,17 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "about.links": "Links",
         "about.repository": "Repository",
         "about.documentation": "Documentation",
+        "about.license": "MIT License",
+        "about.stage_data": "Data and validation",
+        "about.stage_data_detail": "Parquet and contracts",
+        "about.stage_features": "Temporal features",
+        "about.stage_features_detail": "Lags and rolling values",
+        "about.stage_models": "Baselines and LightGBM",
+        "about.stage_models_detail": "Chronological training",
+        "about.stage_evaluation": "Evaluation and artifacts",
+        "about.stage_evaluation_detail": "Metrics and predictions",
+        "about.stage_interfaces": "API and Streamlit",
+        "about.stage_interfaces_detail": "Independent readers",
     },
     "es": {
         "app.title": "Inteligencia de Demanda Minorista",
@@ -84,6 +226,90 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "app.page": "Página",
         "app.missing_artifacts": "Los artefactos de pronóstico no están disponibles.",
         "app.missing_help": "Prepara la demostración local y reinicia el dashboard:",
+        "app.unexpected": "No fue posible cargar la vista seleccionada.",
+        "loading.artifacts": "Leyendo artefactos de pronóstico…",
+        "loading.overview": "Preparando el resumen de demanda…",
+        "loading.forecast": "Preparando el historial de demanda…",
+        "loading.inventory": "Calculando la cobertura de inventario…",
+        "loading.performance": "Cargando métricas del modelo…",
+        "filter.all": "Todos",
+        "view.label": "Vista",
+        "view.chart": "Gráfico",
+        "view.table": "Tabla",
+        "help.open": "Acerca de esta vista",
+        "help.about": "Qué muestra",
+        "help.use": "Cómo usarlo",
+        "help.value": "Por qué importa",
+        "help.overview.about": "Un resumen del dataset validado y la ejecución guardada.",
+        "help.overview.use": (
+            "Revisa el período, la escala, la demanda, los riesgos y las métricas."
+        ),
+        "help.overview.value": "Confirma qué datos y resultados utiliza el dashboard.",
+        "help.overview_demand.about": (
+            "Unidades diarias totales y predicciones del modelo seleccionado."
+        ),
+        "help.overview_demand.use": "Compara la predicción con la demanda observada al final.",
+        "help.overview_demand.value": "Las brechas grandes indican períodos que conviene revisar.",
+        "help.overview_risk.about": (
+            "Pares tienda-producto bajo o sobre los umbrales de cobertura."
+        ),
+        "help.overview_risk.use": (
+            "Ajusta los umbrales e inspecciona filas en Riesgo de Inventario."
+        ),
+        "help.overview_risk.value": "Destaca dónde la cobertura puede requerir atención.",
+        "help.overview_models.about": "MAE, WAPE y MASE de prueba para cada modelo evaluado.",
+        "help.overview_models.use": "Compara los modelos sobre el mismo período de prueba.",
+        "help.overview_models.value": "Muestra si el modelo elegido mejora los baselines simples.",
+        "help.forecast.about": (
+            "Historial y predicciones guardadas para una combinación tienda-producto."
+        ),
+        "help.forecast.use": (
+            "Selecciona tienda y producto. Luego revisa el gráfico, errores y eventos."
+        ),
+        "help.forecast.value": "Conecta las métricas agregadas con casos concretos.",
+        "help.forecast_chart.about": (
+            "Unidades observadas y predicciones en la misma línea temporal."
+        ),
+        "help.forecast_chart.use": "Busca cambios de nivel, peaks recurrentes y brechas.",
+        "help.forecast_chart.value": "Muestra cuándo el modelo sigue la demanda y cuándo falla.",
+        "help.forecast_errors.about": (
+            "Valor real, predicción y error con signo por fecha de prueba."
+        ),
+        "help.forecast_errors.use": "Revisa los mayores errores positivos y negativos.",
+        "help.forecast_errors.value": "Los errores diarios facilitan interpretar las métricas.",
+        "help.forecast_events.about": "Fechas con promociones o quiebres de stock al cierre.",
+        "help.forecast_events.use": "Compáralas con cambios en demanda y error.",
+        "help.forecast_events.value": "Los eventos dan contexto a ventas inusuales o limitadas.",
+        "help.inventory.about": "Indicadores de quiebre y exceso basados en cobertura.",
+        "help.inventory.use": "Filtra entidades y ajusta los umbrales bajo y alto.",
+        "help.inventory.value": "Prioriza combinaciones que pueden requerir revisión.",
+        "help.inventory_table.about": "Demanda esperada, stock, cobertura e indicadores de riesgo.",
+        "help.inventory_table.use": "Filtra y revisa las filas fuera de los umbrales.",
+        "help.inventory_table.value": "Expone las cantidades detrás de cada clasificación.",
+        "help.performance.about": "Errores de prueba para los baselines y LightGBM.",
+        "help.performance.use": "Elige una métrica y revisa modelos, tiendas y productos.",
+        "help.performance.value": "Muestra si los resultados son consistentes entre segmentos.",
+        "help.performance_chart.about": "Una métrica de error para todos los modelos evaluados.",
+        "help.performance_chart.use": "Las barras más bajas indican menor error.",
+        "help.performance_chart.value": "Facilita comparar baselines y LightGBM.",
+        "help.about_page.about": "Alcance, límites, aviso de datos y limitaciones.",
+        "help.about_page.use": "Usa los enlaces para revisar código, documentación y licencia.",
+        "help.about_page.value": "Aclara qué demuestra el proyecto y qué queda fuera.",
+        "help.about_architecture.about": (
+            "El flujo desde datos validados hasta resultados guardados."
+        ),
+        "help.about_architecture.use": "Lee las etapas de izquierda a derecha.",
+        "help.about_architecture.value": (
+            "Muestra que FastAPI y Streamlit comparten servicios de aplicación."
+        ),
+        "help.metric_stockout": "Pares bajo el umbral de cobertura para quiebre.",
+        "help.metric_excess": "Pares sobre el umbral de cobertura para exceso.",
+        "help.metric_expected": "Demanda pronosticada total durante el período de prueba.",
+        "help.metric_inventory": "Último inventario disponible antes del período de prueba.",
+        "help.metric_coverage": "Inventario actual dividido por la demanda diaria esperada.",
+        "help.metric_observations": (
+            "Filas evaluadas para el modelo elegido en el período de prueba."
+        ),
         "page.overview": "Resumen",
         "page.forecast": "Explorador de Pronósticos",
         "page.inventory": "Riesgo de Inventario",
@@ -97,8 +323,17 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "overview.model": "Modelo actual",
         "overview.version": "Versión del artefacto",
         "overview.synthetic": "Este dashboard utiliza datos sintéticos.",
+        "overview.demand": "Demanda agregada",
+        "overview.risk": "Riesgo de inventario",
+        "overview.normal": "Dentro de los umbrales",
+        "overview.pairs": "pares",
+        "overview.models": "Comparación de modelos",
+        "forecast.context": (
+            "Revisa el historial guardado, las predicciones del período de prueba y sus errores."
+        ),
         "forecast.store": "Tienda",
         "forecast.product": "Producto",
+        "forecast.model": "Modelo seleccionado",
         "forecast.history": "Demanda histórica y predicciones del período de prueba",
         "forecast.actual": "Valor real",
         "forecast.prediction": "Predicción",
@@ -118,8 +353,20 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "inventory.coverage": "Días de cobertura",
         "inventory.stockout": "Riesgo de quiebre",
         "inventory.excess": "Exceso de inventario",
+        "inventory.pairs": "pares",
+        "inventory.units": "unidades",
+        "inventory.days": "días",
+        "inventory.context": "Revisa indicadores de cobertura con umbrales ajustables.",
+        "inventory.detail": "Cobertura por tienda y producto",
+        "inventory.no_results": "No hay filas guardadas para los filtros seleccionados.",
+        "inventory.disclaimer": (
+            "Los indicadores de cobertura apoyan el análisis. No son recomendaciones de reposición."
+        ),
         "performance.context": "Métricas del período de prueba para cada modelo y segmento.",
         "performance.comparison": "Comparación de baselines",
+        "performance.metric": "Métrica de comparación",
+        "performance.observations": "Observaciones",
+        "performance.rows": "filas",
         "performance.by_store": "Resultados por tienda",
         "performance.by_product": "Resultados por producto",
         "performance.explanations": "Definiciones de métricas",
@@ -127,6 +374,8 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "performance.wape": "WAPE: error absoluto total dividido por la demanda total.",
         "performance.mase": "MASE: MAE escalado por el error naive semanal del entrenamiento.",
         "about.purpose": "Propósito",
+        "about.title_tag": "Resumen del proyecto",
+        "about.context": "Alcance, límites de implementación y limitaciones del proyecto.",
         "about.purpose_text": (
             "Explorar un flujo reproducible de pronóstico minorista mediante artefactos locales "
             "guardados."
@@ -137,6 +386,20 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
             "leen la misma ejecución de artefactos de forma independiente."
         ),
         "about.choices": "Decisiones de implementación",
+        "about.purpose_forecasting": "Pronosticar demanda con validación cronológica.",
+        "about.purpose_inventory": "Revisar indicadores de cobertura, quiebre y exceso.",
+        "about.decision_model": "Estrategia de modelos",
+        "about.decision_model_text": (
+            "Los baselines simples fijan la referencia antes de considerar LightGBM."
+        ),
+        "about.decision_interfaces": "Límite de interfaces",
+        "about.decision_interfaces_text": (
+            "FastAPI y Streamlit usan servicios. El dashboard lee artefactos guardados."
+        ),
+        "about.decision_language": "Interfaz bilingüe",
+        "about.decision_language_text": (
+            "Claves estables mantienen alineadas las vistas en inglés y español."
+        ),
         "about.choices_text": (
             "Períodos cronológicos, variables desplazadas por el horizonte, selección basada "
             "primero en baselines, límites tipados y metadatos inmutables."
@@ -154,6 +417,17 @@ TRANSLATIONS: dict[Locale, dict[str, str]] = {
         "about.links": "Enlaces",
         "about.repository": "Repositorio",
         "about.documentation": "Documentación",
+        "about.license": "Licencia MIT",
+        "about.stage_data": "Datos y validación",
+        "about.stage_data_detail": "Parquet y contratos",
+        "about.stage_features": "Variables temporales",
+        "about.stage_features_detail": "Rezagos y valores móviles",
+        "about.stage_models": "Baselines y LightGBM",
+        "about.stage_models_detail": "Entrenamiento cronológico",
+        "about.stage_evaluation": "Evaluación y artefactos",
+        "about.stage_evaluation_detail": "Métricas y predicciones",
+        "about.stage_interfaces": "API y Streamlit",
+        "about.stage_interfaces_detail": "Lectores independientes",
     },
 }
 

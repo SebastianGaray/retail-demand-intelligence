@@ -24,15 +24,15 @@ validation, and earlier eligible rows form training. No dates are shuffled.
 Target lags, rolling demand, prior inventory, and inbound supply are shifted by the full forecast
 horizon. Therefore, changing demand or inventory inside validation or test cannot alter features
 for that same period. Calendar fields, listed prices, and scheduled promotions are treated as
-known before prediction. The categorical encoder is fitted on training only; the final test model
+known before prediction. The categorical encoder is fitted on training only. The final test model
 is refitted on training plus validation.
 
 The feature set contains:
 
-- store and product identifiers;
-- weekday, day of month, month, weekend, and holiday fields;
-- price, regular price, promotion status, and discount;
-- horizon-safe demand lags and shifted 7-day and 28-day averages;
+- store and product identifiers
+- weekday, day of month, month, weekend, and holiday fields
+- price, regular price, promotion status, and discount
+- horizon-safe demand lags and shifted 7-day and 28-day averages
 - horizon-shifted end-of-day inventory and inbound quantities.
 
 ## Models and selection
@@ -41,7 +41,7 @@ The recent-average baseline repeats each store-product's last 28-day mean. Seaso
 the latest observed value for each weekday. LightGBM uses a fixed small configuration and one CPU
 thread for reproducible local runs.
 
-Validation WAPE selects the champion. LightGBM must improve the best baseline by at least 2%;
+Validation WAPE selects the champion. LightGBM must improve the best baseline by at least 2%.
 otherwise the baseline remains champion. This rule avoids claiming value from a marginal metric
 change.
 
@@ -53,7 +53,7 @@ change.
 - MASE divides MAE by the training period's weekly seasonal-naive error. It is unavailable when
   that scale is zero.
 
-Metrics are saved overall, by store, and by product. Segment metrics help locate uneven errors;
+Metrics are saved overall, by store, and by product. Segment metrics help locate uneven errors.
 they do not replace a longer backtest.
 
 ## Artifacts

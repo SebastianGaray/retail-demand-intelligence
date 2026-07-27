@@ -27,7 +27,7 @@ Key: `product_id`.
 | `active_from` | Yes | First active date. |
 | `active_to` | No | On or after `active_from`. |
 | `brand` | No | Non-empty when provided. |
-| `unit` | No | `each`, `kg`, or `liter`; defaults to `each`. |
+| `unit` | No | `each`, `kg`, or `liter`. Defaults to `each`. |
 
 ## Daily sales
 
@@ -51,7 +51,7 @@ Key and relationships match daily sales.
 | `store_id`, `product_id`, `date` | Yes | Store-product-date key. |
 | `price` | Yes | Greater than zero, with at most two decimal places. |
 | `regular_price` | No | At least `price`. |
-| `currency` | No | Three uppercase letters; defaults to `USD`. |
+| `currency` | No | Three uppercase letters. Defaults to `USD`. |
 
 ## Promotions
 
@@ -62,7 +62,7 @@ calendar and within both active periods. Periods for the same store and product 
 |---|---|---|
 | `promotion_id` | Yes | Unique promotion identifier. |
 | `store_id`, `product_id` | Yes | Existing store and product. |
-| `start_date`, `end_date` | Yes | Inclusive period; end is not before start. |
+| `start_date`, `end_date` | Yes | Inclusive period. End is not before start. |
 | `discount_percent` | Conditional | Greater than zero and at most 100. |
 | `promotional_price` | Conditional | Greater than zero. |
 | `description` | No | Non-empty when provided. |
@@ -77,10 +77,10 @@ Key and relationships match daily sales.
 |---|---|---|
 | `store_id`, `product_id`, `date` | Yes | Store-product-date key. |
 | `on_hand_quantity` | Yes | Finite and at least zero. |
-| `inbound_quantity` | No | Finite and at least zero; defaults to zero. |
+| `inbound_quantity` | No | Finite and at least zero. Defaults to zero. |
 | `lead_time_days` | No | Integer from 0 through 365. |
 
-Inventory is an end-of-day snapshot. `inbound_quantity` is supply planned to arrive on that date;
+Inventory is an end-of-day snapshot. `inbound_quantity` is supply planned to arrive on that date.
 it is not included in `on_hand_quantity`.
 
 ## Calendar
@@ -90,7 +90,7 @@ Key: `date`.
 | Field | Required | Rule |
 |---|---|---|
 | `date` | Yes | Unique calendar date. |
-| `day_of_week` | Yes | Monday is 0 and Sunday is 6; must match `date`. |
+| `day_of_week` | Yes | Monday is 0 and Sunday is 6. It must match `date`. |
 | `is_weekend` | Yes | True for Saturday and Sunday. |
 | `is_holiday` | No | Defaults to false. |
 | `holiday_name` | No | Requires `is_holiday` to be true. |
@@ -108,4 +108,4 @@ Key: `date`.
 ```
 
 Validation errors identify the dataset, row, field, and problem. Small synthetic fixtures live in
-`tests/fixtures/`; generated and real datasets stay outside Git.
+`tests/fixtures/`. Generated and real datasets stay outside Git.

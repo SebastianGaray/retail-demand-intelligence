@@ -41,7 +41,7 @@ identifiers return HTTP 404 with a `selection_not_found` code.
 make app
 ```
 
-Open `http://localhost:8501`. The dashboard reads Parquet and JSON artifacts directly; FastAPI
+Open `http://localhost:8501`. The dashboard reads Parquet and JSON artifacts directly. FastAPI
 does not need to be running. If artifacts are absent or incomplete, the app starts with a clear
 setup message.
 
@@ -50,13 +50,13 @@ and project context. English and Spanish use the same stable translation keys.
 
 ## Manual dashboard smoke test
 
-- Start `make app` without `artifacts/runs/demo`; confirm the setup message and About content.
-- Prepare artifacts and restart the app; confirm the Overview counts and periods match metadata.
-- Switch between English and Spanish on every page; confirm labels fit without truncation.
-- Select a store and product; confirm history, predictions, errors, promotions, and stockouts
+- Start `make app` without `artifacts/runs/demo` and confirm the setup message and About content.
+- Prepare artifacts, restart the app, and confirm the Overview counts and periods match metadata.
+- Switch between English and Spanish on every page and confirm labels fit without truncation.
+- Select a store and product and confirm history, predictions, errors, promotions, and stockouts
   update together.
-- Change both inventory thresholds; confirm risk counts and table flags update.
-- Compare overall, store, and product metrics; confirm MAE, WAPE, and MASE explanations remain
+- Change both inventory thresholds and confirm risk counts and table flags update.
+- Compare overall, store, and product metrics and confirm MAE, WAPE, and MASE explanations remain
   visible.
 - Open all repository and documentation links on the About page.
-- Refresh the browser; confirm the dashboard does not start training or require FastAPI.
+- Refresh the browser and confirm the dashboard does not start training or require FastAPI.

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Retail Intelligence | Loading States</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Integration of Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2f3132",
+                    "on-secondary-fixed": "#0b1c30",
+                    "primary-fixed": "#c2e8fe",
+                    "outline-variant": "#c1c7cc",
+                    "background": "#f9f9fa",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-surface": "#1a1c1d",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeeeef",
+                    "surface-bright": "#f9f9fa",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#54647a",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#2b1600",
+                    "inverse-on-surface": "#f1f0f2",
+                    "surface-tint": "#3f6376",
+                    "primary": "#001d29",
+                    "on-primary-fixed-variant": "#264b5d",
+                    "inverse-primary": "#a7cce1",
+                    "tertiary-fixed": "#ffdcbd",
+                    "surface-variant": "#e2e2e4",
+                    "surface-container-highest": "#e2e2e4",
+                    "primary-container": "#083344",
+                    "surface-dim": "#dadadb",
+                    "secondary-container": "#d0e1fb",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#41484c",
+                    "outline": "#72787c",
+                    "primary-fixed-dim": "#a7cce1",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary-fixed": "#001e2b",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e8e8e9",
+                    "secondary": "#505f76",
+                    "surface": "#f9f9fa",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed-variant": "#60401c",
+                    "tertiary-container": "#452907",
+                    "tertiary-fixed-dim": "#edbe90",
+                    "surface-container-low": "#f4f3f5",
+                    "on-tertiary-container": "#b98f64",
+                    "on-primary-container": "#779cb0",
+                    "on-tertiary-fixed": "#2c1600",
+                    "on-background": "#1a1c1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "24px",
+                    "container_max_width": "1440px",
+                    "cell_padding_x": "12px",
+                    "sidebar_width": "260px",
+                    "cell_padding_y": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "label-md": ["Inter"],
+                    "data-mono": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "data-mono": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .skeleton {
+            background: linear-gradient(
+                90deg,
+                #f1f0f2 25%,
+                #e8e8e9 50%,
+                #f1f0f2 75%
+            );
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite linear;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .progress-bar-fill {
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface border-r border-outline-variant flex flex-col py-base px-base z-50">
+<div class="mb-8 px-base">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Retail Intelligence</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Demand &amp; Supply v2.4</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-3 px-base py-3 text-primary font-bold border-r-4 border-primary bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-base py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span class="font-label-md text-label-md">Inventory Risk</span>
+</a>
+<a class="flex items-center gap-3 px-base py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="font-label-md text-label-md">Demand Forecast</span>
+</a>
+<a class="flex items-center gap-3 px-base py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-label-md text-label-md">Store Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-base py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 space-y-1">
+<button class="w-full flex items-center gap-3 px-base py-3 text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="font-label-md text-label-md">Language (EN/ES)</span>
+</button>
+<button class="w-full flex items-center gap-3 px-base py-3 text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-gutter z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Demand Intelligence</h2>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex gap-6">
+<span class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1">Global View</span>
+<span class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer">Regional Analysis</span>
+<span class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all cursor-pointer">Store Deep-dive</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a corporate administrator, shot in high-key studio lighting. The person wears a minimalist navy blazer against a neutral grey background, embodying a modern, corporate, and trustworthy aesthetic. The image is crisp, clean, and follows a light-mode color palette for seamless UI integration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEPHJ4LYAYbiaNWmz4EuACIRewmG2JFfiOQ620g8Tn82tyH1GzKJmcmzJdB7bWP2MoueUEr6_DjGz7zUgWRgJmMbzxN1YOX-uuQx99v8-KPJASrcyFKwvjoWkds3QAn4RdbHOiC3tcri9ZWeTGUJX7v5fCcyJUWSvGoMLXz4_8RrGh5z7nyjPfcXVJRUCHLqm2iWVWUMS67N2HStpcz2Zwk8QxmDXAm2ZI314lYpfbxGl3WoCWmxE"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[260px] mt-16 p-gutter h-[calc(100vh-64px)] overflow-y-auto">
+<div class="max-w-[container_max_width] mx-auto space-y-gutter">
+<!-- Section 1: Overview Loading -->
+<section class="space-y-4" id="section-overview">
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-primary">Dashboard Overview</span>
+<span class="text-secondary animate-pulse flex items-center gap-1 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="sync">sync</span>
+                                Cargando datasets validados...
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">General system health and validated supply chain data.</p>
+</div>
+<div class="w-64">
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span>Loading Progress</span>
+<span>64%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary progress-bar-fill" style="width: 64%"></div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Skeleton -->
+<div class="grid grid-cols-12 gap-base">
+<!-- Metric Card 1 -->
+<div class="col-span-3 p-gutter bg-surface-container-lowest border border-outline-variant rounded-xl">
+<div class="h-4 w-24 skeleton mb-4 rounded"></div>
+<div class="h-10 w-32 skeleton mb-2 rounded"></div>
+<div class="h-4 w-16 skeleton rounded"></div>
+</div>
+<!-- Metric Card 2 -->
+<div class="col-span-3 p-gutter bg-surface-container-lowest border border-outline-variant rounded-xl">
+<div class="h-4 w-24 skeleton mb-4 rounded"></div>
+<div class="h-10 w-32 skeleton mb-2 rounded"></div>
+<div class="h-4 w-16 skeleton rounded"></div>
+</div>
+<!-- Metric Card 3 -->
+<div class="col-span-6 p-gutter bg-surface-container-lowest border border-outline-variant rounded-xl row-span-2">
+<div class="flex justify-between mb-6">
+<div class="h-6 w-48 skeleton rounded"></div>
+<div class="h-6 w-12 skeleton rounded"></div>
+</div>
+<div class="h-48 w-full skeleton rounded-lg"></div>
+</div>
+<!-- Metric Card 4 -->
+<div class="col-span-3 p-gutter bg-surface-container-lowest border border-outline-variant rounded-xl">
+<div class="h-4 w-24 skeleton mb-4 rounded"></div>
+<div class="h-10 w-32 skeleton mb-2 rounded"></div>
+<div class="h-4 w-16 skeleton rounded"></div>
+</div>
+<!-- Metric Card 5 -->
+<div class="col-span-3 p-gutter bg-surface-container-lowest border border-outline-variant rounded-xl">
+<div class="h-4 w-24 skeleton mb-4 rounded"></div>
+<div class="h-10 w-32 skeleton mb-2 rounded"></div>
+<div class="h-4 w-16 skeleton rounded"></div>
+</div>
+</div>
+</section>
+<!-- Section 2: Forecast History Loading -->
+<section class="space-y-4 pt-base" id="section-forecast">
+<div class="flex items-center gap-4 border-t border-outline-variant pt-gutter">
+<div class="bg-primary-container p-3 rounded-lg text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Demand Forecast History</h3>
+<p class="text-secondary font-body-sm text-body-sm italic">Preparando el historial de demanda y series temporales...</p>
+</div>
+<div class="ml-auto flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full">
+<div class="w-3 h-3 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+<span class="font-label-md text-label-md text-primary">Processing Engine</span>
+</div>
+</div>
+<!-- Wide Content Skeleton -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-gutter border-b border-outline-variant flex justify-between items-center">
+<div class="h-6 w-64 skeleton rounded"></div>
+<div class="flex gap-2">
+<div class="h-8 w-24 skeleton rounded"></div>
+<div class="h-8 w-24 skeleton rounded"></div>
+</div>
+</div>
+<div class="p-gutter space-y-6">
+<!-- Simulated Data Rows -->
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="h-4 w-1/6 skeleton rounded"></div>
+<div class="h-4 w-2/6 skeleton rounded"></div>
+<div class="h-4 w-1/6 skeleton rounded"></div>
+<div class="h-4 w-2/6 skeleton rounded"></div>
+</div>
+<div class="h-px bg-outline-variant"></div>
+<div class="flex gap-4">
+<div class="h-4 w-1/6 skeleton rounded"></div>
+<div class="h-4 w-2/6 skeleton rounded"></div>
+<div class="h-4 w-1/6 skeleton rounded"></div>
+<div class="h-4 w-2/6 skeleton rounded"></div>
+</div>
+<div class="h-px bg-outline-variant"></div>
+<div class="flex gap-4">
+<div class="h-4 w-1/6 skeleton rounded"></div>
+<div class="h-4 w-2/6 skeleton rounded"></div>
+<div class="h-4 w-1/6 skeleton rounded"></div>
+<div class="h-4 w-2/6 skeleton rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Model Performance Metrics -->
+<section class="space-y-4 pt-base" id="section-performance">
+<div class="flex justify-between items-center border-t border-outline-variant pt-gutter">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Model Metrics &amp; Accuracy</h3>
+<p class="font-body-sm text-body-sm text-secondary">Cargando métricas del modelo y error porcentual absoluto...</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono text-secondary">Task ID: ML_8942-B</span>
+<div class="h-10 w-px bg-outline-variant"></div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white skeleton"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white skeleton"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white skeleton"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-base">
+<!-- Performance Card 1 -->
+<div class="p-base bg-surface-container-lowest border border-outline-variant rounded-lg flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full skeleton flex-shrink-0"></div>
+<div class="flex-1 space-y-2">
+<div class="h-3 w-1/2 skeleton rounded"></div>
+<div class="h-5 w-3/4 skeleton rounded"></div>
+</div>
+</div>
+<!-- Performance Card 2 -->
+<div class="p-base bg-surface-container-lowest border border-outline-variant rounded-lg flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full skeleton flex-shrink-0"></div>
+<div class="flex-1 space-y-2">
+<div class="h-3 w-1/2 skeleton rounded"></div>
+<div class="h-5 w-3/4 skeleton rounded"></div>
+</div>
+</div>
+<!-- Performance Card 3 -->
+<div class="p-base bg-surface-container-lowest border border-outline-variant rounded-lg flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full skeleton flex-shrink-0"></div>
+<div class="flex-1 space-y-2">
+<div class="h-3 w-1/2 skeleton rounded"></div>
+<div class="h-5 w-3/4 skeleton rounded"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Overlay Loader for Global Transitions -->
+<div class="hidden fixed inset-0 bg-background/50 backdrop-blur-sm z-[100] flex items-center justify-center" id="global-spinner">
+<div class="bg-white p-8 rounded-xl shadow-xl border border-outline-variant flex flex-col items-center gap-4 max-w-xs text-center">
+<div class="relative w-16 h-16">
+<div class="absolute inset-0 border-4 border-primary-container rounded-full"></div>
+<div class="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary">Synchronizing...</p>
+<p class="font-body-sm text-body-sm text-secondary">Finalizing data integrity checks across all regional nodes.</p>
+</div>
+</div>
+</div>
+<script>
+        // Micro-interaction: Randomize skeleton widths slightly to look more organic
+        document.querySelectorAll('.skeleton').forEach(el => {
+            if (el.classList.contains('w-full')) return;
+            const currentWidth = el.offsetWidth;
+            const variance = (Math.random() - 0.5) * 20; // +/- 10px
+            el.style.width = (currentWidth + variance) + 'px';
+        });
+
+        // Simulate progress bar increment
+        let progress = 64;
+        const progressBar = document.querySelector('.progress-bar-fill');
+        const progressText = progressBar.parentElement.previousElementSibling.querySelector('span:last-child');
+        
+        setInterval(() => {
+            if (progress < 99) {
+                progress += Math.random() * 2;
+                if (progress > 99) progress = 99;
+                progressBar.style.width = progress + '%';
+                progressText.innerText = Math.floor(progress) + '%';
+            }
+        }, 2000);
+
+        // Simple navigation interaction (simulated)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const spinner = document.getElementById('global-spinner');
+                spinner.classList.remove('hidden');
+                setTimeout(() => {
+                    spinner.classList.add('hidden');
+                }, 1500);
+            });
+        });
+    </script>
+</body></html>

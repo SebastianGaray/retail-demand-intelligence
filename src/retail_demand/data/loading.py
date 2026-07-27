@@ -9,11 +9,15 @@ from retail_demand.data.schemas import DatasetContract
 from retail_demand.domain.errors import DatasetValidationError, DatasetValidationIssue
 
 
+def read_parquet_frame(path: Path) -> pd.DataFrame:
+    return pd.read_parquet(path, use_threads=False, pre_buffer=False)
+
+
 def load_parquet[RecordT: BaseModel](
     path: Path, contract: DatasetContract[RecordT]
 ) -> tuple[RecordT, ...]:
     try:
-        frame = pd.read_parquet(path)
+        frame = read_parquet_frame(path)
     except (FileNotFoundError, OSError, ValueError) as error:
         raise DatasetValidationError(
             [DatasetValidationIssue(contract.name, "<file>", str(error))]
@@ -64,7 +68,7 @@ def _validate_unique_keys[RecordT: BaseModel](
                     dataset=contract.name,
                     row=row_number,
                     field=", ".join(contract.key),
-                    problem=f"duplicate key; first seen at row {seen[key]}",
+                    problem=f"duplicate key, first seen at row {seen[key]}",
                 )
             )
         else:

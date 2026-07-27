@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 from httpx import ASGITransport, AsyncClient
 from pytest import TempPathFactory
+from streamlit.testing.v1 import AppTest
 
 from retail_demand.api.main import create_app
 from retail_demand.application.generate_demo import generate_and_save_demo_data
@@ -14,6 +15,7 @@ from retail_demand.application.train import (
     train_forecasters,
 )
 from retail_demand.artifacts.metadata import ForecastConfiguration
+from retail_demand.configuration.settings import get_settings
 from retail_demand.data.generation import DemoDataParameters
 
 
@@ -96,3 +98,32 @@ async def test_api_returns_clear_selection_and_artifact_errors(
         assert unavailable.status_code == 503
         assert unavailable.json()["code"] == "artifacts_unavailable"
         assert (await missing.get("/health")).json()["status"] == "artifacts_missing"
+
+
+def test_dashboard_survives_reruns(
+    artifact_directory: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("RETAIL_DEMAND_ARTIFACT_DIRECTORY", str(artifact_directory))
+    get_settings.cache_clear()
+    dashboard = AppTest.from_file("src/retail_demand/dashboard/app.py", default_timeout=60).run()
+
+    assert not dashboard.exception
+    dashboard.selectbox[0].set_value("es").run()
+    assert not dashboard.exception
+    assert dashboard.selectbox[0].value == "es"
+    for page, page_id in (
+        ("Explorador de Pronósticos", "forecast"),
+        ("Riesgo de Inventario", "inventory"),
+        ("Rendimiento del Modelo", "performance"),
+        ("Acerca del Proyecto", "about"),
+        ("Resumen", "overview"),
+    ):
+        next(button for button in dashboard.button if button.label == page).click().run()
+        assert not dashboard.exception
+        assert dashboard.session_state["dashboard_page"] == page_id
+        if page_id == "about":
+            assert any(page in element.value for element in dashboard.markdown)
+        else:
+            assert dashboard.title[0].value == page
+    get_settings.cache_clear()

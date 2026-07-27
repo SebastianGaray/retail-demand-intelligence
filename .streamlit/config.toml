@@ -1,0 +1,47 @@
+[theme]
+base = "light"
+primaryColor = "#062b3a"
+backgroundColor = "#f7f8f9"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#172126"
+linkColor = "#315f75"
+codeTextColor = "#062b3a"
+codeBackgroundColor = "#e9eef0"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap, sans-serif"
+headingFont = "Hanken Grotesk:https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&display=swap, sans-serif"
+codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap, monospace"
+baseRadius = "small"
+buttonRadius = "small"
+borderColor = "#d9dee2"
+dataframeBorderColor = "#d9dee2"
+dataframeHeaderBackgroundColor = "#eef0f2"
+showWidgetBorder = true
+showSidebarBorder = true
+redColor = "#ba1a1a"
+orangeColor = "#b56b16"
+greenColor = "#08775b"
+blueColor = "#315f75"
+grayColor = "#71808a"
+chartCategoricalColors = [
+    "#062b3a",
+    "#76a5bb",
+    "#b8c2c8",
+    "#ba1a1a",
+    "#b56b16",
+    "#08775b",
+]
+chartSequentialColors = [
+    "#f5f9fa",
+    "#e8f0f3",
+    "#c7dce4",
+    "#9fc2d0",
+    "#76a5bb",
+    "#4e8198",
+    "#315f75",
+    "#173f50",
+    "#062b3a",
+    "#001d29",
+]
+
+[client]
+toolbarMode = "minimal"

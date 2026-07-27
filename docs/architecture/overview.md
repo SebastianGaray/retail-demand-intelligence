@@ -84,7 +84,7 @@ Calendar values, listed prices, and scheduled promotions are treated as known in
 categorical encoder is fitted on training for validation and refitted on training plus validation
 for the test block.
 
-Validation WAPE selects the champion. LightGBM must improve on the best baseline by at least 2%;
+Validation WAPE selects the champion. LightGBM must improve on the best baseline by at least 2%.
 otherwise a baseline remains champion.
 
 ## Artifacts

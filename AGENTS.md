@@ -5,8 +5,8 @@
 Retail Demand Intelligence demonstrates reproducible demand forecasting and inventory-risk
 analysis with local FastAPI and bilingual Streamlit interfaces.
 
-- `src/retail_demand/`: installable package. `domain/` owns business rules; `application/`
-  coordinates use cases; `data/`, `features/`, `modeling/`, and `artifacts/` implement workflows;
+- `src/retail_demand/`: installable package. `domain/` owns business rules. `application/`
+  coordinates use cases. `data/`, `features/`, `modeling/`, and `artifacts/` implement workflows.
   `api/` and `dashboard/` are delivery layers.
 - `tests/unit/`, `tests/integration/`, and `tests/fixtures/`: behavior checks and small synthetic
   inputs.
@@ -15,7 +15,7 @@ analysis with local FastAPI and bilingual Streamlit interfaces.
 - `scripts/`: reproducible entry points. Reusable logic belongs under `src/`.
 
 Dependencies point inward: delivery and infrastructure modules may use `application` and
-`domain`; `domain` and `application` must not import FastAPI or Streamlit. API and dashboard code
+`domain`. `domain` and `application` must not import FastAPI or Streamlit. API and dashboard code
 call application services. Notebooks are exploration-only and application code must not import
 them.
 
@@ -23,7 +23,7 @@ them.
 
 - Inspect existing code and callers before editing. Start broad changes with a short plan.
 - Use English for code, identifiers, comments, and technical documentation.
-- Use Spanish only for translated user documentation and dashboard content; keep English and
+- Use Spanish only for translated user documentation and dashboard content. Keep English and
   Spanish user-facing content aligned.
 - Target Python 3.12. Ruff owns formatting and linting. Pyright runs in strict mode. Type public
   functions, class attributes, return values, and trust-boundary data.
@@ -41,7 +41,7 @@ them.
 - Evaluate forecasts with time-based splits. Random train/test splits are invalid for temporal
   demand data.
 - Features may use only information available at prediction time. Lag and rolling features must
-  stop before the forecast origin; future inputs must be known in advance.
+  stop before the forecast origin. Future inputs must be known in advance.
 
 ## Tests and validation
 

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory Risk | Riesgo de Inventario</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Hanken+Grotesk:wght@600;700&family=JetBrains+Mono&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        /* Custom scrollbar for dense data */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c7cc;
+            border-radius: 10px;
+        }
+        /* Mobile Drawer Transition */
+        #mobile-drawer {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .drawer-open {
+            transform: translateX(0) !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#2f3132",
+                      "on-secondary-fixed": "#0b1c30",
+                      "primary-fixed": "#c2e8fe",
+                      "outline-variant": "#c1c7cc",
+                      "background": "#f9f9fa",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "on-surface": "#1a1c1d",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#eeeeef",
+                      "surface-bright": "#f9f9fa",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#54647a",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#2b1600",
+                      "inverse-on-surface": "#f1f0f2",
+                      "surface-tint": "#3f6376",
+                      "primary": "#001d29",
+                      "on-primary-fixed-variant": "#264b5d",
+                      "inverse-primary": "#a7cce1",
+                      "tertiary-fixed": "#ffdcbd",
+                      "surface-variant": "#e2e2e4",
+                      "surface-container-highest": "#e2e2e4",
+                      "primary-container": "#083344",
+                      "surface-dim": "#dadadb",
+                      "secondary-container": "#d0e1fb",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#41484c",
+                      "outline": "#72787c",
+                      "primary-fixed-dim": "#a7cce1",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-primary-fixed": "#001e2b",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e8e8e9",
+                      "secondary": "#505f76",
+                      "surface": "#f9f9fa",
+                      "secondary-fixed": "#d3e4fe",
+                      "on-tertiary-fixed-variant": "#60401c",
+                      "tertiary-container": "#452907",
+                      "tertiary-fixed-dim": "#edbe90",
+                      "surface-container-low": "#f4f3f5",
+                      "on-tertiary-container": "#b98f64",
+                      "on-primary-container": "#779cb0",
+                      "on-tertiary-fixed": "#2c1600",
+                      "on-background": "#1a1c1d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "24px",
+                      "container_max_width": "1440px",
+                      "cell_padding_x": "12px",
+                      "sidebar_width": "260px",
+                      "cell_padding_y": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "headline-sm": ["Hanken Grotesk"],
+                      "label-md": ["Inter"],
+                      "data-mono": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
+<!-- Mobile Drawer Overlay -->
+<div class="fixed inset-0 bg-black/40 z-40 hidden opacity-0 transition-opacity duration-300" id="drawer-overlay"></div>
+<!-- Navigation Drawer (SideNavBar Logic) -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface z-50 -translate-x-full border-r border-outline-variant flex flex-col py-base px-base shadow-lg" id="mobile-drawer">
+<div class="flex items-center justify-between mb-8 px-2">
+<div class="font-headline-md text-headline-md font-bold text-primary">Retail Intelligence</div>
+<button class="p-1 hover:bg-surface-container-low rounded" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-grow space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 py-3 px-3 rounded text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Inventory Risk (ACTIVE) -->
+<a class="flex items-center gap-3 py-3 px-3 rounded text-primary font-bold border-r-4 border-primary bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span class="font-label-md text-label-md">Inventory Risk</span>
+</a>
+<!-- Demand Forecast -->
+<a class="flex items-center gap-3 py-3 px-3 rounded text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="font-label-md text-label-md">Demand Forecast</span>
+</a>
+<!-- Store Analytics -->
+<a class="flex items-center gap-3 py-3 px-3 rounded text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-label-md text-label-md">Store Analytics</span>
+</a>
+<!-- System Settings -->
+<a class="flex items-center gap-3 py-3 px-3 rounded text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-4 space-y-1">
+<a class="flex items-center gap-3 py-2 px-3 rounded text-secondary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="font-label-md text-label-md">Language (EN/ES)</span>
+</a>
+<a class="flex items-center gap-3 py-2 px-3 rounded text-secondary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 h-16 bg-surface z-30 flex items-center justify-between px-4 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<button class="p-1 active:scale-90 transition-transform" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Demand Intelligence</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a male retail operations manager in a corporate office setting, soft natural lighting, high resolution, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5k2bH74H26bZU6RyR8mg8Y0ew1dmu0f0AtGD5S5lbLN94hB9NKVRgo2tx842kwKgM6UnejXOkWvzGKtjw2sUTGh6I3pYAm-TjpDMrXbWiDmA9MqeIuNLUZ-itvUnxuN-pVgd4HV2CBykcO1jlzKPeCJ2dkXkfZNQzoEBrXVxqRmBLfTvFftzFm2XTrHapadevkxJNGspqz00tAjGSpnBAi_LR5Hyve44uFkrepFzuaE7XKIhcEec"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-20 pb-24 px-4 max-w-full">
+<!-- Bilingual Title Section -->
+<section class="mb-6">
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline-md text-headline-md text-primary">Inventory Risk</h2>
+<span class="text-secondary text-body-sm italic">/ Riesgo de Inventario</span>
+</div>
+<p class="text-on-surface-variant font-body-sm mt-1">Real-time alerts for stock-out and overstock criticalities.</p>
+</section>
+<!-- Key Metrics Summary (Bento-style 2x2 grid) -->
+<section class="grid grid-cols-2 gap-3 mb-6">
+<div class="bg-surface-container-lowest p-4 border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-error text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">12</div>
+<div class="text-label-md font-label-md text-secondary uppercase tracking-wider">Critical Risks</div>
+<div class="text-[10px] text-error font-semibold mt-1">+3 vs yesterday</div>
+</div>
+<div class="bg-surface-container-lowest p-4 border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-tertiary-container text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">hourglass_top</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">84%</div>
+<div class="text-label-md font-label-md text-secondary uppercase tracking-wider">Health Index</div>
+<div class="text-[10px] text-on-secondary-container font-semibold mt-1">Within baseline</div>
+</div>
+<div class="bg-surface-container-lowest p-4 border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">420</div>
+<div class="text-label-md font-label-md text-secondary uppercase tracking-wider">SKUs Tracked</div>
+<div class="text-[10px] text-on-secondary-fixed-variant font-semibold mt-1">Across 15 regions</div>
+</div>
+<div class="bg-surface-container-lowest p-4 border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+<div class="text-display-lg font-display-lg text-primary">$4.2k</div>
+<div class="text-label-md font-label-md text-secondary uppercase tracking-wider">Loss Value</div>
+<div class="text-[10px] text-error font-semibold mt-1">Est. Stock-out impact</div>
+</div>
+</section>
+<!-- Threshold Inputs (Stacked) -->
+<section class="bg-surface-container-low p-4 rounded-xl border border-outline-variant mb-6">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+                Threshold Settings <span class="text-body-sm font-normal text-secondary">/ Ajustes</span>
+</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant">STOCK-OUT ALERT (%) / ALERTA AGOTADO</label>
+<div class="flex items-center gap-3">
+<input class="flex-grow accent-primary h-2 bg-outline-variant rounded-full appearance-none cursor-pointer" max="100" min="0" type="range" value="15"/>
+<span class="font-data-mono text-data-mono bg-surface-container-highest px-2 py-1 rounded w-12 text-center border border-outline">15%</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant">OVERSTOCK WARNING (DAYS) / SOBREINVENTARIO</label>
+<div class="flex items-center gap-3">
+<input class="flex-grow accent-primary h-2 bg-outline-variant rounded-full appearance-none cursor-pointer" max="180" min="0" type="range" value="90"/>
+<span class="font-data-mono text-data-mono bg-surface-container-highest px-2 py-1 rounded w-12 text-center border border-outline">90d</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant">REORDER POINT (UNITS) / PUNTO DE REORDEN</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline rounded-lg py-2 px-3 focus:ring-2 focus:ring-primary focus:outline-none font-data-mono" type="number" value="250"/>
+<span class="absolute right-3 top-2.5 text-secondary text-body-sm">Units</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md py-3 rounded-lg active:scale-95 transition-transform">
+                    Apply Changes / Aplicar Cambios
+                </button>
+</div>
+</section>
+<!-- Mobile Optimized Data Table -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-sm text-headline-sm text-primary">Risk Registry</h3>
+<span class="material-symbols-outlined text-secondary">filter_list</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-md uppercase tracking-tighter">
+<th class="py-cell_padding_y px-cell_padding_x border-b border-outline-variant">Product SKU</th>
+<th class="py-cell_padding_y px-cell_padding_x border-b border-outline-variant">Risk Status</th>
+<th class="py-cell_padding_y px-cell_padding_x border-b border-outline-variant text-right">Stock</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: Stock Out -->
+<tr class="hover:bg-surface-container-low active:bg-surface-container-highest transition-colors">
+<td class="py-4 px-3">
+<div class="font-bold text-primary truncate max-w-[120px]">Premium Beans 1kg</div>
+<div class="text-[10px] text-secondary font-data-mono">#PB-10042</div>
+</td>
+<td class="py-4 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-error-container text-on-error-container text-[10px] font-bold uppercase">
+                                    Stock Out
+                                </span>
+</td>
+<td class="py-4 px-3 text-right">
+<div class="text-data-mono text-error font-bold">0</div>
+<div class="text-[10px] text-secondary">Days Left: 0</div>
+</td>
+</tr>
+<!-- Row 2: Warning -->
+<tr class="hover:bg-surface-container-low active:bg-surface-container-highest transition-colors">
+<td class="py-4 px-3">
+<div class="font-bold text-primary truncate max-w-[120px]">Classic Roast 500g</div>
+<div class="text-[10px] text-secondary font-data-mono">#CR-20015</div>
+</td>
+<td class="py-4 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold uppercase">
+                                    Critical Low
+                                </span>
+</td>
+<td class="py-4 px-3 text-right">
+<div class="text-data-mono text-tertiary-container font-bold">12</div>
+<div class="text-[10px] text-secondary">Days Left: 2</div>
+</td>
+</tr>
+<!-- Row 3: Overstock -->
+<tr class="hover:bg-surface-container-low active:bg-surface-container-highest transition-colors">
+<td class="py-4 px-3">
+<div class="font-bold text-primary truncate max-w-[120px]">Eco Filters (Box)</div>
+<div class="text-[10px] text-secondary font-data-mono">#EF-9982</div>
+</td>
+<td class="py-4 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase">
+                                    Overstock
+                                </span>
+</td>
+<td class="py-4 px-3 text-right">
+<div class="text-data-mono text-secondary font-bold">840</div>
+<div class="text-[10px] text-secondary">Days Left: 210+</div>
+</td>
+</tr>
+<!-- Row 4: Normal -->
+<tr class="hover:bg-surface-container-low active:bg-surface-container-highest transition-colors">
+<td class="py-4 px-3">
+<div class="font-bold text-primary truncate max-w-[120px]">Organic Blend 250g</div>
+<div class="text-[10px] text-secondary font-data-mono">#OB-5521</div>
+</td>
+<td class="py-4 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-highest text-secondary text-[10px] font-bold uppercase">
+                                    Healthy
+                                </span>
+</td>
+<td class="py-4 px-3 text-right">
+<div class="text-data-mono text-primary font-bold">142</div>
+<div class="text-[10px] text-secondary">Days Left: 18</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 bg-surface-container-low flex justify-between items-center text-body-sm text-on-surface-variant">
+<span>Showing 4 of 420 items</span>
+<div class="flex gap-4 font-bold text-primary">
+<span class="material-symbols-outlined cursor-pointer">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile Version) -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center z-30 md:hidden">
+<button class="flex flex-col items-center gap-1 text-secondary transition-all">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-[10px] font-label-md border-b-2 border-primary pb-0.5">Risk</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="text-[10px] font-label-md">Demand</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-label-md">Insights</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">person_outline</span>
+<span class="text-[10px] font-label-md">Profile</span>
+</button>
+</nav>
+<!-- Floating Action Button (Contextual) -->
+<button class="fixed bottom-20 right-4 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add_chart</span>
+</button>
+<script>
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('drawer-overlay');
+
+        function toggleDrawer() {
+            drawer.classList.toggle('drawer-open');
+            overlay.classList.toggle('hidden');
+            setTimeout(() => overlay.classList.toggle('opacity-100'), 10);
+            
+            if (drawer.classList.contains('drawer-open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        overlay.addEventListener('click', toggleDrawer);
+
+        // Simple feedback on threshold changes
+        document.querySelectorAll('input[type="range"]').forEach(range => {
+            range.addEventListener('input', (e) => {
+                const label = e.target.nextElementSibling;
+                const suffix = e.target.max == 100 ? '%' : 'd';
+                label.innerText = e.target.value + suffix;
+            });
+        });
+    </script>
+</body></html>

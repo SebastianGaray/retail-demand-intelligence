@@ -10,6 +10,7 @@ import pandas as pd
 from retail_demand import __version__
 from retail_demand.artifacts.metadata import ArtifactMetadata
 from retail_demand.artifacts.store import load_metadata, sha256
+from retail_demand.data.loading import read_parquet_frame
 from retail_demand.data.validation import RetailDatasets, load_retail_datasets
 
 
@@ -61,6 +62,16 @@ class ResultReader:
             for product in sorted(datasets.products, key=lambda item: item.product_id)
         ]
 
+    def demand_overview(self) -> pd.DataFrame:
+        _, datasets = self._load()
+        sales = pd.DataFrame(row.model_dump() for row in datasets.daily_sales)
+        predictions = read_parquet_frame(self.artifact_directory / "predictions.parquet")
+        sales["date"] = pd.to_datetime(sales["date"])
+        predictions["date"] = pd.to_datetime(predictions["date"])
+        actual = sales.groupby("date", as_index=False)["quantity"].sum()
+        forecast = predictions.groupby("date", as_index=False)["prediction"].sum()
+        return actual.merge(forecast, on="date", how="left").sort_values("date")
+
     def forecast(self, store_id: str, product_id: str) -> tuple[str, pd.DataFrame]:
         metadata, datasets = self._load()
         self._require_selection(datasets, store_id, product_id)
@@ -79,7 +90,7 @@ class ResultReader:
             for row in datasets.daily_inventory
             if row.store_id == store_id and row.product_id == product_id
         )
-        predictions = pd.read_parquet(self.artifact_directory / "predictions.parquet")
+        predictions = read_parquet_frame(self.artifact_directory / "predictions.parquet")
         predictions = predictions[
             (predictions["store_id"] == store_id) & (predictions["product_id"] == product_id)
         ][["date", "prediction"]]
@@ -114,7 +125,7 @@ class ResultReader:
         metadata, datasets = self._load()
         if store_id is not None or product_id is not None:
             self._require_selection(datasets, store_id, product_id)
-        predictions = pd.read_parquet(self.artifact_directory / "predictions.parquet")
+        predictions = read_parquet_frame(self.artifact_directory / "predictions.parquet")
         inventory = pd.DataFrame(row.model_dump() for row in datasets.daily_inventory)
         result = calculate_inventory_risk(
             predictions,

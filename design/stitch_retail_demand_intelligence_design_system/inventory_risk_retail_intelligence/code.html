@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Retail Intelligence | Inventory Risk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9fa;
+            color: #1a1c1d;
+        }
+        /* Custom scrollbar for high-density tables */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c7cc;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #72787c;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#2f3132",
+                      "on-secondary-fixed": "#0b1c30",
+                      "primary-fixed": "#c2e8fe",
+                      "outline-variant": "#c1c7cc",
+                      "background": "#f9f9fa",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "on-surface": "#1a1c1d",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#eeeeef",
+                      "surface-bright": "#f9f9fa",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#54647a",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#2b1600",
+                      "inverse-on-surface": "#f1f0f2",
+                      "surface-tint": "#3f6376",
+                      "primary": "#001d29",
+                      "on-primary-fixed-variant": "#264b5d",
+                      "inverse-primary": "#a7cce1",
+                      "tertiary-fixed": "#ffdcbd",
+                      "surface-variant": "#e2e2e4",
+                      "surface-container-highest": "#e2e2e4",
+                      "primary-container": "#083344",
+                      "surface-dim": "#dadadb",
+                      "secondary-container": "#d0e1fb",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#41484c",
+                      "outline": "#72787c",
+                      "primary-fixed-dim": "#a7cce1",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-primary-fixed": "#001e2b",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e8e8e9",
+                      "secondary": "#505f76",
+                      "surface": "#f9f9fa",
+                      "secondary-fixed": "#d3e4fe",
+                      "on-tertiary-fixed-variant": "#60401c",
+                      "tertiary-container": "#452907",
+                      "tertiary-fixed-dim": "#edbe90",
+                      "surface-container-low": "#f4f3f5",
+                      "on-tertiary-container": "#b98f64",
+                      "on-primary-container": "#779cb0",
+                      "on-tertiary-fixed": "#2c1600",
+                      "on-background": "#1a1c1d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "24px",
+                      "container_max_width": "1440px",
+                      "cell_padding_x": "12px",
+                      "sidebar_width": "260px",
+                      "cell_padding_y": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "headline-sm": ["Hanken Grotesk"],
+                      "label-md": ["Inter"],
+                      "data-mono": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface border-r border-outline-variant flex flex-col py-base px-base z-40">
+<div class="mb-gutter px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Retail Intelligence</h1>
+<p class="font-label-md text-label-md text-secondary opacity-70">Demand &amp; Supply v2.4</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors duration-200 font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-primary font-bold border-r-4 border-primary bg-surface-container font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">warning</span> Inventory Risk
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors duration-200 font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">trending_up</span> Demand Forecast
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors duration-200 font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">storefront</span> Store Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors duration-200 font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span> System Settings
+            </a>
+</nav>
+<div class="mt-auto space-y-1 pt-gutter border-t border-outline-variant">
+<button class="w-full mb-4 bg-primary text-on-primary py-2 px-4 rounded-xl font-label-md text-label-md active:scale-95 transition-transform">
+                Generate Report
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">translate</span> Language (EN/ES)
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low font-label-md text-label-md rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+<div class="flex items-center gap-3 px-3 py-4 mt-2">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Close-up professional portrait of a business executive in a modern office with glass walls, soft natural lighting, petroleum blue suit accents, minimalist corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiSeZH18_mHbGfPlEp7U_aJcVVIJzMz4xEbOMvsT8CJCkofj2KlOKHnM-LUPumSEHthf5SrwMTfct-qE3Xxgco7J6tW11py1PpWfvxX2auDGJ1zksh9ZC8mLjhgVEVup1urq7GXBo3ATVUU1w6Qg4nJE6lBq9ZZh52heLE1cVyURf9ijwRiHEY54RyWxMax8o2bJBeTaIXYf4D9SZ5GmNgZnpN5BzBUXMVLbmZyplFRxrUO3KhGM4"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-bold text-on-surface truncate">Admin User</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[260px] min-w-0">
+<!-- Top Navigation Bar -->
+<header class="h-16 flex justify-between items-center px-gutter sticky top-0 bg-surface z-30 border-b border-outline-variant">
+<div class="flex items-center gap-gutter flex-1">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Demand Intelligence</h2>
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 bg-surface-container-low border border-outline-variant rounded-xl font-body-sm text-body-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Search by SKU, Store, or Region..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Global View</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Regional Analysis</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Store Deep-dive</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-gutter max-w-screen-2xl mx-auto space-y-6">
+<!-- Page Title & Threshold Controls -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-gutter bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Inventory Risk Analysis</h3>
+<p class="font-body-sm text-body-sm text-secondary">Ajuste de umbrales para Stockout y Exceso de Inventario.</p>
+</div>
+<div class="flex flex-wrap items-center gap-4">
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-secondary block">Stockout Risk Threshold</label>
+<div class="flex items-center gap-2">
+<input class="accent-primary w-32" type="range" value="15"/>
+<span class="font-data-mono text-data-mono bg-error-container text-on-error-container px-2 py-0.5 rounded">&lt; 15 Days</span>
+</div>
+</div>
+<div class="w-px h-10 bg-outline-variant hidden lg:block"></div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-secondary block">Excess Inventory Threshold</label>
+<div class="flex items-center gap-2">
+<input class="accent-primary w-32" type="range" value="60"/>
+<span class="font-data-mono text-data-mono bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded">&gt; 60 Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-base">
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl shadow-sm">
+<p class="font-label-md text-label-md text-secondary mb-1">Combinations at Risk</p>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-error">1,402</span>
+<span class="text-xs text-error font-semibold flex items-center"><span class="material-symbols-outlined text-sm">trending_up</span> +12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl shadow-sm">
+<p class="font-label-md text-label-md text-secondary mb-1">Excess Indicators</p>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-secondary">845</span>
+<span class="text-xs text-on-secondary-fixed-variant font-semibold flex items-center"><span class="material-symbols-outlined text-sm">trending_down</span> -4%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl shadow-sm">
+<p class="font-label-md text-label-md text-secondary mb-1">Expected Demand (30d)</p>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-primary">2.4M</span>
+<span class="text-xs text-on-primary-fixed-variant font-semibold">Units</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl shadow-sm">
+<p class="font-label-md text-label-md text-secondary mb-1">Current Inventory</p>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-primary">4.1M</span>
+<span class="text-xs text-on-primary-fixed-variant font-semibold">Units</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl shadow-sm">
+<p class="font-label-md text-label-md text-secondary mb-1">Coverage Days (Avg)</p>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-primary">28</span>
+<span class="text-xs text-secondary font-semibold">Days</span>
+</div>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="p-4 border-b border-outline-variant flex flex-wrap justify-between items-center gap-4">
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant font-label-md text-label-md bg-surface-container-low text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> All Filters
+                        </button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">By Region</button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">By Category</button>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-on-surface-variant bg-surface-container-high px-2 py-1 rounded font-bold uppercase tracking-widest">Synthetic Data Notice</span>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary">SKU / ID</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary">Product Name</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary">Location</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary text-right">Inventory</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary text-right">Daily Demand</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary text-right">Coverage</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary text-center">Risk Indicator</th>
+<th class="px-cell_padding_x py-3 font-label-md text-label-md text-secondary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: High Risk -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono">SKU-9041</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm font-semibold">Ultra-Fit Running Shoes</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm">CDMX - Central Hub</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">142</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">38.4</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right font-bold text-error">3.7 Days</td>
+<td class="px-cell_padding_x py-cell_padding_y text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase">
+                                        Critical Risk
+                                    </span>
+</td>
+<td class="px-cell_padding_x py-cell_padding_y text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+<!-- Row 2: Warning -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono">SKU-2239</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm font-semibold">Merino Wool Sweater</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm">Monterrey - North</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">840</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">45.0</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right text-tertiary-container">18.6 Days</td>
+<td class="px-cell_padding_x py-cell_padding_y text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold uppercase">
+                                        Attention
+                                    </span>
+</td>
+<td class="px-cell_padding_x py-cell_padding_y text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+<!-- Row 3: Normal -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono">SKU-7710</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm font-semibold">Classic Denim Jacket</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm">Guadalajara - West</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">2,105</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">62.1</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">33.8 Days</td>
+<td class="px-cell_padding_x py-cell_padding_y text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase">
+                                        Optimal
+                                    </span>
+</td>
+<td class="px-cell_padding_x py-cell_padding_y text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+<!-- Row 4: Excess -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono">SKU-5501</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm font-semibold">Cotton Canvas Tote</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm">CDMX - Central Hub</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">5,400</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">68.0</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right text-primary-container">79.4 Days</td>
+<td class="px-cell_padding_x py-cell_padding_y text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase">
+                                        Excess Risk
+                                    </span>
+</td>
+<td class="px-cell_padding_x py-cell_padding_y text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+<!-- Row 5: High Risk -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono">SKU-1082</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm font-semibold">Silicone Water Bottle</td>
+<td class="px-cell_padding_x py-cell_padding_y font-body-sm text-body-sm">Cancun - SE</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right">88</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right12.5">12.5</td>
+<td class="px-cell_padding_x py-cell_padding_y font-data-mono text-data-mono text-right font-bold text-error">7.0 Days</td>
+<td class="px-cell_padding_x py-cell_padding_y text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase">
+                                        High Risk
+                                    </span>
+</td>
+<td class="px-cell_padding_x py-cell_padding_y text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<p class="font-body-sm text-body-sm text-secondary">Showing 1-15 of 2,247 items</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<span class="font-label-md text-label-md px-2">1 / 150</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Insights Section (Asymmetric Layout) -->
+<div class="flex flex-col lg:flex-row gap-gutter">
+<div class="lg:w-2/3 bg-surface-container-lowest border border-outline-variant rounded-xl p-gutter">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-sm text-headline-sm text-primary">Coverage Variance by Region</h4>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1">
+                            View Full Report <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+<!-- Simplified Visual Indicator Area -->
+<div class="space-y-4">
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span>Central Hub</span>
+<span class="font-data-mono">14.2 Avg Days</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error w-[15%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span>Northern Region</span>
+<span class="font-data-mono">32.8 Avg Days</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md">
+<span>Southeast Region</span>
+<span class="font-data-mono">51.1 Avg Days</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim w-[70%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/3 bg-primary text-on-primary rounded-xl p-gutter relative overflow-hidden flex flex-col justify-between">
+
+<div class="relative z-10">
+<span class="material-symbols-outlined text-inverse-primary text-4xl mb-4">analytics</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">Automated Risk Filter</h4>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+                            Our predictive models have identified a cluster of 12 SKUs with high seasonality variance in the Northeast. 
+                        </p>
+</div>
+<div class="relative z-10 pt-8">
+<button class="w-full bg-on-primary text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors">
+                            Apply Targeted Analysis
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) - Suppressed per rules on Details/Settings, but shown here for primary Dashboard action if required. In this case, 'Inventory Risk' is a primary dashboard feature, so we keep a contextual action. -->
+<button class="fixed bottom-gutter right-gutter w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50 group">
+<span class="material-symbols-outlined">add</span>
+<span class="absolute right-full mr-4 bg-inverse-surface text-inverse-on-surface px-3 py-1 rounded-lg font-label-md text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Add Risk Alert</span>
+</button>
+<script>
+        // Micro-interaction for range inputs
+        const ranges = document.querySelectorAll('input[type="range"]');
+        ranges.forEach(range => {
+            range.addEventListener('input', (e) => {
+                const valueDisplay = e.target.nextElementSibling;
+                const prefix = e.target.value < 40 ? '< ' : '> ';
+                const suffix = ' Days';
+                valueDisplay.textContent = `${prefix}${e.target.value}${suffix}`;
+                
+                // Visual feedback for thresholds
+                if (e.target.value < 20) {
+                    valueDisplay.className = 'font-data-mono text-data-mono bg-error-container text-on-error-container px-2 py-0.5 rounded';
+                } else if (e.target.value > 50) {
+                    valueDisplay.className = 'font-data-mono text-data-mono bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded';
+                } else {
+                    valueDisplay.className = 'font-data-mono text-data-mono bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded';
+                }
+            });
+        });
+
+        // Simple table sort simulation
+        document.querySelectorAll('th').forEach(th => {
+            th.addEventListener('click', () => {
+                console.log('Sorting by:', th.textContent.trim());
+                // In a real app, this would trigger a data re-fetch or internal sort
+            });
+            th.classList.add('cursor-pointer', 'hover:bg-surface-container');
+        });
+    </script>
+</body></html>
