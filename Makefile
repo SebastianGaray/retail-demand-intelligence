@@ -1,4 +1,4 @@
-.PHONY: install sync sample-data format format-check lint typecheck test test-unit test-integration check clean
+.PHONY: install sync sample-data train evaluate predictions format format-check lint typecheck test test-unit test-integration check clean
 
 install:
 	uv sync --dev
@@ -9,6 +9,15 @@ sync:
 
 sample-data:
 	uv run retail-demand generate-data --stores 5 --products 50 --days 730 --seed 42 --output data/processed/demo
+
+train:
+	uv run retail-demand train --data data/processed/demo --output artifacts/runs/demo --horizon 28 --seed 42
+
+evaluate:
+	uv run retail-demand evaluate --data data/processed/demo --artifact artifacts/runs/demo
+
+predictions:
+	uv run retail-demand predictions --artifact artifacts/runs/demo
 
 format:
 	uv run ruff format .

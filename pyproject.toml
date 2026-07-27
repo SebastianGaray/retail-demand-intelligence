@@ -12,6 +12,7 @@ license = "MIT"
 authors = [{ name = "Sebastian Garay" }]
 dependencies = [
     "fastapi>=0.115",
+    "lightgbm>=4.6",
     "pandas>=2.2",
     "pyarrow>=18",
     "pydantic>=2.10",
@@ -31,6 +32,7 @@ dev = [
     "pyright>=1.1.390",
     "pytest>=8.3",
     "ruff>=0.9",
+    "scikit-learn-stubs",
 ]
 
 [tool.hatch.build.targets.wheel]
