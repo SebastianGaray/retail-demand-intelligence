@@ -10,3 +10,4 @@ make check
 Copy `.env.example` to `.env` only when local overrides are needed.
 
 See [dataset contracts](datasets.md) for the validated Parquet inputs.
+See [synthetic demo data](demo-data.md) to generate a local dataset.

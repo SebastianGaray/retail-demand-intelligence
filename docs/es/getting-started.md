@@ -10,3 +10,4 @@ make check
 Copia `.env.example` como `.env` solo si necesitas modificar la configuración local.
 
 Consulta el [resumen de datos](datasets.md) para conocer las entradas Parquet validadas.
+Consulta [datos sintéticos de demostración](demo-data.md) para generar datos locales.

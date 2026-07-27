@@ -1,4 +1,4 @@
-.PHONY: install sync format format-check lint typecheck test test-unit test-integration check clean
+.PHONY: install sync sample-data format format-check lint typecheck test test-unit test-integration check clean
 
 install:
 	uv sync --dev
@@ -6,6 +6,9 @@ install:
 
 sync:
 	uv sync --dev
+
+sample-data:
+	uv run retail-demand generate-data --stores 5 --products 50 --days 730 --seed 42 --output data/processed/demo
 
 format:
 	uv run ruff format .

@@ -21,6 +21,9 @@ dependencies = [
     "uvicorn[standard]>=0.34",
 ]
 
+[project.scripts]
+retail-demand = "retail_demand.cli:main"
+
 [dependency-groups]
 dev = [
     "pandas-stubs>=2.2",

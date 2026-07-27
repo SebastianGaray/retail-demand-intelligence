@@ -5,3 +5,6 @@ and fields are documented in the [dataset contracts](../docs/en/datasets.md).
 
 Document each dataset's source, license, schema, and generation command before adding it to a
 workflow. Do not commit confidential or production data.
+
+Generate the synthetic sample with `make sample-data`. See
+[synthetic demo data](../docs/en/demo-data.md) for its assumptions.
