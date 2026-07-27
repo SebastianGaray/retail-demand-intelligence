@@ -4,6 +4,7 @@
 .pytest_cache/
 .pyright/
 .ruff_cache/
+.streamlit/secrets.toml
 .venv/
 .vscode/
 __pycache__/

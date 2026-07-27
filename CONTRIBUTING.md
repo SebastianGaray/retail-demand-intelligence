@@ -8,7 +8,7 @@
 4. Run `make check` before opening a pull request.
 
 Use English for source code, identifiers, and technical documentation. Spanish is reserved for
-translated user-facing content under `docs/es/` and the future dashboard.
+translated user-facing content under `docs/es/` and in the dashboard.
 
 Do not commit `.env`, local datasets, generated artifacts, or credentials. Update `uv.lock` when
 dependencies change.
