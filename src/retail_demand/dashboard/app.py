@@ -22,6 +22,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 apply_styles()
+settings = get_settings()
 
 st.sidebar.markdown('<p class="rdi-brand">Retail Intelligence</p>', unsafe_allow_html=True)
 st.sidebar.markdown(
@@ -29,7 +30,7 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 if "dashboard_locale" not in st.session_state:
-    st.session_state.dashboard_locale = "en"
+    st.session_state.dashboard_locale = settings.default_locale
 locale = cast(Locale, st.session_state.dashboard_locale)
 text = partial(translate, locale)
 navigation = (
@@ -60,13 +61,13 @@ for page, label, icon in navigation:
 
 st.sidebar.divider()
 st.sidebar.selectbox(
-    "Language / Idioma",
+    text("app.language"),
     ["en", "es"],
-    format_func=lambda value: "English" if value == "en" else "Español",
+    format_func=lambda value: text(f"language.{value}"),
     key="dashboard_locale",
 )
 st.sidebar.link_button(
-    "Portfolio ↗" if locale == "en" else "Portafolio ↗",
+    text("navigation.portfolio"),
     "https://sebastiangaray.github.io/",
     width="stretch",
 )
@@ -78,7 +79,7 @@ def _reader(artifact_directory: str) -> ResultReader:
     return ResultReader(Path(artifact_directory))
 
 
-artifact_directory = str(get_settings().artifact_directory)
+artifact_directory = str(settings.artifact_directory)
 reader = _reader(artifact_directory)
 with st.spinner(text("loading.artifacts"), show_time=True):
     artifact_error = reader.availability_error()
