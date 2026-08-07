@@ -65,6 +65,11 @@ st.sidebar.selectbox(
     format_func=lambda value: "English" if value == "en" else "Español",
     key="dashboard_locale",
 )
+st.sidebar.link_button(
+    "Portfolio ↗" if locale == "en" else "Portafolio ↗",
+    "https://sebastiangaray.github.io/",
+    width="stretch",
+)
 selected = st.session_state.dashboard_page
 
 

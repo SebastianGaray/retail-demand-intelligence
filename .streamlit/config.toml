@@ -1,46 +1,46 @@
 [theme]
 base = "light"
-primaryColor = "#062b3a"
-backgroundColor = "#f7f8f9"
+primaryColor = "#334155"
+backgroundColor = "#fdf8f8"
 secondaryBackgroundColor = "#ffffff"
-textColor = "#172126"
-linkColor = "#315f75"
-codeTextColor = "#062b3a"
-codeBackgroundColor = "#e9eef0"
+textColor = "#1c1b1b"
+linkColor = "#334155"
+codeTextColor = "#334155"
+codeBackgroundColor = "#ebe7e6"
 font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap, sans-serif"
-headingFont = "Hanken Grotesk:https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&display=swap, sans-serif"
+headingFont = "Source Serif 4:https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap, serif"
 codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap, monospace"
 baseRadius = "small"
 buttonRadius = "small"
-borderColor = "#d9dee2"
-dataframeBorderColor = "#d9dee2"
-dataframeHeaderBackgroundColor = "#eef0f2"
+borderColor = "#c4c7c7"
+dataframeBorderColor = "#c4c7c7"
+dataframeHeaderBackgroundColor = "#f7f3f2"
 showWidgetBorder = true
 showSidebarBorder = true
 redColor = "#ba1a1a"
-orangeColor = "#b56b16"
-greenColor = "#08775b"
-blueColor = "#315f75"
-grayColor = "#71808a"
+orangeColor = "#8a5b16"
+greenColor = "#2f6b4f"
+blueColor = "#334155"
+grayColor = "#515f74"
 chartCategoricalColors = [
-    "#062b3a",
-    "#76a5bb",
-    "#b8c2c8",
+    "#334155",
+    "#64748b",
+    "#8d9292",
     "#ba1a1a",
-    "#b56b16",
-    "#08775b",
+    "#8a5b16",
+    "#2f6b4f",
 ]
 chartSequentialColors = [
-    "#f5f9fa",
-    "#e8f0f3",
-    "#c7dce4",
-    "#9fc2d0",
-    "#76a5bb",
-    "#4e8198",
-    "#315f75",
-    "#173f50",
-    "#062b3a",
-    "#001d29",
+    "#fdf8f8",
+    "#f7f3f2",
+    "#ebe7e6",
+    "#c4c7c7",
+    "#8d9292",
+    "#64748b",
+    "#515f74",
+    "#475569",
+    "#334155",
+    "#1c1b1b",
 ]
 
 [client]

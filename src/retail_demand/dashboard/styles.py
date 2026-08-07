@@ -6,17 +6,26 @@ def apply_styles() -> None:
         """
         <style>
         :root {
-            --rdi-primary: #062b3a;
-            --rdi-secondary: #496173;
-            --rdi-border: #d9dee2;
+            --rdi-primary: #334155;
+            --rdi-primary-hover: #475569;
+            --rdi-secondary: #515f74;
+            --rdi-text: #1c1b1b;
+            --rdi-text-secondary: #444748;
+            --rdi-border: #c4c7c7;
+            --rdi-border-strong: #8d9292;
             --rdi-surface: #ffffff;
-            --rdi-background: #f7f8f9;
+            --rdi-surface-subtle: #f7f3f2;
+            --rdi-surface-elevated: #ebe7e6;
+            --rdi-background: #fdf8f8;
+            --rdi-focus: #64748b;
+            --rdi-success: #2f6b4f;
+            --rdi-warning: #8a5b16;
             --rdi-risk: #ba1a1a;
         }
 
         .stApp {
             background: var(--rdi-background);
-            color: #172126;
+            color: var(--rdi-text);
         }
 
         [data-testid="stHeader"] {
@@ -33,7 +42,7 @@ def apply_styles() -> None:
         }
 
         [data-testid="stSidebar"] {
-            background: #fbfbfc;
+            background: var(--rdi-surface-subtle);
             border-right: 1px solid var(--rdi-border);
         }
 
@@ -46,7 +55,8 @@ def apply_styles() -> None:
         }
 
         h1, h2, h3 {
-            color: #071f2a;
+            color: var(--rdi-text);
+            font-family: "Source Serif 4", Georgia, serif;
             letter-spacing: -0.02em;
         }
 
@@ -83,7 +93,7 @@ def apply_styles() -> None:
         div[data-testid="stVerticalBlockBorderWrapper"] {
             background: var(--rdi-surface);
             border-color: var(--rdi-border);
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
         }
 
         [data-testid="stAppViewContainer"] > .main
@@ -99,7 +109,7 @@ def apply_styles() -> None:
 
         div[data-testid="stDataFrame"] {
             border: 1px solid var(--rdi-border);
-            border-radius: 0.4rem;
+            border-radius: 0.25rem;
             overflow: hidden;
         }
 
@@ -108,7 +118,7 @@ def apply_styles() -> None:
         }
 
         div[data-testid="stAlert"] {
-            border-radius: 0.4rem;
+            border-radius: 0.25rem;
         }
 
         [data-testid="stSidebar"] .stButton button {
@@ -617,6 +627,116 @@ def apply_styles() -> None:
 
         code {
             color: var(--rdi-primary) !important;
+        }
+
+        a {
+            color: var(--rdi-primary);
+            text-underline-offset: 0.22em;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        [role="button"]:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            border-radius: 2px;
+            outline: 2px solid var(--rdi-focus) !important;
+            outline-offset: 4px;
+        }
+
+        button[kind="primary"]:not([data-testid="stBaseButton-primary"]),
+        [data-testid="stBaseButton-primary"] {
+            background: #000000;
+            border: 1px solid #000000;
+            border-radius: 0.25rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        [data-testid="stBaseButton-primary"]:hover {
+            background: var(--rdi-primary-hover);
+            border-color: var(--rdi-primary-hover);
+            color: #f8fafc;
+        }
+
+        [data-testid="stBaseButton-secondary"],
+        [data-testid="stDownloadButton"] button,
+        [data-testid="stLinkButton"] a {
+            background: transparent;
+            border: 1px solid var(--rdi-border);
+            border-radius: 0.25rem;
+            color: var(--rdi-text);
+            font-weight: 600;
+        }
+
+        [data-testid="stBaseButton-secondary"]:hover,
+        [data-testid="stDownloadButton"] button:hover,
+        [data-testid="stLinkButton"] a:hover {
+            background: var(--rdi-surface-elevated);
+            border-color: var(--rdi-border-strong);
+        }
+
+        .rdi-kpi-card,
+        .rdi-about-purpose,
+        .rdi-about-decisions,
+        .rdi-about-architecture,
+        .rdi-about-notes article {
+            background: var(--rdi-surface);
+            border-color: var(--rdi-border);
+            border-radius: 0.25rem;
+        }
+
+        .rdi-kpi-card strong,
+        .rdi-metric-item strong,
+        .rdi-risk-row strong,
+        .rdi-about-purpose-title > strong {
+            color: var(--rdi-text);
+        }
+
+        .rdi-risk-row {
+            background: var(--rdi-surface-subtle);
+        }
+
+        .rdi-about-page,
+        .rdi-about-purpose p,
+        .rdi-about-purpose li,
+        .rdi-about-notes p {
+            color: var(--rdi-text-secondary);
+        }
+
+        .rdi-about-page-header,
+        .rdi-about-stage-icon {
+            border-color: var(--rdi-border);
+        }
+
+        .rdi-about-page-header > div > span,
+        .rdi-about-purpose-title > span,
+        .rdi-about-stage:last-child .rdi-about-stage-icon,
+        .rdi-about-stage:hover .rdi-about-stage-icon {
+            background: var(--rdi-primary);
+            color: #f8fafc;
+        }
+
+        .rdi-about-page-header a,
+        .rdi-about-license {
+            border-color: var(--rdi-primary);
+            color: var(--rdi-primary) !important;
+        }
+
+        .rdi-about-page-header a.primary {
+            background: #000000;
+            border-color: #000000;
+            color: #ffffff !important;
+        }
+
+        .rdi-about-page-header a:hover,
+        .rdi-about-license:hover {
+            background: var(--rdi-surface-elevated);
+        }
+
+        .rdi-about-page-header a.primary:hover {
+            background: var(--rdi-primary-hover);
+            border-color: var(--rdi-primary-hover);
         }
 
         @media (max-width: 780px) {

@@ -118,7 +118,7 @@ def _demand_chart(
             y=alt.Y("value:Q", title=None),
             color=alt.Color(
                 "series:N",
-                scale=alt.Scale(domain=domain, range=["#083344", "#0E7490"]),
+                scale=alt.Scale(domain=domain, range=["#1C1B1B", "#334155"]),
                 legend=alt.Legend(title=None, orient="top"),
             ),
             strokeDash=alt.StrokeDash(
@@ -492,7 +492,7 @@ def render_performance(reader: ResultReader, text: Translator) -> None:
                     "model:N",
                     scale=alt.Scale(
                         domain=model_order,
-                        range=["#BCC4C9", "#CFE1FB", "#062B3A"],
+                        range=["#C4C7C7", "#8D9292", "#334155"],
                     ),
                     legend=alt.Legend(title=None, orient="top"),
                 ),
