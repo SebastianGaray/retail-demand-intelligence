@@ -10,3 +10,4 @@
 - [x] Enforce Ruff, strict Pyright, 75% minimum coverage, and dependency auditing.
 - [x] Add a container smoke test, Dependabot, CodeQL, and pinned workflow actions.
 - [x] Document architecture, decisions, setup, limitations, security, and licensing.
+- [x] Standardize the SDD file names and provide an in-page bilingual README.

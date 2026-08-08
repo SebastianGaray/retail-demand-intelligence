@@ -1,4 +1,4 @@
-# Design
+# Implementation plan
 
 ## Architecture
 
@@ -18,3 +18,8 @@ Unit tests cover invariants, metrics, leakage boundaries, configuration, and pre
 Integration tests exercise Parquet generation, training, artifact persistence, API responses, and
 dashboard reruns. CI adds 75% minimum coverage, dependency auditing, a container smoke test, CodeQL,
 pinned actions, and weekly dependency maintenance.
+
+## Repository presentation
+
+The README presents English and Spanish in one rendered document. Both languages follow the same
+sequence from product behavior and data through setup, verification, limitations, and licensing.
