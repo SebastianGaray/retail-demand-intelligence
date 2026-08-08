@@ -1,4 +1,4 @@
-# Requirements
+# Specification
 
 ## Data and forecasting
 
@@ -21,3 +21,4 @@
 - Verify the container can build and import the installed package.
 - Audit Python dependencies and scan source with CodeQL.
 - Keep source, identifiers, comments, and technical documentation in English.
+- Provide a single bilingual README with working language navigation and equivalent core sections.

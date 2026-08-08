@@ -1,177 +1,304 @@
 # Retail Demand Intelligence
 
-Retail Demand Intelligence is a local Python project for generating synthetic retail data,
-comparing demand forecasts, and inspecting inventory risk through FastAPI and Streamlit.
-
-[Live demo](https://retail-demand-intelligence.streamlit.app/)
+[English](#english) · [Español](#español) · [Live demo](https://retail-demand-intelligence.streamlit.app/)
 
 ![Retail Demand Intelligence dashboard](docs/assets/dashboard-overview.png)
 
-> **Synthetic data:** the included generator creates all stores, products, sales, prices,
-> promotions, and inventory. No real company data is included.
+> The demo uses generated stores, products, sales, prices, promotions, and inventory. It contains no
+> company or customer data. Streamlit may put the app to sleep after inactivity. If that happens, use
+> the wake-up option on the page and allow a few minutes for it to start.
 
-## Development approach
+## English
 
-The project follows a spec-driven workflow. Requirements, architecture decisions, and completed
-delivery tasks are maintained under [`sdd/`](sdd/README.md) and are validated alongside the code.
+Retail Demand Intelligence is a local-first forecasting project for exploring synthetic retail
+demand, comparing models, and reviewing inventory risk through Streamlit and FastAPI.
 
-AI-assisted development supported implementation, review, and test generation. Product constraints,
-forecasting assumptions, and acceptance decisions remained human-directed; generated changes were
-accepted only after static analysis, reproducibility checks, and automated tests passed.
+### Contents
 
-## Features
+- [What it demonstrates](#what-it-demonstrates)
+- [Data](#data)
+- [Architecture](#architecture)
+- [Technology](#technology)
+- [Quick start](#quick-start)
+- [Common workflows](#common-workflows)
+- [Testing](#testing)
+- [Repository structure](#repository-structure)
+- [Limitations](#limitations)
+- [Development approach](#development-approach)
+- [Documentation](#documentation)
+- [Contributing and license](#contributing-and-license)
 
-- Deterministic, related Parquet datasets with schema and business-rule validation.
+### What it demonstrates
+
+- Deterministic Parquet datasets with schemas, relationships, and business-rule validation.
 - Recent-average, weekly seasonal-naive, and LightGBM forecasts.
 - Chronological train, validation, and test periods with prediction-time-safe features.
-- MAE, WAPE, and MASE overall, by store, and by product.
-- Checksummed model, prediction, metric, and metadata artifacts.
-- Bilingual Streamlit dashboard that reads saved artifacts directly.
-- Typed local FastAPI endpoints with OpenAPI documentation.
-- Ruff, Pyright, pytest, pre-commit, GitHub Actions, and Docker configuration.
+- MAE, WAPE, and MASE overall and by store and product.
+- Checksummed model, prediction, metric, metadata, and compact demo artifacts.
+- A bilingual Streamlit dashboard that reads saved artifacts without retraining.
+- A typed, read-only FastAPI interface with OpenAPI documentation.
+- Explicit states for missing artifacts, invalid selections, and unavailable metrics.
 
-## Architecture
+### Data
+
+Every record is generated locally from a fixed seed. The generator creates related stores, products,
+sales, prices, promotions, inventory snapshots, and calendar data. Validation checks schemas,
+referential integrity, date ranges, price rules, and inventory constraints before training starts.
+
+The tracked dashboard bundle is intentionally small. Larger generated data and training artifacts are
+ignored by Git and can be reproduced with the commands below.
+
+### Architecture
 
 ```mermaid
 flowchart LR
     CLI["CLI and Make commands"] --> APP["Application services"]
     API["FastAPI"] --> APP
     UI["Streamlit dashboard"] --> APP
-    APP --> DATA["Data generation and validation"]
+    APP --> DATA["Generation and validation"]
     APP --> FEATURES["Temporal features"]
     APP --> MODELS["Baselines and LightGBM"]
-    APP --> ARTIFACTS["Versioned local artifacts"]
-    DATA --> DOMAIN["Domain contracts"]
-    FEATURES --> DOMAIN
-    MODELS --> DOMAIN
-    ARTIFACTS --> DOMAIN
+    APP --> ARTIFACTS["Versioned artifacts"]
     ARTIFACTS --> API
     ARTIFACTS --> UI
 ```
 
-FastAPI and Streamlit use the same read-only application service. The dashboard does not require
-the API process. See the [architecture overview](docs/architecture/overview.md) and
-[architecture decisions](docs/decisions/README.md).
+FastAPI and Streamlit share read-only application services. The dashboard does not depend on the API
+process and neither interface trains a model while serving a request.
 
-## Quick start
+### Technology
 
-Requires Python 3.12 or later, [`uv`](https://docs.astral.sh/uv/), and `make`.
+- Python 3.12, uv, Pandas, PyArrow, Pydantic, and LightGBM
+- Streamlit and FastAPI
+- Ruff, strict Pyright, pytest, pytest-cov, pre-commit, and pip-audit
+- Docker, GitHub Actions, CodeQL, and Dependabot
+
+### Quick start
+
+Requires Python 3.12 or newer, [uv](https://docs.astral.sh/uv/), and GNU Make.
 
 ```bash
 git clone https://github.com/SebastianGaray/retail-demand-intelligence.git
 cd retail-demand-intelligence
 make install
-uv run streamlit run src/retail_demand/dashboard/app.py
-```
-
-Open `http://localhost:8501`. The dashboard uses the tracked synthetic bundle by default.
-`make demo` rebuilds the local pipeline and starts the dashboard from local artifacts.
-
-## Workflows
-
-Generate the deterministic demo datasets:
-
-```bash
-make sample-data
-```
-
-The command writes seven validated Parquet files and a manifest to `data/processed/demo`.
-
-Train, evaluate, and save champion holdout predictions:
-
-```bash
-make train
-make evaluate
-make predictions
-```
-
-Artifacts are written to `artifacts/runs/demo`. Generated data and artifacts are ignored by Git.
-Run `make demo-artifacts` to rebuild the tracked hosted-dashboard bundle after completing the
-local pipeline.
-
-Start the dashboard after preparing artifacts:
-
-```bash
 make app
 ```
 
-The dashboard still starts when artifacts are missing and explains how to prepare them.
+Open `http://localhost:8501`. The dashboard uses the tracked synthetic bundle by default.
 
-Start the local API:
+### Common workflows
 
 ```bash
-make api
+make sample-data     # Generate and validate the demo datasets
+make train           # Train baseline and LightGBM models
+make evaluate        # Calculate holdout metrics
+make predictions     # Save champion predictions
+make demo-artifacts  # Rebuild the compact hosted-dashboard bundle
+make api             # Start FastAPI locally
 ```
 
-Open `http://127.0.0.1:8000/docs` for the OpenAPI interface.
+Generated data is written under `data/processed/demo`. Model runs are written under
+`artifacts/runs/demo`. Open `http://127.0.0.1:8000/docs` after `make api` to inspect the API.
 
-## Validation
+### Testing
 
 ```bash
 make format-check
 make lint
 make typecheck
-make test
+make coverage
+make audit
 make check
 ```
 
-`make check` runs formatting validation, linting, strict type checking, and all tests.
+The test suite covers domain rules, generation, forecasting, artifact persistence, API responses, and
+dashboard presentation. CI also builds the container and imports the installed package.
 
-## Project structure
+### Repository structure
 
 ```text
-src/retail_demand/
-├── api/             # FastAPI routes and schemas
-├── application/     # Workflow orchestration and saved-result queries
-├── artifacts/       # Artifact metadata, checksums, and persistence
-├── configuration/   # Environment-backed settings
-├── dashboard/       # Streamlit application and translations
-├── data/            # Contracts, validation, loading, and generation
-├── domain/          # Framework-independent retail models and errors
-├── features/        # Leakage-safe temporal features
-└── modeling/        # Baselines, LightGBM, and evaluation
-tests/               # Unit, integration, and small synthetic fixtures
-docs/                # Architecture, ADRs, and user documentation
-data/                # Ignored local datasets
-scripts/             # Guidance for future command wrappers
+src/retail_demand/   Domain, data, modeling, application, API, and dashboard code
+tests/               Unit and integration tests with small synthetic fixtures
+docs/                Architecture, decisions, setup, deployment, and release notes
+data/                Local generated datasets
+artifacts/           Local model runs and the compact tracked demo bundle
+sdd/                 Specification, implementation plan, and completed tasks
 ```
 
-## Metrics
+### Limitations
 
-- **MAE** is the average absolute error in units.
-- **WAPE** is total absolute error divided by total observed demand.
-- **MASE** scales MAE by the training period's weekly seasonal-naive error.
+- Evaluation uses one validation block and one test block rather than rolling-origin backtesting.
+- Forecasts are point estimates without uncertainty intervals.
+- Inventory risk is an estimated coverage signal, not a replenishment recommendation.
+- The generator simplifies holidays, replenishment, supplier constraints, and lost demand.
+- Pickled model artifacts must only be loaded from trusted runs.
+- Hosted availability depends on Streamlit Community Cloud and its sleep behavior.
 
-WAPE is unavailable when total demand is zero. MASE is unavailable when its training scale is
-zero. The workflow reports metrics overall and by store and product without embedding benchmark
-figures in the repository.
+### Development approach
 
-## Limitations
+Work is guided by [`sdd/spec.md`](sdd/spec.md), [`sdd/plan.md`](sdd/plan.md), and
+[`sdd/tasks.md`](sdd/tasks.md). AI-assisted tools supported implementation, review, and test
+generation. Forecasting assumptions, product decisions, acceptance criteria, and final approval
+remained human responsibilities. Generated changes were accepted only after static analysis,
+reproducibility checks, and automated tests passed.
 
-- Evaluation uses one validation block and one test block, not rolling-origin backtesting.
-- Forecasts are point estimates and do not include uncertainty intervals.
-- Inventory risk is based on estimated coverage, not a replenishment recommendation.
-- Demo behavior simplifies holidays, replenishment, supplier constraints, and lost demand.
-- Model artifacts use pickle and must only be loaded from trusted runs.
+### Documentation
 
-## Roadmap
-
-- Add rolling-origin evaluation.
-- Add prediction intervals and forecast calibration.
-- Add replenishment and lead-time scenarios.
-- Publish the live dashboard.
-
-## Documentation
-
-- [English documentation](docs/en/getting-started.md)
-- [Documentación en español](docs/es/getting-started.md)
-- [Streamlit Community Cloud deployment](docs/en/streamlit-community-cloud.md)
+- [Architecture overview](docs/architecture/overview.md)
+- [Architecture decisions](docs/decisions/README.md)
+- [English getting started guide](docs/en/getting-started.md)
 - [Release readiness](docs/en/release-readiness.md)
 - [Release notes](RELEASE_NOTES.md)
 
-## Contributing and license
+### Contributing and license
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Security issues should
-follow [SECURITY.md](SECURITY.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Report security issues through
+[SECURITY.md](SECURITY.md). The project is available under the [MIT License](LICENSE).
 
-Licensed under the [MIT License](LICENSE).
+---
+
+## Español
+
+Retail Demand Intelligence es un proyecto local de pronóstico que permite explorar demanda retail
+sintética, comparar modelos y revisar riesgo de inventario mediante Streamlit y FastAPI.
+
+### Contenidos
+
+- [Qué demuestra](#qué-demuestra)
+- [Datos](#datos)
+- [Arquitectura](#arquitectura-1)
+- [Tecnologías](#tecnologías)
+- [Inicio rápido](#inicio-rápido)
+- [Flujos habituales](#flujos-habituales)
+- [Pruebas](#pruebas)
+- [Estructura del repositorio](#estructura-del-repositorio)
+- [Limitaciones](#limitaciones-1)
+- [Forma de trabajo](#forma-de-trabajo)
+- [Documentación](#documentación)
+- [Contribución y licencia](#contribución-y-licencia)
+
+### Qué demuestra
+
+- Datasets Parquet deterministas con esquemas, relaciones y reglas de negocio validadas.
+- Pronósticos de promedio reciente, naive estacional semanal y LightGBM.
+- Períodos cronológicos de entrenamiento, validación y prueba sin usar información futura.
+- Métricas MAE, WAPE y MASE a nivel general, por tienda y por producto.
+- Artefactos versionados con checksums para modelos, predicciones, métricas y metadatos.
+- Un dashboard bilingüe que consulta resultados guardados sin volver a entrenar.
+- Una API FastAPI tipada y de solo lectura con documentación OpenAPI.
+- Estados claros cuando faltan artefactos, una selección no es válida o una métrica no está disponible.
+
+### Datos
+
+Todos los registros se generan localmente a partir de una semilla fija. El generador crea tiendas,
+productos, ventas, precios, promociones, inventario y calendario relacionados entre sí. Antes del
+entrenamiento se validan los esquemas, las referencias, las fechas, los precios y el inventario.
+
+El bundle incluido para el dashboard es pequeño a propósito. Los datasets y artefactos de entrenamiento
+más grandes no se versionan y pueden reproducirse con los comandos de esta guía.
+
+### Arquitectura
+
+```mermaid
+flowchart LR
+    CLI["CLI y comandos Make"] --> APP["Servicios de aplicación"]
+    API["FastAPI"] --> APP
+    UI["Dashboard Streamlit"] --> APP
+    APP --> DATA["Generación y validación"]
+    APP --> FEATURES["Variables temporales"]
+    APP --> MODELS["Baselines y LightGBM"]
+    APP --> ARTIFACTS["Artefactos versionados"]
+    ARTIFACTS --> API
+    ARTIFACTS --> UI
+```
+
+FastAPI y Streamlit comparten servicios de lectura. El dashboard no depende del proceso de la API y
+ninguna interfaz entrena modelos mientras responde una solicitud.
+
+### Tecnologías
+
+- Python 3.12, uv, Pandas, PyArrow, Pydantic y LightGBM
+- Streamlit y FastAPI
+- Ruff, Pyright estricto, pytest, pytest-cov, pre-commit y pip-audit
+- Docker, GitHub Actions, CodeQL y Dependabot
+
+### Inicio rápido
+
+Necesitas Python 3.12 o superior, [uv](https://docs.astral.sh/uv/) y GNU Make.
+
+```bash
+git clone https://github.com/SebastianGaray/retail-demand-intelligence.git
+cd retail-demand-intelligence
+make install
+make app
+```
+
+Abre `http://localhost:8501`. Por defecto el dashboard utiliza el bundle sintético incluido.
+
+### Flujos habituales
+
+```bash
+make sample-data
+make train
+make evaluate
+make predictions
+make demo-artifacts
+make api
+```
+
+Los datos se escriben en `data/processed/demo` y las ejecuciones de modelos en
+`artifacts/runs/demo`. Después de `make api`, abre `http://127.0.0.1:8000/docs` para revisar la API.
+
+### Pruebas
+
+```bash
+make format-check
+make lint
+make typecheck
+make coverage
+make audit
+make check
+```
+
+Las pruebas cubren reglas de dominio, generación, pronósticos, persistencia de artefactos, respuestas
+de la API y presentación del dashboard. CI también construye el contenedor e importa el paquete.
+
+### Estructura del repositorio
+
+```text
+src/retail_demand/   Dominio, datos, modelos, aplicación, API y dashboard
+tests/               Pruebas unitarias y de integración con fixtures sintéticos
+docs/                Arquitectura, decisiones, instalación, despliegue y releases
+data/                Datasets generados localmente
+artifacts/           Ejecuciones locales y bundle compacto para la demo
+sdd/                 Especificación, plan de implementación y tareas terminadas
+```
+
+### Limitaciones
+
+- La evaluación usa un bloque de validación y uno de prueba, no backtesting rolling-origin.
+- Los pronósticos son puntuales y no incluyen intervalos de incertidumbre.
+- El riesgo de inventario es una señal de cobertura, no una recomendación de reposición.
+- La generación simplifica feriados, reposición, proveedores y demanda perdida.
+- Los modelos serializados con pickle solo deben cargarse desde ejecuciones confiables.
+- La disponibilidad pública depende del modo de suspensión de Streamlit Community Cloud.
+
+### Forma de trabajo
+
+El trabajo se guía mediante [`sdd/spec.md`](sdd/spec.md), [`sdd/plan.md`](sdd/plan.md) y
+[`sdd/tasks.md`](sdd/tasks.md). Se usaron herramientas de IA como apoyo para implementar, revisar y
+generar pruebas. Los supuestos del modelo, las decisiones de producto, los criterios de aceptación y
+la revisión final permanecieron bajo responsabilidad humana. Todo cambio generado tuvo que superar
+análisis estático, controles de reproducibilidad y pruebas automatizadas.
+
+### Documentación
+
+- [Resumen de arquitectura](docs/architecture/overview.md)
+- [Decisiones de arquitectura](docs/decisions/README.md)
+- [Guía de inicio en español](docs/es/getting-started.md)
+- [Notas de versión](RELEASE_NOTES.md)
+
+### Contribución y licencia
+
+Revisa [CONTRIBUTING.md](CONTRIBUTING.md) antes de abrir un pull request. Los problemas de seguridad
+se reportan mediante [SECURITY.md](SECURITY.md). El proyecto usa la [licencia MIT](LICENSE).
