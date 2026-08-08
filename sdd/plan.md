@@ -23,3 +23,10 @@ pinned actions, and weekly dependency maintenance.
 
 The README presents English and Spanish in one rendered document. Both languages follow the same
 sequence from product behavior and data through setup, verification, limitations, and licensing.
+
+## Engineering process page
+
+The Streamlit sidebar exposes a dedicated bilingual process page. It presents four connected stages:
+specification, AI assistance, human decisions, and validation evidence. The copy uses concrete project
+examples such as chronological splits, leakage checks, artifact contracts, and test coverage. Links
+open the versioned SDD documents in GitHub. The page remains available when model artifacts are not.

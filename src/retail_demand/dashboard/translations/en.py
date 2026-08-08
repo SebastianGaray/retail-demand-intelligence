@@ -91,6 +91,7 @@ CATALOG: Final[dict[str, str]] = {
     "page.forecast": "Forecast Explorer",
     "page.inventory": "Inventory Risk",
     "page.performance": "Model Performance",
+    "page.engineering": "Engineering Process",
     "page.about": "About the Project",
     "overview.context": "Local view of synthetic retail demand, forecasts, and inventory.",
     "overview.period": "Dataset period",
@@ -201,6 +202,50 @@ CATALOG: Final[dict[str, str]] = {
     "about.stage_evaluation_detail": "Metrics and predictions",
     "about.stage_interfaces": "API and Streamlit",
     "about.stage_interfaces_detail": "Independent readers",
+    "engineering.title": "Engineering Process",
+    "engineering.intro": (
+        "How specification-driven development and AI-assisted tools supported a controlled, "
+        "testable delivery process."
+    ),
+    "engineering.specification": "Specification",
+    "engineering.specification_text": (
+        "The specification defined chronological evaluation, leakage boundaries, artifact "
+        "contracts, bilingual behavior, and acceptance evidence before implementation."
+    ),
+    "engineering.ai": "AI assistance",
+    "engineering.ai_text": (
+        "AI-assisted tools helped explore implementation options, review code, improve "
+        "documentation, and propose unit and integration test cases."
+    ),
+    "engineering.human": "Human decisions",
+    "engineering.human_text": (
+        "Forecasting assumptions, product scope, model acceptance, limitations, and every final "
+        "change remained under human review and approval."
+    ),
+    "engineering.evidence": "Validation evidence",
+    "engineering.evidence_text": (
+        "Ruff, strict Pyright, pytest, coverage, dependency audits, container checks, and CodeQL "
+        "decide whether a change is ready to merge."
+    ),
+    "engineering.example": "A concrete example",
+    "engineering.example_text": (
+        "The SDD specification required prediction-time-safe features. AI assistance helped review "
+        "lag and rolling-window cases, while human review set the chronology rules. Unit and "
+        "integration tests then verified that future demand could not enter training features."
+    ),
+    "engineering.benefits": "What this added to the project",
+    "engineering.benefit_scope": "Clearer scope and fewer ambiguous implementation decisions.",
+    "engineering.benefit_review": "A visible boundary between assistance and accountability.",
+    "engineering.benefit_tests": "More systematic edge-case and regression coverage.",
+    "engineering.benefit_traceability": "Traceability from requirements to code and evidence.",
+    "engineering.boundary": (
+        "AI output was treated as a proposal, not as evidence. Only reviewed code with passing "
+        "checks was accepted."
+    ),
+    "engineering.documents": "Versioned SDD documents",
+    "engineering.spec": "Specification",
+    "engineering.plan": "Implementation plan",
+    "engineering.tasks": "Completed tasks",
     "language.en": "English",
     "language.es": "Spanish",
     "navigation.portfolio": "Portfolio ↗",

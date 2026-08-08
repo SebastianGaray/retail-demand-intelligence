@@ -11,3 +11,6 @@
 - [x] Add a container smoke test, Dependabot, CodeQL, and pinned workflow actions.
 - [x] Document architecture, decisions, setup, limitations, security, and licensing.
 - [x] Standardize the SDD file names and provide an in-page bilingual README.
+- [x] Add the bilingual engineering process page to Streamlit navigation.
+- [x] Explain SDD, AI assistance, human ownership, and validation evidence in the README.
+- [x] Test translations, navigation, and artifact-independent access to the process page.

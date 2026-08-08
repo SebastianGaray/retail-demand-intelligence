@@ -11,6 +11,9 @@
 ## Interfaces
 
 - Provide a bilingual Streamlit dashboard for overview, forecasts, inventory risk, and model metrics.
+- Explain the engineering process in both languages from a dedicated navigation entry.
+- Connect SDD, AI-assisted work, human responsibility, and automated evidence without implying that
+  AI made product or modeling decisions independently.
 - Provide a typed, read-only FastAPI interface over saved artifacts.
 - Return explicit unavailable-artifact and invalid-selection states.
 - Support local execution without paid services or external customer data.
@@ -22,3 +25,4 @@
 - Audit Python dependencies and scan source with CodeQL.
 - Keep source, identifiers, comments, and technical documentation in English.
 - Provide a single bilingual README with working language navigation and equivalent core sections.
+- Link the public explanation to the repository specification, plan, and task evidence.

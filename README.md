@@ -137,10 +137,18 @@ sdd/                 Specification, implementation plan, and completed tasks
 ### Development approach
 
 Work is guided by [`sdd/spec.md`](sdd/spec.md), [`sdd/plan.md`](sdd/plan.md), and
-[`sdd/tasks.md`](sdd/tasks.md). AI-assisted tools supported implementation, review, and test
-generation. Forecasting assumptions, product decisions, acceptance criteria, and final approval
-remained human responsibilities. Generated changes were accepted only after static analysis,
-reproducibility checks, and automated tests passed.
+[`sdd/tasks.md`](sdd/tasks.md). The documents connect requirements, implementation decisions, and
+completed validation rather than treating the specification as separate paperwork.
+
+| Stage | How it was used |
+| --- | --- |
+| Specification | Defined chronology, leakage boundaries, artifact contracts, bilingual behavior, and acceptance evidence. |
+| AI assistance | Supported implementation exploration, code review, documentation, and test-case generation. |
+| Human decisions | Set forecasting assumptions, product scope, model acceptance, limitations, and final approval. |
+| Evidence | Ruff, Pyright, pytest, coverage, dependency audits, container checks, and CodeQL verified the result. |
+
+AI output was treated as a proposal, not as evidence. The live dashboard includes an **Engineering
+Process** page with a concrete example of how this worked for prediction-time-safe features.
 
 ### Documentation
 
@@ -286,10 +294,18 @@ sdd/                 Especificación, plan de implementación y tareas terminada
 ### Forma de trabajo
 
 El trabajo se guía mediante [`sdd/spec.md`](sdd/spec.md), [`sdd/plan.md`](sdd/plan.md) y
-[`sdd/tasks.md`](sdd/tasks.md). Se usaron herramientas de IA como apoyo para implementar, revisar y
-generar pruebas. Los supuestos del modelo, las decisiones de producto, los criterios de aceptación y
-la revisión final permanecieron bajo responsabilidad humana. Todo cambio generado tuvo que superar
-análisis estático, controles de reproducibilidad y pruebas automatizadas.
+[`sdd/tasks.md`](sdd/tasks.md). Los documentos conectan requisitos, decisiones de implementación y
+validaciones terminadas, en lugar de tratar la especificación como documentación aislada.
+
+| Etapa | Cómo se utilizó |
+| --- | --- |
+| Especificación | Definió cronología, límites contra leakage, contratos, comportamiento bilingüe y evidencia de aceptación. |
+| Asistencia de IA | Apoyó la exploración, revisión de código, documentación y generación de casos de prueba. |
+| Decisiones humanas | Definieron supuestos, alcance, aceptación de modelos, limitaciones y aprobación final. |
+| Evidencia | Ruff, Pyright, pytest, cobertura, auditorías, contenedor y CodeQL verificaron el resultado. |
+
+La salida de IA se trató como una propuesta, no como evidencia. El dashboard incluye una página
+**Proceso de Ingeniería** con un ejemplo concreto aplicado a variables seguras al momento de predecir.
 
 ### Documentación
 

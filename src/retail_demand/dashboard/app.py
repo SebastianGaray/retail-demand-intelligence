@@ -8,6 +8,7 @@ from retail_demand.application.read_results import ResultReader
 from retail_demand.configuration.settings import get_settings
 from retail_demand.dashboard.pages import (
     render_about,
+    render_engineering_process,
     render_forecast,
     render_inventory,
     render_overview,
@@ -38,6 +39,7 @@ navigation = (
     ("inventory", "page.inventory", ":material/warning:"),
     ("forecast", "page.forecast", ":material/trending_up:"),
     ("performance", "page.performance", ":material/analytics:"),
+    ("engineering", "page.engineering", ":material/account_tree:"),
     ("about", "page.about", ":material/info:"),
 )
 if "dashboard_page" not in st.session_state:
@@ -84,7 +86,11 @@ reader = _reader(artifact_directory)
 with st.spinner(text("loading.artifacts"), show_time=True):
     artifact_error = reader.availability_error()
 
-if artifact_error is not None:
+if selected == "engineering":
+    render_engineering_process(text)
+elif selected == "about":
+    render_about(text)
+elif artifact_error is not None:
     st.warning(text("app.missing_artifacts"))
     st.caption(f"{text('app.artifact_detail')}: {artifact_error}")
     st.write(text("app.missing_help"))

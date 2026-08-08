@@ -116,6 +116,7 @@ def test_dashboard_survives_reruns(
         ("Explorador de Pronósticos", "forecast"),
         ("Riesgo de Inventario", "inventory"),
         ("Rendimiento del Modelo", "performance"),
+        ("Proceso de Ingeniería", "engineering"),
         ("Acerca del Proyecto", "about"),
         ("Resumen", "overview"),
     ):
@@ -126,4 +127,23 @@ def test_dashboard_survives_reruns(
             assert any(page in element.value for element in dashboard.markdown)
         else:
             assert dashboard.title[0].value == page
+    get_settings.cache_clear()
+
+
+def test_engineering_process_is_available_without_model_artifacts(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("RETAIL_DEMAND_ARTIFACT_DIRECTORY", str(tmp_path / "missing"))
+    get_settings.cache_clear()
+    dashboard = AppTest.from_file("src/retail_demand/dashboard/app.py", default_timeout=60).run()
+
+    next(
+        button for button in dashboard.button if button.label == "Engineering Process"
+    ).click().run()
+
+    assert not dashboard.exception
+    assert dashboard.session_state["dashboard_page"] == "engineering"
+    assert dashboard.title[0].value == "Engineering Process"
+    assert any("AI output was treated as a proposal" in element.value for element in dashboard.info)
     get_settings.cache_clear()
