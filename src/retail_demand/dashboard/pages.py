@@ -551,6 +551,53 @@ def render_performance(reader: ResultReader, text: Translator) -> None:
         )
 
 
+def render_engineering_process(text: Translator) -> None:
+    st.title(text("engineering.title"))
+    st.markdown(
+        f'<p class="rdi-subtitle">{escape(text("engineering.intro"))}</p>', unsafe_allow_html=True
+    )
+
+    stages = (
+        ("01", "engineering.specification", "engineering.specification_text"),
+        ("02", "engineering.ai", "engineering.ai_text"),
+        ("03", "engineering.human", "engineering.human_text"),
+        ("04", "engineering.evidence", "engineering.evidence_text"),
+    )
+    columns = st.columns(4)
+    for column, (number, title_key, body_key) in zip(columns, stages, strict=True):
+        with column:
+            st.caption(number)
+            st.subheader(text(title_key))
+            st.write(text(body_key))
+
+    st.subheader(text("engineering.example"))
+    st.write(text("engineering.example_text"))
+    st.subheader(text("engineering.benefits"))
+    st.markdown(
+        "\n".join(
+            f"- {text(key)}"
+            for key in (
+                "engineering.benefit_scope",
+                "engineering.benefit_review",
+                "engineering.benefit_tests",
+                "engineering.benefit_traceability",
+            )
+        )
+    )
+    st.info(text("engineering.boundary"), icon=":material/verified_user:")
+
+    st.subheader(text("engineering.documents"))
+    document_columns = st.columns(3)
+    repository = "https://github.com/SebastianGaray/retail-demand-intelligence/blob/main/sdd"
+    for column, label_key, filename in zip(
+        document_columns,
+        ("engineering.spec", "engineering.plan", "engineering.tasks"),
+        ("spec.md", "plan.md", "tasks.md"),
+        strict=True,
+    ):
+        column.link_button(text(label_key), f"{repository}/{filename}", width="stretch")
+
+
 def render_about(text: Translator) -> None:
     icons = {
         "idea": (

@@ -81,6 +81,7 @@ CATALOG: Final[dict[str, str]] = {
     "page.forecast": "Explorador de Pronósticos",
     "page.inventory": "Riesgo de Inventario",
     "page.performance": "Rendimiento del Modelo",
+    "page.engineering": "Proceso de Ingeniería",
     "page.about": "Acerca del Proyecto",
     "overview.context": "Vista local de demanda sintética, pronósticos e inventario.",
     "overview.period": "Período del dataset",
@@ -195,6 +196,51 @@ CATALOG: Final[dict[str, str]] = {
     "about.stage_evaluation_detail": "Métricas y predicciones",
     "about.stage_interfaces": "API y Streamlit",
     "about.stage_interfaces_detail": "Lectores independientes",
+    "engineering.title": "Proceso de Ingeniería",
+    "engineering.intro": (
+        "Cómo el desarrollo guiado por especificaciones y las herramientas de IA apoyaron una "
+        "entrega controlada y verificable."
+    ),
+    "engineering.specification": "Especificación",
+    "engineering.specification_text": (
+        "La especificación definió la evaluación cronológica, los límites contra leakage, los "
+        "contratos de artefactos, el comportamiento bilingüe y la evidencia de aceptación."
+    ),
+    "engineering.ai": "Asistencia de IA",
+    "engineering.ai_text": (
+        "Las herramientas de IA ayudaron a explorar opciones, revisar código, mejorar la "
+        "documentación y proponer casos para pruebas unitarias y de integración."
+    ),
+    "engineering.human": "Decisiones humanas",
+    "engineering.human_text": (
+        "Los supuestos de pronóstico, el alcance, la aceptación de modelos, las limitaciones "
+        "y cada cambio final permanecieron bajo revisión y aprobación humana."
+    ),
+    "engineering.evidence": "Evidencia de validación",
+    "engineering.evidence_text": (
+        "Ruff, Pyright estricto, pytest, cobertura, auditorías, pruebas del contenedor y CodeQL "
+        "determinan si un cambio está listo para integrarse."
+    ),
+    "engineering.example": "Un ejemplo concreto",
+    "engineering.example_text": (
+        "La especificación SDD exigió variables seguras al momento de predecir. La asistencia "
+        "de IA ayudó a revisar casos de lags y ventanas móviles, mientras la revisión humana "
+        "definió las reglas cronológicas. Las pruebas verificaron que la demanda futura no "
+        "entrara al modelo."
+    ),
+    "engineering.benefits": "Qué aportó al proyecto",
+    "engineering.benefit_scope": "Alcance más claro y menos decisiones ambiguas.",
+    "engineering.benefit_review": "Un límite visible entre asistencia y responsabilidad.",
+    "engineering.benefit_tests": "Cobertura más sistemática de bordes y regresiones.",
+    "engineering.benefit_traceability": "Trazabilidad entre requisitos, código y evidencia.",
+    "engineering.boundary": (
+        "La salida de IA se trató como una propuesta, no como evidencia. Solo se aceptó código "
+        "revisado con todos los controles aprobados."
+    ),
+    "engineering.documents": "Documentos SDD versionados",
+    "engineering.spec": "Especificación",
+    "engineering.plan": "Plan de implementación",
+    "engineering.tasks": "Tareas terminadas",
     "language.en": "Inglés",
     "language.es": "Español",
     "navigation.portfolio": "Portafolio ↗",
