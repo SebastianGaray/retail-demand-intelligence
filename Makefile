@@ -1,4 +1,4 @@
-.PHONY: install sync sample-data train evaluate predictions demo-artifacts api app demo format format-check lint typecheck test test-unit test-integration check clean
+.PHONY: install sync sample-data train evaluate predictions demo-artifacts api app demo format format-check lint typecheck test test-unit test-integration coverage audit check clean
 
 install:
 	uv sync --dev
@@ -67,7 +67,13 @@ test-integration:
 		echo "No integration tests yet."; \
 	fi
 
-check: format-check lint typecheck test
+coverage:
+	uv run pytest --cov=retail_demand --cov-report=term-missing --cov-report=xml --cov-fail-under=75
+
+audit:
+	uv run pip-audit
+
+check: format-check lint typecheck coverage audit
 
 clean:
 	rm -rf .pytest_cache .pyright .ruff_cache .coverage htmlcov build dist

@@ -10,6 +10,15 @@ comparing demand forecasts, and inspecting inventory risk through FastAPI and St
 > **Synthetic data:** the included generator creates all stores, products, sales, prices,
 > promotions, and inventory. No real company data is included.
 
+## Development approach
+
+The project follows a spec-driven workflow. Requirements, architecture decisions, and completed
+delivery tasks are maintained under [`sdd/`](sdd/README.md) and are validated alongside the code.
+
+AI-assisted development supported implementation, review, and test generation. Product constraints,
+forecasting assumptions, and acceptance decisions remained human-directed; generated changes were
+accepted only after static analysis, reproducibility checks, and automated tests passed.
+
 ## Features
 
 - Deterministic, related Parquet datasets with schema and business-rule validation.

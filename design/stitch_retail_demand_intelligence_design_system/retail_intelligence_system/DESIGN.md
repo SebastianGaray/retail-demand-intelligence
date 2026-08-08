@@ -110,15 +110,15 @@ spacing:
 
 ## Brand & Style
 
-The design system is engineered for high-density retail analytics and demand forecasting. The brand personality is authoritative, precise, and objective, designed to instill confidence in data-driven decision-making. 
+The design system is engineered for high-density retail analytics and demand forecasting. The brand personality is authoritative, precise, and objective, designed to instill confidence in data-driven decision-making.
 
-The aesthetic follows a **Modern Corporate** approach with a focus on **Functional Minimalism**. It prioritizes information density and legibility over decorative elements. The visual language is defined by structured data grids, wide-format visualizations, and a restrained color palette that allows semantic status indicators (risks, warnings, opportunities) to command attention. 
+The aesthetic follows a **Modern Corporate** approach with a focus on **Functional Minimalism**. It prioritizes information density and legibility over decorative elements. The visual language is defined by structured data grids, wide-format visualizations, and a restrained color palette that allows semantic status indicators (risks, warnings, opportunities) to command attention.
 
 To support bilingual requirements (English/Spanish), the interface utilizes flexible container widths and generous horizontal padding to accommodate the increased character count typical of Spanish translations without breaking the layout or causing premature truncation.
 
 ## Colors
 
-The palette is anchored by a deep petroleum blue primary color, used for core navigation and primary actions to establish a professional, "executive" tone. 
+The palette is anchored by a deep petroleum blue primary color, used for core navigation and primary actions to establish a professional, "executive" tone.
 
 - **Primary:** Petroleum blue is the dominant brand color, used for high-level UI landmarks.
 - **Backgrounds:** A cool light gray provides a soft, low-glare canvas for extended data review.
@@ -142,16 +142,16 @@ The layout utilizes a **Fixed Sidebar** and a **Fluid Content Area** model. The 
 
 ## Elevation & Depth
 
-To maintain a clean, analytical look, this design system avoids heavy shadows. 
+To maintain a clean, analytical look, this design system avoids heavy shadows.
 
-- **Tonal Separation:** Depth is primarily established through color contrast between the `#F9FAFB` background and `#FFFFFF` surfaces. 
-- **Borders:** Low-contrast outlines (`#E5E7EB`) are used to define card boundaries and table cells. 
-- **Shadows:** A single, very subtle "System Shadow" is used only for floating elements like dropdown menus or active modals (e.g., `0px 4px 6px -1px rgba(0, 0, 0, 0.05)`). 
+- **Tonal Separation:** Depth is primarily established through color contrast between the `#F9FAFB` background and `#FFFFFF` surfaces.
+- **Borders:** Low-contrast outlines (`#E5E7EB`) are used to define card boundaries and table cells.
+- **Shadows:** A single, very subtle "System Shadow" is used only for floating elements like dropdown menus or active modals (e.g., `0px 4px 6px -1px rgba(0, 0, 0, 0.05)`).
 - **Interactive State:** Hover states are indicated by a subtle background color shift (e.g., White to Gray 50) rather than a change in elevation.
 
 ## Shapes
 
-The design system uses a **Soft** shape language. A standard radius of 4px (`0.25rem`) is applied to buttons, input fields, and cards. This small radius maintains the professional "grid-like" feel of the application while removing the harshness of 0px corners, making the interface feel modern and approachable. 
+The design system uses a **Soft** shape language. A standard radius of 4px (`0.25rem`) is applied to buttons, input fields, and cards. This small radius maintains the professional "grid-like" feel of the application while removing the harshness of 0px corners, making the interface feel modern and approachable.
 
 Large containers like main dashboard cards should use the `rounded-lg` (8px) setting to create a softer visual hierarchy for major content sections.
 

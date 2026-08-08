@@ -22,5 +22,6 @@ data/*
 !/demo_artifacts/v0.1.0/**
 htmlcov/
 .coverage
+coverage.xml
 
 !AGENTS.md

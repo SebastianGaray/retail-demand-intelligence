@@ -47,7 +47,7 @@ A professional, sober, and analysis-oriented interface for exploring retail dema
 ## Localization Strategy
 - **Bilingual Support**: English (EN) and Spanish (ES).
 - **Expansion Logic**: Components must accommodate longer Spanish strings without truncation.
-- **Keys**: 
+- **Keys**:
   - `navigation.overview`: "Overview" / "Resumen"
   - `navigation.forecast`: "Forecast Explorer" / "Explorador de Pronósticos"
   - `navigation.inventory`: "Inventory Risk" / "Riesgo de Inventario"

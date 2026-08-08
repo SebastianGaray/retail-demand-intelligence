@@ -109,7 +109,7 @@
         .drawer-closed { transform: translateX(-100%); }
         .overlay-active { opacity: 1; pointer-events: auto; }
         .overlay-inactive { opacity: 0; pointer-events: none; }
-        
+
         /* Custom scrollbar for data-rich screens */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -300,7 +300,7 @@
         function toggleDrawer() {
             const drawer = document.getElementById('main-drawer');
             const overlay = document.getElementById('drawer-overlay');
-            
+
             if (drawer.classList.contains('drawer-closed')) {
                 drawer.classList.remove('drawer-closed');
                 drawer.classList.add('drawer-open');
