@@ -151,5 +151,6 @@ def test_engineering_process_is_available_without_model_artifacts(
     assert not dashboard.exception
     assert dashboard.session_state["dashboard_page"] == "engineering"
     assert dashboard.title[0].value == "Engineering Process"
-    assert any("AI output was treated as a proposal" in element.value for element in dashboard.info)
+    assert any(element.value == "A concrete example" for element in dashboard.subheader)
+    assert any("prediction-time-safe features" in element.value for element in dashboard.markdown)
     get_settings.cache_clear()

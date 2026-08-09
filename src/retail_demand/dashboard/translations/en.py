@@ -3,7 +3,7 @@ from typing import Final
 CATALOG: Final[dict[str, str]] = {
     "app.title": "Retail Demand Intelligence",
     "app.language": "Language",
-    "app.theme_native": "Theme: use Streamlit settings (System, Light, or Dark).",
+    "app.theme_native": "Theme: Streamlit settings",
     "app.page": "Page",
     "app.missing_artifacts": "Forecast artifacts are not available.",
     "app.missing_help": "Prepare the local demo, then restart the dashboard:",
