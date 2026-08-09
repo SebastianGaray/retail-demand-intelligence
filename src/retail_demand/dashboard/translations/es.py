@@ -246,4 +246,7 @@ CATALOG: Final[dict[str, str]] = {
     "language.es": "Español",
     "navigation.portfolio": "Portafolio",
     "navigation.menu": "Menú",
+    "footer.contact": "Correo y perfiles",
+    "footer.email": "Correo",
+    "footer.built_with": "Construido con Streamlit.",
 }

@@ -636,6 +636,43 @@ def apply_styles() -> None:
             margin: 0 0 1.5rem;
         }
 
+        .rdi-site-footer {
+            background: var(--rdi-surface-subtle);
+            border-top: 1px solid var(--rdi-border);
+            margin-top: 3rem;
+            padding: 2.25rem 0;
+        }
+
+        .rdi-footer-shell,
+        .rdi-footer-shell > div,
+        .rdi-site-footer nav {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .rdi-footer-shell {
+            justify-content: space-between;
+        }
+
+        .rdi-footer-shell > div > strong {
+            color: var(--rdi-text);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.2rem;
+        }
+
+        .rdi-footer-shell small {
+            color: var(--rdi-secondary);
+            font-size: 0.68rem;
+            letter-spacing: 0.04em;
+        }
+
+        .rdi-site-footer nav a {
+            color: var(--rdi-primary);
+            font-size: 0.75rem;
+        }
+
         code {
             color: var(--rdi-primary) !important;
         }
@@ -801,6 +838,11 @@ def apply_styles() -> None:
             .rdi-about-purpose,
             .rdi-about-decisions {
                 min-height: auto;
+            }
+
+            .rdi-footer-shell {
+                align-items: flex-start;
+                flex-direction: column;
             }
 
             .rdi-about-flow {

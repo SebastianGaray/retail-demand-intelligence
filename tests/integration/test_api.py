@@ -109,6 +109,7 @@ def test_dashboard_survives_reruns(
     dashboard = AppTest.from_file("src/retail_demand/dashboard/app.py", default_timeout=60).run()
 
     assert not dashboard.exception
+    assert any("rdi-site-footer" in element.value for element in dashboard.markdown)
     language_control = next(
         control for control in dashboard.segmented_control if control.key == "dashboard_locale"
     )
