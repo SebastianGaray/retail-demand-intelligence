@@ -5,7 +5,7 @@ train a model at startup.
 
 ## Artifact bundle
 
-The tracked bundle is `demo_artifacts/v0.1.0`. Build it from the local synthetic pipeline with:
+The tracked bundle is `demo_artifacts/v1.0.0`. Build it from the local synthetic pipeline with:
 
 ```bash
 make demo-artifacts
@@ -21,7 +21,7 @@ replacing the bundle.
    repository.
 3. Select the release branch and use `src/retail_demand/dashboard/app.py` as the entrypoint.
 4. In advanced settings, select Python 3.12.
-5. Leave `RETAIL_DEMAND_ARTIFACT_DIRECTORY` unset to use `demo_artifacts/v0.1.0`, or set it to a
+5. Leave `RETAIL_DEMAND_ARTIFACT_DIRECTORY` unset to use `demo_artifacts/v1.0.0`, or set it to a
    different validated bundle.
 6. Deploy, inspect the build log, and complete the
    [manual dashboard smoke test](interfaces.md#manual-dashboard-smoke-test).

@@ -27,7 +27,7 @@ settings = get_settings()
 
 st.sidebar.markdown('<p class="rdi-brand">Retail Intelligence</p>', unsafe_allow_html=True)
 st.sidebar.markdown(
-    '<p class="rdi-brand-note">DEMAND &amp; SUPPLY · 0.1.0</p>',
+    '<p class="rdi-brand-note">DEMAND &amp; SUPPLY · 1.0.0</p>',
     unsafe_allow_html=True,
 )
 if "dashboard_locale" not in st.session_state:

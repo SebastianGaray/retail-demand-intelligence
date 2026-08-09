@@ -26,4 +26,4 @@ def test_settings_reject_invalid_forecast_horizon() -> None:
 
 
 def test_settings_use_the_tracked_demo_bundle_by_default() -> None:
-    assert Settings().artifact_directory == Path("demo_artifacts/v0.1.0")
+    assert Settings().artifact_directory == Path("demo_artifacts/v1.0.0")

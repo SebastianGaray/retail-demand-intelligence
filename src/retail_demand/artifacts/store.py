@@ -14,8 +14,12 @@ def save_model(model: Pipeline, path: Path) -> str:
     return sha256(path)
 
 
-def load_model(path: Path) -> Pipeline:
-    model: object = pickle.loads(path.read_bytes())
+def load_model(path: Path, expected_sha256: str) -> Pipeline:
+    payload = path.read_bytes()
+    actual_sha256 = hashlib.sha256(payload).hexdigest()
+    if actual_sha256 != expected_sha256:
+        raise ValueError(f"Model checksum mismatch for {path}")
+    model: object = pickle.loads(payload)
     if not isinstance(model, Pipeline):
         raise ValueError(f"{path} does not contain a scikit-learn pipeline")
     return model

@@ -99,7 +99,7 @@ def evaluate_forecasters(data_directory: Path, artifact_directory: Path) -> pd.D
     predictions = _predict_all(
         history,
         test,
-        load_model(artifact_directory / "model.pkl"),
+        load_model(artifact_directory / "model.pkl", metadata.files["model.pkl"]),
         metadata.configuration.recent_average_window,
         "test",
     )
