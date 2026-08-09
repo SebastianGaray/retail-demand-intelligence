@@ -17,6 +17,12 @@ from retail_demand.artifacts.store import load_metadata, load_model
 from retail_demand.data.generation import DemoDataParameters
 
 
+def test_tracked_demo_bundle_is_valid() -> None:
+    bundle = Path(__file__).parents[2] / "demo_artifacts" / "v1.0.1"
+
+    validate_demo_artifact_bundle(bundle)
+
+
 def test_training_pipeline_saves_reproducible_artifacts(tmp_path: Path) -> None:
     data = tmp_path / "data"
     first_artifact = tmp_path / "first"
