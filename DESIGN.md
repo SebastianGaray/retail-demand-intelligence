@@ -34,7 +34,7 @@ Dark canonical equivalents are `#1b1918` background, `#292624` surface, `#23201f
 
 ## 4. Theme mapping
 
-The deployed app declares the canonical Light theme through `.streamlit/config.toml`. Streamlit owns its settings-menu theme behavior and does not expose the portfolio's stable three-state control API to application code. Forced CSS dark emulation is prohibited because it would leave native widgets and charts inconsistent. Dark values above are the required mapping if Streamlit adds a maintainable app-level theme API.
+The deployed app declares the canonical Light theme through `.streamlit/config.toml`. Streamlit owns its settings-menu theme behavior and does not expose the portfolio's stable three-state control API to application code. The sidebar states where System, Light, and Dark are selected. Forced CSS dark emulation is prohibited because it would leave native widgets and charts inconsistent. Dark values above are the required mapping if Streamlit adds a maintainable app-level theme API.
 
 ## 5. Typography mapping
 
@@ -54,7 +54,7 @@ The operational canvas remains fluid up to 1600px with `1.75rem` desktop and `1r
 
 ## 9. Navigation and attribution
 
-The expanded Streamlit sidebar owns five task pages, bilingual selection and a full-width external Portfolio link to `https://sebastiangaray.github.io/`. The About page retains repository, documentation and license links.
+The expanded Streamlit sidebar places the compact `EN / ES` segmented language control and native-theme guidance directly below project identity, before task navigation. It also owns the six task pages and a full-width external Portfolio link to `https://sebastiangaray.github.io/`. Theme selection remains in Streamlit's native settings menu so widgets and charts stay coherent. The About page retains repository, documentation and license links.
 
 ## 10. Local component patterns
 

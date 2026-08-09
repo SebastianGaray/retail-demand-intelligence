@@ -3,6 +3,7 @@ from typing import Final
 CATALOG: Final[dict[str, str]] = {
     "app.title": "Inteligencia de Demanda Minorista",
     "app.language": "Idioma",
+    "app.theme_native": "Tema: usa los ajustes de Streamlit (Sistema, Claro u Oscuro).",
     "app.page": "Página",
     "app.missing_artifacts": "Los artefactos de pronóstico no están disponibles.",
     "app.missing_help": "Prepara la demostración local y reinicia el dashboard:",

@@ -34,6 +34,15 @@ if "dashboard_locale" not in st.session_state:
     st.session_state.dashboard_locale = settings.default_locale
 locale = cast(Locale, st.session_state.dashboard_locale)
 text = partial(translate, locale)
+st.sidebar.segmented_control(
+    text("app.language"),
+    ["en", "es"],
+    format_func=lambda value: value.upper(),
+    key="dashboard_locale",
+    selection_mode="single",
+)
+st.sidebar.caption(text("app.theme_native"))
+st.sidebar.divider()
 navigation = (
     ("overview", "page.overview", ":material/dashboard:"),
     ("inventory", "page.inventory", ":material/warning:"),
@@ -62,12 +71,6 @@ for page, label, icon in navigation:
     )
 
 st.sidebar.divider()
-st.sidebar.selectbox(
-    text("app.language"),
-    ["en", "es"],
-    format_func=lambda value: text(f"language.{value}"),
-    key="dashboard_locale",
-)
 st.sidebar.link_button(
     text("navigation.portfolio"),
     "https://sebastiangaray.github.io/",
