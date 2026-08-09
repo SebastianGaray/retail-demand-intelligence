@@ -34,6 +34,11 @@ if "dashboard_locale" not in st.session_state:
     st.session_state.dashboard_locale = settings.default_locale
 locale = cast(Locale, st.session_state.dashboard_locale)
 text = partial(translate, locale)
+st.sidebar.link_button(
+    text("navigation.portfolio"),
+    "https://sebastiangaray.github.io/",
+    width="stretch",
+)
 st.sidebar.segmented_control(
     text("app.language"),
     ["en", "es"],
@@ -70,12 +75,6 @@ for page, label, icon in navigation:
         args=(page,),
     )
 
-st.sidebar.divider()
-st.sidebar.link_button(
-    text("navigation.portfolio"),
-    "https://sebastiangaray.github.io/",
-    width="stretch",
-)
 selected = st.session_state.dashboard_page
 
 
