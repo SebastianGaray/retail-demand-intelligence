@@ -14,8 +14,8 @@
 - [x] Add a real dashboard screenshot.
 - [x] Publish a validated synthetic artifact bundle for the hosted dashboard.
 - [x] Deploy the dashboard and replace the live-demo placeholder.
-- [ ] Review the final staged diff before creating the release commit.
-- [ ] Confirm CI passes on the release commit.
+- [x] Review the final staged diff before creating the release commit.
+- [x] Confirm CI passes on the release commit.
 
 ## Files that remain outside Git
 
