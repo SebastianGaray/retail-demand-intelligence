@@ -12,7 +12,7 @@
     "data/products.parquet": "0789f336e85098508502a823f012022f3413a6a0d25aec525b8d5b155f35bd88",
     "data/promotions.parquet": "94e528e11d47398f91062cfe27906fa4f680c23b86be9016af7ae039f3f3a0fe",
     "data/stores.parquet": "bf63be780d1ff9caff6f2423795525dca154f76bb4c7dc361b4f96cdd9620f22",
-    "metadata.json": "07ff8d72a5455168e57a678aa49d5864dd350310f94a2f3cb3cb61b21b7059c7",
+    "metadata.json": "090d359f6d76baebd0e7d49746d74b41f71b06f34c9e0b4963b5175c6c6b9f9f",
     "predictions.parquet": "ab004436af40370321a9b05949465b2e9d13e91f889f424b24fe75ed95528e5b"
   },
   "product_count": 50,
