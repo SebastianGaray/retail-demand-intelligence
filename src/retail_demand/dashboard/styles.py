@@ -147,6 +147,17 @@ def apply_styles() -> None:
             color: var(--rdi-primary);
         }
 
+        [data-testid="stSidebar"] [data-testid="stButtonGroup"] button {
+            min-height: 44px;
+            min-width: 3.25rem;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stButtonGroup"] button[aria-pressed="true"] {
+            background: var(--rdi-text);
+            color: var(--rdi-background);
+            font-weight: 700;
+        }
+
         .rdi-eyebrow {
             color: var(--rdi-secondary);
             font-size: 0.72rem;

@@ -109,9 +109,15 @@ def test_dashboard_survives_reruns(
     dashboard = AppTest.from_file("src/retail_demand/dashboard/app.py", default_timeout=60).run()
 
     assert not dashboard.exception
-    dashboard.selectbox[0].set_value("es").run()
+    language_control = next(
+        control for control in dashboard.segmented_control if control.key == "dashboard_locale"
+    )
+    language_control.set_value("es").run()
     assert not dashboard.exception
-    assert dashboard.selectbox[0].value == "es"
+    language_control = next(
+        control for control in dashboard.segmented_control if control.key == "dashboard_locale"
+    )
+    assert language_control.value == "es"
     for page, page_id in (
         ("Explorador de Pronósticos", "forecast"),
         ("Riesgo de Inventario", "inventory"),
