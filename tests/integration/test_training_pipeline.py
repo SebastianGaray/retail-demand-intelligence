@@ -48,7 +48,12 @@ def test_training_pipeline_saves_reproducible_artifacts(tmp_path: Path) -> None:
     assert metadata.schema_version == "1"
     assert metadata.test_metrics
     assert metadata.data_manifest_sha256
-    assert load_model(first_artifact / "model.pkl")
+    assert load_model(first_artifact / "model.pkl", metadata.files["model.pkl"])
+
+    model_path = tmp_path / "untrusted-model.pkl"
+    model_path.write_bytes(b"untrusted model payload")
+    with pytest.raises(ValueError, match="checksum mismatch"):
+        load_model(model_path, metadata.files["model.pkl"])
 
     first_bundle = tmp_path / "v0.1.0"
     second_bundle = tmp_path / "second" / "v0.1.0"
