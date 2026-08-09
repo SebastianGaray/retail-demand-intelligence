@@ -34,22 +34,14 @@ if "dashboard_locale" not in st.session_state:
     st.session_state.dashboard_locale = settings.default_locale
 locale = cast(Locale, st.session_state.dashboard_locale)
 text = partial(translate, locale)
-language_column, portfolio_column = st.sidebar.columns((1.15, 1))
-with language_column:
-    st.segmented_control(
-        text("app.language"),
-        ["en", "es"],
-        format_func=lambda value: value.upper(),
-        key="dashboard_locale",
-        selection_mode="single",
-        label_visibility="collapsed",
-    )
-with portfolio_column:
-    st.link_button(
-        text("navigation.portfolio"),
-        "https://sebastiangaray.github.io/",
-        width="stretch",
-    )
+st.sidebar.segmented_control(
+    text("app.language"),
+    ["en", "es"],
+    format_func=lambda value: value.upper(),
+    key="dashboard_locale",
+    selection_mode="single",
+    label_visibility="collapsed",
+)
 st.sidebar.caption(text("app.theme_native"))
 st.sidebar.divider()
 navigation = (
@@ -62,13 +54,22 @@ navigation = (
 )
 if "dashboard_page" not in st.session_state:
     st.session_state.dashboard_page = "overview"
-page_labels = dict(navigation)
-selected = st.sidebar.selectbox(
-    text("navigation.menu"),
-    tuple(page_labels),
-    format_func=lambda page: text(page_labels[page]),
-    key="dashboard_page",
-)
+with st.sidebar.expander(text("navigation.menu")):
+    for page_id, label_key in navigation:
+        if st.button(
+            text(label_key),
+            key=f"navigation_{page_id}",
+            type="primary" if st.session_state.dashboard_page == page_id else "secondary",
+            width="stretch",
+        ):
+            st.session_state.dashboard_page = page_id
+            st.rerun()
+    st.link_button(
+        text("navigation.portfolio"),
+        "https://sebastiangaray.github.io/",
+        width="stretch",
+    )
+selected = cast(str, st.session_state.dashboard_page)
 
 
 @st.cache_resource
