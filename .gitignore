@@ -21,8 +21,8 @@ data/*
 
 /artifacts/
 /demo_artifacts/*
-!/demo_artifacts/v0.1.0/
-!/demo_artifacts/v0.1.0/**
+!/demo_artifacts/v1.0.0/
+!/demo_artifacts/v1.0.0/**
 htmlcov/
 .coverage
 coverage.xml

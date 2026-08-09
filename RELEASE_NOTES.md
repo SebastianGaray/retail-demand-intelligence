@@ -1,5 +1,24 @@
 # Release notes
 
+## 1.0.0 - 2026-08-09
+
+First stable release of the forecasting demo.
+
+### Included
+
+- Versioned `v1.0.0` synthetic dashboard bundle with schema and checksum validation.
+- Leakage-safe temporal forecasting, baseline comparison, and inventory-risk presentation.
+- Local FastAPI and bilingual Streamlit delivery surfaces.
+- Integrity verification before model deserialization.
+- Strict formatting, typing, tests, dependency auditing, container build, and CodeQL checks.
+
+### Known limitations
+
+- Evaluation uses one chronological validation block and one test block.
+- Forecasts do not include calibrated uncertainty intervals.
+- Inventory risk is a coverage indicator rather than replenishment optimization.
+- The hosted Streamlit application may sleep when inactive.
+
 ## 0.1.0
 
 First public project release.

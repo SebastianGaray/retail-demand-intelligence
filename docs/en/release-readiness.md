@@ -1,8 +1,8 @@
-# Release readiness for 0.1.0
+# Release readiness for 1.0.0
 
 ## Checklist
 
-- [x] Package and artifact schema versions are `0.1.0` and `1`.
+- [x] Package and demo bundle versions are `1.0.0`; the compatible artifact schema remains `1`.
 - [x] README commands match the Makefile and CLI.
 - [x] Runtime and development dependencies are separated and locked.
 - [x] Synthetic data is clearly identified.
@@ -11,9 +11,9 @@
 - [x] Contribution, security, license, issue, and pull request files exist.
 - [x] CI runs formatting, linting, strict typing, and tests.
 - [x] Local API and dashboard handle missing artifacts.
-- [ ] Add a real dashboard screenshot.
-- [ ] Publish a validated synthetic artifact bundle for the hosted dashboard.
-- [ ] Deploy the dashboard and replace the live-demo placeholder.
+- [x] Add a real dashboard screenshot.
+- [x] Publish a validated synthetic artifact bundle for the hosted dashboard.
+- [x] Deploy the dashboard and replace the live-demo placeholder.
 - [ ] Review the final staged diff before creating the release commit.
 - [ ] Confirm CI passes on the release commit.
 
@@ -31,9 +31,6 @@ Small synthetic fixtures under `tests/fixtures/` are the only dataset exception.
 
 ## Release blockers
 
-The source release can proceed after the final diff and CI checks.
-
-The public dashboard is blocked by the missing deployable artifact bundle, screenshot, and live
-URL. The repository deliberately excludes generated artifacts, and the dashboard does not train
-at startup. Resolve this by publishing a validated synthetic run through an explicit deployment
-mechanism, then complete the Streamlit smoke test.
+The release can proceed after the final diff, local validation, and required CI checks pass. The
+tracked synthetic bundle, dashboard screenshot, and public Streamlit URL are present; the dashboard
+continues to avoid training at startup.

@@ -55,8 +55,8 @@ def test_training_pipeline_saves_reproducible_artifacts(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="checksum mismatch"):
         load_model(model_path, metadata.files["model.pkl"])
 
-    first_bundle = tmp_path / "v0.1.0"
-    second_bundle = tmp_path / "second" / "v0.1.0"
+    first_bundle = tmp_path / "v1.0.0"
+    second_bundle = tmp_path / "second" / "v1.0.0"
     first_manifest = build_demo_artifacts(first_artifact, first_bundle)
     build_demo_artifacts(first_artifact, second_bundle)
 

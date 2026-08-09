@@ -26,7 +26,7 @@ demo-artifacts:
 	$(MAKE) predictions
 	uv run retail-demand build-demo-artifacts \
 		--source artifacts/runs/demo \
-		--output demo_artifacts/v0.1.0
+		--output demo_artifacts/v1.0.0
 
 api:
 	RETAIL_DEMAND_ARTIFACT_DIRECTORY=artifacts/runs/demo uv run uvicorn retail_demand.api.main:app --reload
