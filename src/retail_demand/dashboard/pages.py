@@ -23,10 +23,6 @@ def _help(text: Translator, content_key: str, widget_key: str) -> None:
     ):
         st.markdown(f'<p class="rdi-help-label">{text("help.about")}</p>', unsafe_allow_html=True)
         st.write(text(f"{content_key}.about"))
-        st.markdown(f'<p class="rdi-help-label">{text("help.use")}</p>', unsafe_allow_html=True)
-        st.write(text(f"{content_key}.use"))
-        st.markdown(f'<p class="rdi-help-label">{text("help.value")}</p>', unsafe_allow_html=True)
-        st.write(text(f"{content_key}.value"))
 
 
 def _heading(title: str, subtitle: str, text: Translator, help_key: str) -> None:
@@ -234,9 +230,6 @@ def render_overview(reader: ResultReader, text: Translator) -> None:
             hide_index=True,
             width="stretch",
         )
-
-    if overview["synthetic"]:
-        st.info(text("overview.synthetic"))
 
 
 def render_forecast(reader: ResultReader, text: Translator) -> None:
@@ -553,9 +546,6 @@ def render_performance(reader: ResultReader, text: Translator) -> None:
 
 def render_engineering_process(text: Translator) -> None:
     st.title(text("engineering.title"))
-    st.markdown(
-        f'<p class="rdi-subtitle">{escape(text("engineering.intro"))}</p>', unsafe_allow_html=True
-    )
 
     stages = (
         ("01", "engineering.specification", "engineering.specification_text"),
@@ -572,20 +562,6 @@ def render_engineering_process(text: Translator) -> None:
 
     st.subheader(text("engineering.example"))
     st.write(text("engineering.example_text"))
-    st.subheader(text("engineering.benefits"))
-    st.markdown(
-        "\n".join(
-            f"- {text(key)}"
-            for key in (
-                "engineering.benefit_scope",
-                "engineering.benefit_review",
-                "engineering.benefit_tests",
-                "engineering.benefit_traceability",
-            )
-        )
-    )
-    st.info(text("engineering.boundary"), icon=":material/verified_user:")
-
     st.subheader(text("engineering.documents"))
     document_columns = st.columns(3)
     repository = "https://github.com/SebastianGaray/retail-demand-intelligence/blob/main/sdd"
