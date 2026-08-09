@@ -54,7 +54,7 @@ The operational canvas remains fluid up to 1600px with `1.75rem` desktop and `1r
 
 ## 9. Navigation and attribution
 
-The expanded Streamlit sidebar places the compact `EN / ES` segmented language control and native-theme guidance directly below project identity, before task navigation. It also owns the six task pages and a full-width external Portfolio link to `https://sebastiangaray.github.io/`. Theme selection remains in Streamlit's native settings menu so widgets and charts stay coherent. The About page retains repository, documentation and license links.
+The expanded Streamlit sidebar places a full-width localized Portfolio return directly below project identity, followed by the compact `EN / ES` segmented language control and native-theme guidance before task navigation. It also owns the six task pages. Theme selection remains in Streamlit's native settings menu so widgets and charts stay coherent. The About page retains repository, documentation and license links.
 
 ## 10. Local component patterns
 
