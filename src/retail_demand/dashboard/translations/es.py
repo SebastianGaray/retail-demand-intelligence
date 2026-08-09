@@ -245,4 +245,5 @@ CATALOG: Final[dict[str, str]] = {
     "language.en": "Inglés",
     "language.es": "Español",
     "navigation.portfolio": "← Portafolio",
+    "navigation.menu": "Menú",
 }

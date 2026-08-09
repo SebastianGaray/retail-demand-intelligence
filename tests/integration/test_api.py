@@ -126,7 +126,10 @@ def test_dashboard_survives_reruns(
         ("Acerca del Proyecto", "about"),
         ("Resumen", "overview"),
     ):
-        next(button for button in dashboard.button if button.label == page).click().run()
+        navigation = next(
+            control for control in dashboard.selectbox if control.key == "dashboard_page"
+        )
+        navigation.set_value(page_id).run()
         assert not dashboard.exception
         assert dashboard.session_state["dashboard_page"] == page_id
         if page_id == "about":
@@ -144,9 +147,9 @@ def test_engineering_process_is_available_without_model_artifacts(
     get_settings.cache_clear()
     dashboard = AppTest.from_file("src/retail_demand/dashboard/app.py", default_timeout=60).run()
 
-    next(
-        button for button in dashboard.button if button.label == "Engineering Process"
-    ).click().run()
+    next(control for control in dashboard.selectbox if control.key == "dashboard_page").set_value(
+        "engineering"
+    ).run()
 
     assert not dashboard.exception
     assert dashboard.session_state["dashboard_page"] == "engineering"

@@ -34,48 +34,41 @@ if "dashboard_locale" not in st.session_state:
     st.session_state.dashboard_locale = settings.default_locale
 locale = cast(Locale, st.session_state.dashboard_locale)
 text = partial(translate, locale)
-st.sidebar.link_button(
-    text("navigation.portfolio"),
-    "https://sebastiangaray.github.io/",
-    width="stretch",
-)
-st.sidebar.segmented_control(
-    text("app.language"),
-    ["en", "es"],
-    format_func=lambda value: value.upper(),
-    key="dashboard_locale",
-    selection_mode="single",
-)
+language_column, portfolio_column = st.sidebar.columns((1.15, 1))
+with language_column:
+    st.segmented_control(
+        text("app.language"),
+        ["en", "es"],
+        format_func=lambda value: value.upper(),
+        key="dashboard_locale",
+        selection_mode="single",
+        label_visibility="collapsed",
+    )
+with portfolio_column:
+    st.link_button(
+        text("navigation.portfolio"),
+        "https://sebastiangaray.github.io/",
+        width="stretch",
+    )
 st.sidebar.caption(text("app.theme_native"))
 st.sidebar.divider()
 navigation = (
-    ("overview", "page.overview", ":material/dashboard:"),
-    ("inventory", "page.inventory", ":material/warning:"),
-    ("forecast", "page.forecast", ":material/trending_up:"),
-    ("performance", "page.performance", ":material/analytics:"),
-    ("engineering", "page.engineering", ":material/account_tree:"),
-    ("about", "page.about", ":material/info:"),
+    ("overview", "page.overview"),
+    ("inventory", "page.inventory"),
+    ("forecast", "page.forecast"),
+    ("performance", "page.performance"),
+    ("engineering", "page.engineering"),
+    ("about", "page.about"),
 )
 if "dashboard_page" not in st.session_state:
     st.session_state.dashboard_page = "overview"
-
-
-def _select_page(page: str) -> None:
-    st.session_state.dashboard_page = page
-
-
-for page, label, icon in navigation:
-    st.sidebar.button(
-        text(label),
-        key=f"navigation_{page}",
-        icon=icon,
-        type="primary" if st.session_state.dashboard_page == page else "tertiary",
-        width="stretch",
-        on_click=_select_page,
-        args=(page,),
-    )
-
-selected = st.session_state.dashboard_page
+page_labels = dict(navigation)
+selected = st.sidebar.selectbox(
+    text("navigation.menu"),
+    tuple(page_labels),
+    format_func=lambda page: text(page_labels[page]),
+    key="dashboard_page",
+)
 
 
 @st.cache_resource
