@@ -1,3 +1,4 @@
+from datetime import date
 from functools import partial
 from pathlib import Path
 from typing import cast
@@ -106,3 +107,23 @@ else:
             render_about(text)
     except (OSError, ValueError):
         st.error(text("app.unexpected"))
+
+st.markdown(
+    f"""
+    <footer class="rdi-site-footer">
+      <div class="rdi-footer-shell">
+        <div>
+          <strong>Retail Intelligence</strong>
+          <small>© {date.today().year} Sebastian Garay</small>
+        </div>
+        <nav aria-label="{text("footer.contact")}">
+          <a href="https://github.com/SebastianGaray/retail-demand-intelligence">GitHub</a>
+          <a href="https://www.linkedin.com/in/sebastián-garay-b28610195/">LinkedIn</a>
+          <a href="mailto:sebastiangarayperez2@gmail.com">{text("footer.email")}</a>
+        </nav>
+        <small>{text("footer.built_with")}</small>
+      </div>
+    </footer>
+    """,
+    unsafe_allow_html=True,
+)
