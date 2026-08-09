@@ -1,5 +1,12 @@
 # Release notes
 
+## 1.0.1 - 2026-08-09
+
+### Fixed
+
+- Normalized tracked demo JSON artifacts to LF so checksums remain stable across platforms.
+- Corrected the hosted dashboard bundle checksum and added regression coverage for the tracked bundle.
+
 ## 1.0.0 - 2026-08-09
 
 First stable release of the forecasting demo.
