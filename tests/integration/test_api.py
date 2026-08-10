@@ -111,6 +111,8 @@ def test_dashboard_survives_reruns(
 
     assert not dashboard.exception
     assert any("rdi-site-footer" in element.value for element in dashboard.markdown)
+    assert not dashboard.expander
+    assert len(dashboard.button) == 6
     language_control = next(
         control for control in dashboard.segmented_control if control.key == "dashboard_locale"
     )
