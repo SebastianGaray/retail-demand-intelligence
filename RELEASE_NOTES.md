@@ -1,5 +1,10 @@
 # Release notes
 
+## 1.0.2 - 2026-08-09
+
+- Prevented the portfolio footer from failing while Streamlit Cloud refreshes cached translation modules.
+- Added safe bilingual footer copy for mixed-version deployment transitions.
+
 ## 1.0.1 - 2026-08-09
 
 ### Fixed

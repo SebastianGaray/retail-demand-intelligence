@@ -28,13 +28,35 @@ settings = get_settings()
 
 st.sidebar.markdown('<p class="rdi-brand">Retail Intelligence</p>', unsafe_allow_html=True)
 st.sidebar.markdown(
-    '<p class="rdi-brand-note">DEMAND &amp; SUPPLY · 1.0.1</p>',
+    '<p class="rdi-brand-note">DEMAND &amp; SUPPLY · 1.0.2</p>',
     unsafe_allow_html=True,
 )
 if "dashboard_locale" not in st.session_state:
     st.session_state.dashboard_locale = settings.default_locale
 locale = cast(Locale, st.session_state.dashboard_locale)
 text = partial(translate, locale)
+
+
+def footer_text(key: str) -> str:
+    """Keep the footer available while Streamlit refreshes cached package modules."""
+    fallback = {
+        "en": {
+            "footer.contact": "Email and profiles",
+            "footer.email": "Email",
+            "footer.built_with": "Built with Streamlit.",
+        },
+        "es": {
+            "footer.contact": "Correo y perfiles",
+            "footer.email": "Correo",
+            "footer.built_with": "Construido con Streamlit.",
+        },
+    }
+    try:
+        return text(key)
+    except KeyError:
+        return fallback[locale][key]
+
+
 st.sidebar.segmented_control(
     text("app.language"),
     ["en", "es"],
@@ -116,12 +138,12 @@ st.markdown(
           <strong>Retail Intelligence</strong>
           <small>© {date.today().year} Sebastian Garay</small>
         </div>
-        <nav aria-label="{text("footer.contact")}">
+        <nav aria-label="{footer_text("footer.contact")}">
           <a href="https://github.com/SebastianGaray/retail-demand-intelligence">GitHub</a>
           <a href="https://www.linkedin.com/in/sebastián-garay-b28610195/">LinkedIn</a>
-          <a href="mailto:sebastiangarayperez2@gmail.com">{text("footer.email")}</a>
+          <a href="mailto:sebastiangarayperez2@gmail.com">{footer_text("footer.email")}</a>
         </nav>
-        <small>{text("footer.built_with")}</small>
+        <small>{footer_text("footer.built_with")}</small>
       </div>
     </footer>
     """,
