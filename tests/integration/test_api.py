@@ -16,6 +16,7 @@ from retail_demand.application.train import (
 )
 from retail_demand.artifacts.metadata import ForecastConfiguration
 from retail_demand.configuration.settings import get_settings
+from retail_demand.dashboard.translations import TRANSLATIONS
 from retail_demand.data.generation import DemoDataParameters
 
 
@@ -137,6 +138,23 @@ def test_dashboard_survives_reruns(
             assert any(page in element.value for element in dashboard.markdown)
         else:
             assert dashboard.title[0].value == page
+    get_settings.cache_clear()
+
+
+def test_dashboard_footer_survives_a_stale_translation_catalog(
+    artifact_directory: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("RETAIL_DEMAND_ARTIFACT_DIRECTORY", str(artifact_directory))
+    for catalog in TRANSLATIONS.values():
+        for key in ("footer.contact", "footer.email", "footer.built_with"):
+            monkeypatch.delitem(catalog, key)
+    get_settings.cache_clear()
+
+    dashboard = AppTest.from_file("src/retail_demand/dashboard/app.py", default_timeout=60).run()
+
+    assert not dashboard.exception
+    assert any("Built with Streamlit." in element.value for element in dashboard.markdown)
     get_settings.cache_clear()
 
 
