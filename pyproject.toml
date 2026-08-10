@@ -11,15 +11,15 @@ requires-python = ">=3.12"
 license = "MIT"
 authors = [{ name = "Sebastian Garay" }]
 dependencies = [
-    "fastapi>=0.115",
+    "fastapi>=0.141.1",
     "lightgbm>=4.6",
     "pandas>=2.2",
-    "pyarrow>=18,<25",
+    "pyarrow>=25.0.0,<26",
     "pydantic>=2.10",
     "pydantic-settings>=2.7",
     "scikit-learn>=1.6",
     "streamlit>=1.41",
-    "uvicorn[standard]>=0.34",
+    "uvicorn[standard]>=0.52.1",
 ]
 
 [project.scripts]
@@ -28,13 +28,13 @@ retail-demand = "retail_demand.cli:main"
 [dependency-groups]
 dev = [
     "httpx>=0.28",
-    "pandas-stubs>=2.2",
+    "pandas-stubs>=3.0.5.260730",
     "pip-audit>=2.10.1",
-    "pre-commit>=4.0,<4.6",
+    "pre-commit>=4.6.1,<4.7",
     "pyright>=1.1.390",
     "pytest>=8.3",
     "pytest-cov>=7.1.0",
-    "ruff>=0.9",
+    "ruff>=0.16.1",
     "scikit-learn-stubs",
 ]
 
