@@ -77,21 +77,20 @@ navigation = (
 )
 if "dashboard_page" not in st.session_state:
     st.session_state.dashboard_page = "overview"
-with st.sidebar.expander(text("navigation.menu")):
-    for page_id, label_key in navigation:
-        if st.button(
-            text(label_key),
-            key=f"navigation_{page_id}",
-            type="primary" if st.session_state.dashboard_page == page_id else "secondary",
-            width="stretch",
-        ):
-            st.session_state.dashboard_page = page_id
-            st.rerun()
-    st.link_button(
-        text("navigation.portfolio"),
-        "https://sebastiangaray.github.io/",
+for page_id, label_key in navigation:
+    if st.sidebar.button(
+        text(label_key),
+        key=f"navigation_{page_id}",
+        type="primary" if st.session_state.dashboard_page == page_id else "secondary",
         width="stretch",
-    )
+    ):
+        st.session_state.dashboard_page = page_id
+        st.rerun()
+st.sidebar.link_button(
+    text("navigation.portfolio"),
+    "https://sebastiangaray.github.io/",
+    width="stretch",
+)
 selected = cast(str, st.session_state.dashboard_page)
 
 
