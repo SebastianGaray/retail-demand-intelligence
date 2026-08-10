@@ -1,5 +1,11 @@
 # Release notes
 
+## 1.0.3 - 2026-08-09
+
+- Removed the redundant navigation expander from the Streamlit sidebar.
+- Exposed all dashboard destinations directly and kept Portfolio as the final navigation item.
+- Added regression coverage for the flattened sidebar navigation.
+
 ## 1.0.2 - 2026-08-09
 
 - Prevented the portfolio footer from failing while Streamlit Cloud refreshes cached translation modules.
